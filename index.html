@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>חשבון פשוט</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: x-large;
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        color: #fff;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #444;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    h3 {
+        text-align: center;
+    }
+    .blue-color {
+        color: #4285F4;
+        background-color: #4285F4 ;
+        border-color: #4285F4;
+    }
+    hr{
+        border-color: #4285F4;
+    }
+    p {
+        margin-bottom: 10px;
+    }
+    .wide {
+        width: 100%;
+    }
+
+    input {   
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #666;
+        border-radius: 5px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        font-size: large;
+    }
+
+    .button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        font-size: x-large;
+        text-align: center;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    #output {
+        margin-top: 20px;
+    }
+    
+    .action-container {
+        display: flex;
+        align-items: center;
+    }  
+    
+    #timer{
+        font-size: medium;
+        text-align: right;
+    }
+
+    .rtl{
+        font-size: large;
+        text-align: right;
+    }
+  
+  
+</style>
+
+</head>
+
+<body>
+
+<div class="container" id="main">
+    <h3 id="tit"></h3>
+    <p id="question"></p>
+    <input type="text" id="answer" placeholder="Enter your answer">
+    <div id="output"></div>
+    <p id="timer"></p>
+</div>
+
+    
+<div class="container" id="setup">
+    <div id="selectActions"><div>
+</div>
+
+</body>
+<script>
+const answerInput = document.getElementById("answer")
+answerInput.classList.add("wide")
+const tit = document.getElementById("tit")
+const okImage = '😄';2
+const errImage = '👎';
+const output =  document.getElementById('output')
+const selectActions = document.getElementById('selectActions')
+const Actions = [];
+const setup = document.getElementById('setup')
+const main = document.getElementById('main')
+main.style.display = 'None'
+
+let result = 0;
+
+const que = document.getElementById('question')
+    
+function getRandomInt(max, min=0) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+class Timer{
+    constructor(){
+        this.timer = document.getElementById('timer');
+        this.timer.value = 0
+    }
+    start(){
+        this.interval = setInterval(()=>{
+            this.timer.value = this.timer.value +1
+            this.timer.innerHTML = `${Math.floor(this.timer.value / 3600)}:
+            ${Math.floor(this.timer.value /60)- Math.floor(this.timer.value / 3600)*60}:
+            ${this.timer.value % 60}`
+            }
+            , 1000)
+    }
+    stop(){
+        clearInterval(this.interval)
+    }
+}
+
+ 
+class Exercises{
+    constructor(){
+        this.timer =  new Timer()
+        this.NExercise = document.getElementById("numberOfExercises").value
+        this.counter = 0
+        this.result = 0 
+        this.timer.start()
+        this.nextExercise()
+        tit.textContent = `${this.NExercise - this.counter}: נותרו`
+
+        answerInput.addEventListener("keydown", (event) => {
+             if (event.keyCode === 13) {
+                event.preventDefault();
+                this.submitAnswer();
+        }
+        })
+    }
+
+    nextExercise(){
+        let randomIndex = getRandomInt(Actions.length-1);
+        
+        let action = Actions[randomIndex]
+       
+        let [sign, mix_n , max_n] = [action[0], action[1].value, action[2].value]
+        let range = [ getRandomInt(max_n,mix_n), getRandomInt(max_n,mix_n)]
+        sign = sign.replace('x', '*')
+        let big = Math.max(...range)
+        let small = Math.min(...range)
+        
+        let exercise = `${big} ${sign} ${small}`
+        que.innerText = `${exercise} = ?`;
+        this.result = eval(exercise)
+    }
+    
+    submitAnswer (){
+        if (parseInt(answerInput.value) ==  this.result){
+            this.counter +=1
+            let left = this.NExercise - this.counter
+            tit.textContent = `${left}: נותרו`
+            output.innerText += okImage
+            if (left <=0 ){
+                this.finish()
+            }else{
+                this.nextExercise()
+            }
+        }else{
+            output.innerText += errImage
+        }
+        answerInput.value =""
+        
+    }
+
+    finish() {
+        let doneText = okImage.repeat(10);
+        output.innerText = doneText + '\n';
+        que.innerText = doneText + '\n';
+        answerInput.disabled = true;
+        this.timer.stop()
+    }
+}
+
+
+    
+function userSetup() {
+    const noe = document.createElement("div")
+    const numberOfExercisesLabel = document.createElement("i")
+    numberOfExercisesLabel.innerText =":מספר תרגילים"
+    const numberOfExercises = document.createElement("input")
+    numberOfExercises.id = "numberOfExercises"
+    numberOfExercises.value = 3
+    noe.appendChild(numberOfExercises)
+    noe.appendChild(numberOfExercisesLabel)
+
+
+    const table = document.createElement("table")
+
+    const thead = document.createElement("thead")
+    table.appendChild(thead)
+    let trthead  = document.createElement("tr")
+    for (let t of ["", ":מ", ":עד"] ){
+        let tt= document.createElement("td")
+        tt.innerText = t;
+        tt.classList.add("rtl")
+        trthead.appendChild(tt)
+    }
+
+
+    
+    thead.appendChild(trthead)
+
+    const tbody = document.createElement("tbody")
+    table.appendChild(tbody)
+
+    for (let action of ["+", "x", "-"]) {    
+        let tr  = document.createElement("tr")
+        // label
+        let tdlabel = document.createElement("td")
+        tdlabel.innerText = action
+
+        // min
+        let td_min = document.createElement("td")
+        let td_min_input = document.createElement("input")
+        td_min_input.value = 1
+        td_min.appendChild(td_min_input)
+        
+        // max
+        let td_max = document.createElement("td")
+        let td_max_input = document.createElement("input")
+        td_max_input.value = 10
+        td_max.appendChild(td_max_input)
+
+        for (let td of [tdlabel,td_min, td_max]){
+            tr.appendChild(td)    
+        }
+        tbody.appendChild(tr)
+        Actions.push([action, td_min_input, td_max_input])
+    }
+
+    const hr = document.createElement('hr');
+
+    const btn_sbmt = document.createElement('input');
+    btn_sbmt.value = "התחל"
+    btn_sbmt.classList.add("button")
+    btn_sbmt.classList.add("wide")
+
+    
+    btn_sbmt.addEventListener("click", function(event) {
+        event.preventDefault();
+        setup.style.display = 'None'
+        main.style.display ='block'
+        new Exercises();
+     
+    })
+    selectActions.appendChild(noe)
+    selectActions.appendChild(document.createElement('hr'));
+    selectActions.appendChild(table);
+    selectActions.appendChild(document.createElement('hr'));
+    selectActions.appendChild(btn_sbmt);
+}
+
+userSetup()
+
+
+</script>
+
+</html>
