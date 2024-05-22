@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>חשבון פשוט</title>
 <style>
+    
     body {
         font-family: Arial, sans-serif;
         font-size: x-large;
@@ -13,114 +14,155 @@
         background-color: #333;
         color: #fff;
     }
+
     .container {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem;
         background-color: #444;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    h3 {
-        text-align: center;
-    }
-    .blue-color {
-        color: #4285F4;
-        background-color: #4285F4 ;
-        border-color: #4285F4;
-    }
-    hr{
-        border-color: #4285F4;
-    }
-    p {
-        margin-bottom: 10px;
-    }
-    .wide {
-        width: 100%;
+        border-radius: 10px;
+        direction: rtl; /* Right-to-left content */
     }
 
-    input {   
-        padding: 10px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-        border: 1px solid #666;
+    h3 {
+        margin-top: 0;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
         border-radius: 5px;
         background-color: #555;
         color: #fff;
-        text-align: center;
-        font-size: large;
-    }
-
-    .button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #007bff;
-        color: #fff;
-        cursor: pointer;
-        font-size: x-large;
-        text-align: center;
-    }
-    button:hover {
-        background-color: #0056b3;
     }
 
     #output {
-        margin-top: 20px;
-    }
-    
-    .action-container {
-        display: flex;
-        align-items: center;
-    }  
-    
-    #timer{
-        font-size: medium;
-        text-align: right;
+       
+        margin-bottom: 1rem;
     }
 
-    .rtl{
-        font-size: large;
+    #setupTitle {
         text-align: right;
+        margin-bottom: 1rem;
     }
-  
-  
+
+    #setupTitle input {
+        width: 50px;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    .ltr{
+        direction: ltr;
+    }
+    .button {
+        padding: 0.5rem 2rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 0.5rem;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+        background-color: #111;
+        color: #ddd;
+    }
+
+    .container.dark-mode {
+        background-color: #222;
+    }
+
+    input{
+        background-color: #333;
+        color: #fff;
+        font-size: large;
+    }
+
+    table.dark-mode {
+        border-color: #555;
+    }
 </style>
+
 
 </head>
 
 <body>
 
 <div class="container" id="main">
-    <h3 id="tit"></h3>
+    <div id="setupTitle" >
+        <div id="execTodoLabel"  style="display: inline-block;">נותרו:</div>
+        <div id="execTodo" style="display: inline-block;">3</div>
+        <div id="timer" style="display: inline-block;"></div>
+    </div>
     <p id="question"></p>
     <input type="text" id="answer" placeholder="Enter your answer">
     <div id="output"></div>
-    <p id="timer"></p>
+    
+    <input id="back"></p>
 </div>
 
     
 <div class="container" id="setup">
-    <div id="selectActions"><div>
+    <div id="setupTitle" >
+        <div id="numberOfExercise"  style="display: inline-block;">תרגילים:</div>
+        <input id="numberOfExerciseInput" value=3></input>
+    </div>
+     <table ><tbody id="tbody"></tbody></table>
+     <input id="setupBtn"></p>
 </div>
 
 </body>
+
+<!--                          SCRIPT                      -->
 <script>
+
 const answerInput = document.getElementById("answer")
-answerInput.classList.add("wide")
-const tit = document.getElementById("tit")
+
+const timerE = document.getElementById('timer');
+timerE.value = 0
+timerE.classList.add("ltr")
+timerE.style.fontFamily = "courier"
+
 const okImage = '😄';2
 const errImage = '👎';
 const output =  document.getElementById('output')
-const selectActions = document.getElementById('selectActions')
-const Actions = [];
 const setup = document.getElementById('setup')
+const Actions = [];
+let initExercise = false
+const execTodoE = document.getElementById('execTodo')
+ 
 const main = document.getElementById('main')
 main.style.display = 'None'
 
 let result = 0;
 
 const que = document.getElementById('question')
+que.classList.add("ltr")
     
 function getRandomInt(max, min=0) {
     min = Math.ceil(min);
@@ -128,49 +170,61 @@ function getRandomInt(max, min=0) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-class Timer{
-    constructor(){
-        this.timer = document.getElementById('timer');
-        this.timer.value = 0
-    }
-    start(){
-        this.interval = setInterval(()=>{
-            this.timer.value = this.timer.value +1
-            this.timer.innerHTML = `${Math.floor(this.timer.value / 3600)}:
-            ${Math.floor(this.timer.value /60)- Math.floor(this.timer.value / 3600)*60}:
-            ${this.timer.value % 60}`
-            }
-            , 1000)
-    }
-    stop(){
-        clearInterval(this.interval)
-    }
+let timerInterval = undefined
+const startTimer = ()  =>{
+    timerE.value = 0
+    timerInterval = setInterval(()=>{
+        timerE.value = timerE.value +1
+        let val = timerE.value
+        timerE.innerHTML = `(${Math.floor(val / 3600)}:
+        ${Math.floor(val /60)- Math.floor(val / 3600)*60}:
+        ${val % 60})`
+        }
+        , 1000)
 }
 
- 
-class Exercises{
-    constructor(){
-        this.timer =  new Timer()
-        this.NExercise = document.getElementById("numberOfExercises").value
-        this.counter = 0
-        this.result = 0 
-        this.timer.start()
-        this.nextExercise()
-        tit.textContent = `${this.NExercise - this.counter}: נותרו`
+const stopTimer = ()  => clearInterval(timerInterval)
+let CalculatedResult = 0
+let Counter = 0
+let NExercise = 0
 
+class Exercises{
+    constructor (){
+        stopTimer()
+        startTimer()
+        answerInput.value = ""
+        answerInput.disabled = false;
+        output.innerText = "";
+        que.innerText = "";
+       
+
+        if (initExercise == false){
+            this.initialize()
+        }
+        NExercise = document.getElementById("numberOfExerciseInput").value
+        Counter = 0
+        this.result = 0
+        this.nextExercise()
+        numberOfExerciseInput.value = NExercise - Counter
+
+    }
+
+    initialize = () =>{
         answerInput.addEventListener("keydown", (event) => {
              if (event.keyCode === 13) {
                 event.preventDefault();
                 this.submitAnswer();
         }
         })
+        initExercise = true
     }
 
-    nextExercise(){
+     
+    nextExercise = () =>{
+        execTodo.textContent = NExercise - Counter
         let randomIndex = getRandomInt(Actions.length-1);
-        
         let action = Actions[randomIndex]
-       
+    
         let [sign, mix_n , max_n] = [action[0], action[1].value, action[2].value]
         let range = [ getRandomInt(max_n,mix_n), getRandomInt(max_n,mix_n)]
         sign = sign.replace('x', '*')
@@ -179,16 +233,16 @@ class Exercises{
         
         let exercise = `${big} ${sign} ${small}`
         que.innerText = `${exercise} = ?`;
-        this.result = eval(exercise)
+        CalculatedResult = eval(exercise)
     }
     
-    submitAnswer (){
-        if (parseInt(answerInput.value) ==  this.result){
-            this.counter +=1
-            let left = this.NExercise - this.counter
-            tit.textContent = `${left}: נותרו`
+    submitAnswer = ()=>{
+       
+        if (parseInt(answerInput.value) ==  CalculatedResult){
+            Counter +=1
+            execTodo.textContent = NExercise - Counter
             output.innerText += okImage
-            if (left <=0 ){
+            if (NExercise - Counter <=0 ){
                 this.finish()
             }else{
                 this.nextExercise()
@@ -205,41 +259,15 @@ class Exercises{
         output.innerText = doneText + '\n';
         que.innerText = doneText + '\n';
         answerInput.disabled = true;
-        this.timer.stop()
+        stopTimer()
     }
 }
-
-
     
 function userSetup() {
-    const noe = document.createElement("div")
-    const numberOfExercisesLabel = document.createElement("i")
-    numberOfExercisesLabel.innerText =":מספר תרגילים"
-    const numberOfExercises = document.createElement("input")
-    numberOfExercises.id = "numberOfExercises"
-    numberOfExercises.value = 3
-    noe.appendChild(numberOfExercises)
-    noe.appendChild(numberOfExercisesLabel)
-
-
-    const table = document.createElement("table")
-
-    const thead = document.createElement("thead")
-    table.appendChild(thead)
-    let trthead  = document.createElement("tr")
-    for (let t of ["", ":מ", ":עד"] ){
-        let tt= document.createElement("td")
-        tt.innerText = t;
-        tt.classList.add("rtl")
-        trthead.appendChild(tt)
+    const tbody = document.querySelector('tbody');
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
     }
-
-
-    
-    thead.appendChild(trthead)
-
-    const tbody = document.createElement("tbody")
-    table.appendChild(tbody)
 
     for (let action of ["+", "x", "-"]) {    
         let tr  = document.createElement("tr")
@@ -250,47 +278,53 @@ function userSetup() {
         // min
         let td_min = document.createElement("td")
         let td_min_input = document.createElement("input")
+       
+
         td_min_input.value = 1
         td_min.appendChild(td_min_input)
-        
+
+        let td_lable = document.createElement("td")
+        td_lable.innerHTML = "..."
+
         // max
         let td_max = document.createElement("td")
         let td_max_input = document.createElement("input")
         td_max_input.value = 10
         td_max.appendChild(td_max_input)
 
-        for (let td of [tdlabel,td_min, td_max]){
+        for (let td of [tdlabel,td_min,td_lable,td_max]){
             tr.appendChild(td)    
         }
         tbody.appendChild(tr)
-        Actions.push([action, td_min_input, td_max_input])
+        Actions.push([action, td_min_input,  td_max_input])
     }
+}
 
-    const hr = document.createElement('hr');
+// settings  buttind 
+(()=>{
+    back = document.getElementById("back")
+    back.classList.add("button", "wide")
+    back.value =  "חזור למסך קודם";
+    back.addEventListener("click", function(event) {
+        event.preventDefault();
+        setup.style.display = 'block'
+        main.style.display ='None'
+        userSetup();
+    })
 
-    const btn_sbmt = document.createElement('input');
-    btn_sbmt.value = "התחל"
-    btn_sbmt.classList.add("button")
-    btn_sbmt.classList.add("wide")
-
-    
-    btn_sbmt.addEventListener("click", function(event) {
+    setupBtn = document.getElementById("setupBtn")
+    setupBtn.classList.add("button", "wide")
+    setupBtn.value = "התחל"
+    setupBtn.addEventListener("click", function(event) {
         event.preventDefault();
         setup.style.display = 'None'
         main.style.display ='block'
+
         new Exercises();
-     
     })
-    selectActions.appendChild(noe)
-    selectActions.appendChild(document.createElement('hr'));
-    selectActions.appendChild(table);
-    selectActions.appendChild(document.createElement('hr'));
-    selectActions.appendChild(btn_sbmt);
-}
-
+    
+})();
 userSetup()
-
-
 </script>
 
 </html>
