@@ -361,6 +361,10 @@ const userSetupRestart = () =>{
         })
 
     submit.addEventListener("click", (event) => g_exercise.submitAnswer())
+    answerInput.addEventListener("blur", () =>
+        g_exercise.submitAnswer()
+    )
+    
     
 })();
 
