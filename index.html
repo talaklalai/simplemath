@@ -236,7 +236,7 @@ class Exercises{
             this.okCounter += 1
             gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
             this.output.innerText += okImage
-            if (this.okCounter == settingsTotal){
+            if (this.okCounter == settingsTotal.value){
                 this.finish()
             }else{
                 this.nextExercise()
