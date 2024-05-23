@@ -203,7 +203,6 @@ class Exercises{
     constructor(){
        this.emoji = gtag("emoji")
        this.calculatedResult  = 0 
-       this.emoji.innerText = "";
     }
 
     rerun = () => {
@@ -213,6 +212,7 @@ class Exercises{
             this.okCounter = 0
             this.nextExercise()
             gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
+            this.emoji.innerText = "";
     }
 
     newExerciseCleanup = () =>{
