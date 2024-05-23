@@ -5,31 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>חשבון פשוט</title>
 <style>
+    :root{
+        --lines: #465063 ;
+        --letters: #f1c485;
+        
+    }
+
+    
     body {
         font-family: Arial, sans-serif;
         font-size: x-large;
         margin: 0;
         padding: 0;
         background-color: #15221b;
-        color: #f9b85e;
+        color: var(--letters)
     }
+
     .container {
         max-width: 600px;
         margin: auto;
         padding: 2rem;
         background-color: #232325;
-        border-radius: 10px;
+        border-radius: 20px;
+        border: 1px solid var(--lines);
         direction: rtl; /* Right-to-left content */
     }
     input {
         max-width: 60px;
         padding: 0.5rem;
         margin-bottom: 1rem;
-        border: 2px solid #ea5727;
+        border: 2px solid var(--lines);
         border-radius: 5px;
-        background-color: #082022;
-        color: #f9b85e;
+        background-color: #1d2020;
+        color: var(--letters);
         font-size: large;
+        border-color: var(--lines);
     }
     input.wide{
         max-width: 180px;
@@ -46,14 +56,12 @@
     .button {
         padding: 0.5rem 2rem;
         background-color: #21443e;
-        color: #f9b85e;
         border: none;
         border-radius: 5px;
         cursor: pointer;
     }
     hr{
-        border-color: #531210;
-        border: 2px solid #ea5727;
+        border: 2px solid  #5e6ea3;
     }
     .button:hover {
         background-color: #21443e;
@@ -79,12 +87,7 @@
 
     /* Dark mode styles */
     body.dark-mode {
-        background-color: #111;
-        color: #ddd;
-    }
-
-    .container.dark-mode {
-        background-color: #222;
+        color: var(--lines);
     }
 
     .green{
@@ -361,11 +364,8 @@ const userSetupRestart = () =>{
         })
 
     submit.addEventListener("click", (event) => g_exercise.submitAnswer())
-    answerInput.addEventListener("blur", () =>
-        g_exercise.submitAnswer()
-    )
-    
-    
+
+
 })();
 
 // Landing page 
