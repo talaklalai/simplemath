@@ -202,7 +202,7 @@ class Exercises{
         answerInput.disabled = false;
         output.innerText = "";
         que.innerText = "";
-
+        
         if (initExercise == false){
             this.initialize()
         }
@@ -211,7 +211,7 @@ class Exercises{
         this.result = 0
         this.nextExercise()
         numberOfExerciseInput.value = NExercise - Counter
-
+        answerInput.focus()
     }
 
     initialize = () =>{
@@ -261,6 +261,8 @@ class Exercises{
             output.innerText += errImage
         }
         answerInput.value =""
+        answerInput.focus()
+    }
         
     }
 
