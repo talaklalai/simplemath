@@ -245,7 +245,6 @@ class Exercises{
             this.okCounter += 1
             gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
             this.emoji.innerText += okImage
-            console.log(this.emoji)
             if (this.okCounter == settingsTotal.value){
                 this.finish()
             }else{
@@ -269,6 +268,13 @@ class Exercises{
 
 g_exercise = new Exercises()
 
+defaultSettings = {
+    "+": [10, 100],
+    "-": [10, 100],
+    "*": [2, 12],
+    "/": [2, 12],
+}
+
 // Landing page layout
 function userSetupLayout() {
     const tbody = document.querySelector('tbody');
@@ -285,12 +291,12 @@ function userSetupLayout() {
     }
 
     // set up math preferences
-    for (let action of ["+", "x", "-" , "/"]) {    
+    for (let [sign,[mn,mx] ] of Object.entries(defaultSettings)){
         let tr  = ctag("tr")
 
         // sign
         let tdlabel = ctd("td")
-        tdlabel.innerText = action
+        tdlabel.innerText = sign
         tdlabel.classList.add("green", "bigFont")
 
         // arrow
@@ -300,9 +306,9 @@ function userSetupLayout() {
 
         for (let td of [
                 tdlabel,
-                _setRangeFiled(1),
+                _setRangeFiled(mn),
                 td_lable,
-                _setRangeFiled(10)
+                _setRangeFiled(mx)
             ])
             tr.appendChild(td)    
         tbody.appendChild(tr)
