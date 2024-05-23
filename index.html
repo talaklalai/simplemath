@@ -214,7 +214,7 @@ class Exercises{
         }
         })
 
-        submit.addEventListener("click", (event) => this.submitAnswer())
+        submit.addEventListener("click", (event) => {this.submitAnswer(); answerInput.focus()})
             
         initExercise = true
     }
