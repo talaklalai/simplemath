@@ -90,7 +90,6 @@
     }
 </style>
 
-
 </head>
 
 <body>
@@ -107,6 +106,9 @@
     </div>
     <div id="output"></div>
     <input id="newGame" class="dark wider" value="משחק חדש"></input>
+    <div class="ltr">
+    <input id="submit"  value="שלח" class="button" style="display:none"></input>
+    </div>
 </div>
 
     
@@ -117,15 +119,28 @@
     </div>
      <table ><tbody id="tbody"></tbody></table>
      <input id="setupBtn"></input>
+     
 </div>
 
 </body>
 
 <!--                          SCRIPT                      -->
 <script>
+const isPhone = () => {
+    console.log("Phone")
+    return navigator.userAgentData.mobile
+}
 
 const answerInput = document.getElementById("answer")
- 
+const submit = document.getElementById("submit")
+const output = document.getElementById('output')
+const setup = document.getElementById('setup')
+const execTodoE = document.getElementById('execTodo')
+const main = document.getElementById('main') ;//main.style.display = 'None'
+const que = document.getElementById('question')
+
+if (isPhone()) submit.style.display = 'block'
+
 timerE = document.getElementById('timer');
 timerE.value = 0
 timerE.classList.add("ltr")
@@ -133,18 +148,12 @@ timerE.style.fontFamily = "courier"
 
 const okImage = '😄';2
 const errImage = '👎';
-const output =  document.getElementById('output')
-const setup = document.getElementById('setup')
+
 const Actions = [];
 let initExercise = false
-const execTodoE = document.getElementById('execTodo')
- 
-const main = document.getElementById('main')
-main.style.display = 'None'
+
 
 let result = 0;
-
-const que = document.getElementById('question')
 que.classList.add("ltr")
     
 function getRandomInt(max, min=0) {
@@ -152,6 +161,8 @@ function getRandomInt(max, min=0) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+
 
 let timerInterval = undefined
 const startTimer = ()  =>{
@@ -199,6 +210,9 @@ class Exercises{
                 this.submitAnswer();
         }
         })
+
+        submit.addEventListener("click", (event) => this.submitAnswer())
+            
         initExercise = true
     }
 
