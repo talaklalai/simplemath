@@ -16,48 +16,43 @@
     }
 
     .container {
-        max-width: 800px;
+        max-width: 600px;
         margin: auto;
         padding: 2rem;
         background-color: #444;
         border-radius: 10px;
         direction: rtl; /* Right-to-left content */
     }
+ 
 
-    h3 {
-        margin-top: 0;
-    }
-
-    input[type="text"] {
-        width: 100%;
+    input {
+        max-width: 60px;
         padding: 0.5rem;
         margin-bottom: 1rem;
         border: 1px solid #ccc;
         border-radius: 5px;
-        background-color: #555;
+        background-color: #333;
         color: #fff;
+        font-size: large;
+    }
+
+    input.wide{
+        max-width: 180px;
+    }
+
+    input.wider{
+        max-width: 120px;
     }
 
     #output {
-       
         margin-bottom: 1rem;
     }
 
-    #setupTitle {
-        text-align: right;
-        margin-bottom: 1rem;
-    }
-
-    #setupTitle input {
-        width: 50px;
-        padding: 0.5rem;
-        margin-right: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
+ 
     .ltr{
         direction: ltr;
     }
+
     .button {
         padding: 0.5rem 2rem;
         background-color: #007bff;
@@ -71,22 +66,22 @@
         background-color: #0056b3;
     }
 
+    .button.dark{
+        background-color: #0056b3;
+    }
+
     table {
-        width: 100%;
+        width: 70%;
         margin-bottom: 1rem;
         border-collapse: collapse;
     }
 
-    th, td {
+    td {
         padding: 0.5rem;
-        border-bottom: 1px solid #ccc;
         text-align: center;
+        max-width: 60px;
     }
-
-    th {
-        background-color: #f8f9fa;
-    }
-
+  
     /* Dark mode styles */
     body.dark-mode {
         background-color: #111;
@@ -97,14 +92,15 @@
         background-color: #222;
     }
 
-    input{
-        background-color: #333;
-        color: #fff;
-        font-size: large;
+    .green{
+        color: #4caf50;
     }
 
     table.dark-mode {
         border-color: #555;
+    }
+    .bigFont{
+        font-size: xx-large;
     }
 </style>
 
@@ -120,10 +116,11 @@
         <div id="timer" style="display: inline-block;"></div>
     </div>
     <p id="question"></p>
-    <input type="text" id="answer" placeholder="Enter your answer">
+    <div id="answerDiv" class="ltr">
+        <input type="text" id="answer" placeholder="מה התשובה" class="wide">
+    </div>
     <div id="output"></div>
-    
-    <input id="back"></p>
+    <input id="newGame" class="dark wider" value="משחק חדש"></input>
 </div>
 
     
@@ -133,7 +130,7 @@
         <input id="numberOfExerciseInput" value=3></input>
     </div>
      <table ><tbody id="tbody"></tbody></table>
-     <input id="setupBtn"></p>
+     <input id="setupBtn"></input>
 </div>
 
 </body>
@@ -142,8 +139,8 @@
 <script>
 
 const answerInput = document.getElementById("answer")
-
-const timerE = document.getElementById('timer');
+ 
+timerE = document.getElementById('timer');
 timerE.value = 0
 timerE.classList.add("ltr")
 timerE.style.fontFamily = "courier"
@@ -157,7 +154,7 @@ let initExercise = false
 const execTodoE = document.getElementById('execTodo')
  
 const main = document.getElementById('main')
-main.style.display = 'None'
+//main.style.display = 'None'
 
 let result = 0;
 
@@ -274,6 +271,7 @@ function userSetup() {
         // label
         let tdlabel = document.createElement("td")
         tdlabel.innerText = action
+        tdlabel.classList.add("green", "bigFont")
 
         // min
         let td_min = document.createElement("td")
@@ -284,7 +282,7 @@ function userSetup() {
         td_min.appendChild(td_min_input)
 
         let td_lable = document.createElement("td")
-        td_lable.innerHTML = "..."
+        td_lable.innerHTML = ">>>"
 
         // max
         let td_max = document.createElement("td")
@@ -302,10 +300,10 @@ function userSetup() {
 
 // settings  buttind 
 (()=>{
-    back = document.getElementById("back")
-    back.classList.add("button", "wide")
-    back.value =  "חזור למסך קודם";
-    back.addEventListener("click", function(event) {
+    newGame = document.getElementById("newGame")
+    newGame.classList.add("button")
+    newGame.value =  "משחק חדש";
+    newGame.addEventListener("click", function(event) {
         event.preventDefault();
         setup.style.display = 'block'
         main.style.display ='None'
@@ -313,7 +311,7 @@ function userSetup() {
     })
 
     setupBtn = document.getElementById("setupBtn")
-    setupBtn.classList.add("button", "wide")
+    setupBtn.classList.add("button", )
     setupBtn.value = "התחל"
     setupBtn.addEventListener("click", function(event) {
         event.preventDefault();
