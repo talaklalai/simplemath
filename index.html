@@ -10,14 +10,14 @@
         font-size: x-large;
         margin: 0;
         padding: 0;
-        background-color: #333;
-        color: #fff;
+        background-color: #15221b;
+        color: #f9b85e;
     }
     .container {
         max-width: 600px;
         margin: auto;
         padding: 2rem;
-        background-color: #444;
+        background-color: #232325;
         border-radius: 10px;
         direction: rtl; /* Right-to-left content */
     }
@@ -25,10 +25,10 @@
         max-width: 60px;
         padding: 0.5rem;
         margin-bottom: 1rem;
-        border: 1px solid #ccc;
+        border: 2px solid #ea5727;
         border-radius: 5px;
-        background-color: #333;
-        color: #fff;
+        background-color: #082022;
+        color: #f9b85e;
         font-size: large;
     }
     input.wide{
@@ -45,18 +45,21 @@
     }
     .button {
         padding: 0.5rem 2rem;
-        background-color: #007bff;
-        color: #fff;
+        background-color: #21443e;
+        color: #f9b85e;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-
+    }
+    hr{
+        border-color: #531210;
+        border: 2px solid #ea5727;
     }
     .button:hover {
-        background-color: #0056b3;
+        background-color: #21443e;
     }
     .button.dark{
-        background-color: #0056b3;
+        background-color: #21443e;
     }
     table {
         width: 70%;
@@ -73,7 +76,7 @@
         min-width: 60px;
         text-align: center;
     }
-    
+
     /* Dark mode styles */
     body.dark-mode {
         background-color: #111;
@@ -88,9 +91,7 @@
         color: #4caf50;
     }
 
-    table.dark-mode {
-        border-color: #555;
-    }
+   
     .bigFont{
         font-size: xx-large;
     }
@@ -111,7 +112,8 @@
     <div id="answerDiv" class="ltr">
         <input id="answer"  placeholder="מה התשובה" class="wide" autofocus>
     </div>
-    <div id="output"></div>
+    <hr/>
+    <div id="emoji"></div>
     
     <div class="ltr">
     <input readonly id="submit"  value="בדוק" class="button" style="display:none"></input>
@@ -124,7 +126,9 @@
         <div id="numberOfExercise" style="display: inline-block;" >תרגילים:</div>
         <input id="settingsTotal" value=3></input>
     </div>
+    <hr/>
      <table ><tbody id="tbody"></tbody></table>
+     <hr/>
      <input id="setupBtn"></input>
 </div>
 
@@ -157,8 +161,8 @@ const setup = gtag('setup')
 const execTodoE = gtag('execTodo')
 const main  =gtag('main') ;main.style.display = 'None'
 const que = gtag('question');que.classList.add("ltr")
-const okImage = '😄';2
-const errImage = '👎';
+const okImage = '😎';
+const errImage = '😡';
 const Actions = [];
 const settingsTotal = gtag('settingsTotal')
 
@@ -197,8 +201,9 @@ const stopTimer = ()  => clearInterval(timerInterval)
 // Main loop 
 class Exercises{
     constructor(){
-       this.output = gtag("output")
+       this.emoji = gtag("emoji")
        this.calculatedResult  = 0 
+       this.emoji.innerText = "";
     }
 
     rerun = () => {
@@ -213,9 +218,8 @@ class Exercises{
     newExerciseCleanup = () =>{
         answerInput.focus()
         que.innerText = "";
-        this.output.innerText = "";
         answerInput.value = ""
-        answerInput.disabled = false;
+        answerInput.disabled = false;  
     }
 
     nextExercise = () =>{
@@ -240,15 +244,15 @@ class Exercises{
         if (parseInt(answerInput.value) ==  this.calculatedResult){
             this.okCounter += 1
             gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
-            this.output.innerText += okImage
+            this.emoji.innerText += okImage
+            console.log(this.emoji)
             if (this.okCounter == settingsTotal.value){
                 this.finish()
             }else{
                 this.nextExercise()
             }
-
         }else{
-            this.output.innerText += errImage
+            this.emoji.innerText += errImage
         }
         answerInput.value =""
         answerInput.focus()
@@ -256,7 +260,7 @@ class Exercises{
 
     finish() {
         let doneText = okImage.repeat(10);
-        this.output.innerText = doneText + '\n';
+        this.emoji.innerText = doneText + '\n';
         que.innerText = doneText + '\n';
         answerInput.disabled = true;
         stopTimer()
