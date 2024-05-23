@@ -50,6 +50,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+
     }
     .button:hover {
         background-color: #0056b3;
@@ -91,15 +92,13 @@
 </style>
 
 </head>
-
 <body>
-
 <div class="container" id="main">
     <div id="setupTitle" >
         <div id="execTodoLabel"  style="display: inline-block;">נותרו:</div>
         <div id="execTodo" style="display: inline-block;">3</div>
         <div id="timer" style="display: inline-block;"></div>
-        <input id="newGame" class="dark wider" value="משחק חדש" style="display: inline-block;"></input>
+        <input readonly type="text" id="newGame" class="dark wider" value="משחק חדש" style="display: inline-block;"></input>
     </div>
     <hr/>
     <p id="question"></p>
@@ -109,7 +108,7 @@
     <div id="output"></div>
     
     <div class="ltr">
-    <input id="submit"  value="שלח" class="button" style="display:none"></input>
+    <input readonly id="submit"  value="שלח" class="button" style="display:none"></input>
     </div>
 </div>
 
