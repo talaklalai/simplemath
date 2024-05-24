@@ -390,7 +390,7 @@ const updateActions = () =>{
     })
 
     answerInput.addEventListener("keydown", (event) => {
-             if (event.keyCode === 13) {
+             if (event.keyCode === 13 || event.keyCode === 'Enter') {
                 event.preventDefault();
                 g_exercise.submitAnswer();
         }
