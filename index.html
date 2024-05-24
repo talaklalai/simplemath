@@ -266,6 +266,7 @@ class Exercises{
     }
     
     submitAnswer = ()=>{
+        if (!answerInput.value) {answerInput.focus();return}
         if (parseInt(answerInput.value) ==  this.calculatedResult){
             this.okCounter += 1
             gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
@@ -395,6 +396,7 @@ const updateActions = () =>{
                 g_exercise.submitAnswer();
         }
         })
+    document.addEventListener('focusout' , () => g_exercise.submitAnswer());
     submit.addEventListener("click", (event) => g_exercise.submitAnswer())
 })();
 
