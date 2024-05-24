@@ -50,9 +50,6 @@
 
         width: 300px !important;  
      }
- 
- 
-   
     input:disabled {
             background-color:var( --lines);  
             color: var(--input);   
@@ -113,6 +110,8 @@
     .bigFont{
         font-size: xx-large;
     }
+
+    
 </style>
 
 </head>
@@ -122,8 +121,11 @@
     <div id="setupTitle" >
         <div style="display: inline-block;">נותרו:</div>
         <div id="totalLeft" style="display: inline-block;"></div>
-        <div id="timer" style="display: inline-block;"></div>
-        <input readonly type="text" id="newGame" class="dark wider" value="משחק חדש" style="display: inline-block;"></input>
+      
+        <input readonly type="text" id="newGame" 
+            class="dark wider ltr" 
+            value="משחק חדש" 
+            style="display: inline-block;"></input>
     </div>
     <hr/>
     <p id="question"></p>
@@ -132,8 +134,9 @@
     </div>
     <hr/>
 
-    <div class="ltr">
-        <input readonly id="submit"  value="בדוק" class="button" style="display:none"></input>
+    <div class="ltr" >
+        <input readonly id="submit" value="בדוק" class="button ltr" style="display: inline-block;"></input>
+        <div id="timer" style="display: inline-block;" class="ltr"></div>
     </div>
     <div id="emoji"></div>
 </div>
@@ -180,7 +183,7 @@ const gtag = (_id) => document.getElementById(_id)
 
 // globals consts
 const answerInput = gtag("answer");answerInput.focus(); 
-const submit = gtag("submit")
+const submit = gtag("submit");submit.style.display = 'None'
 const setup = gtag('setup')
 const execTodoE = gtag('execTodo')
 const main  =gtag('main') ;main.style.display = 'None'
@@ -194,7 +197,7 @@ const settingsTotal = gtag('settingsTotal')
 setInputTypeToNumber(settingsTotal)
 setInputTypeToNumber(answerInput)
 
-if (isPhone()) submit.style.display = 'block'
+if (isPhone()) submit.style.display = 'inline-block'
 
 function getRandomInt(max, min=0) {
     min = Math.ceil(min);
@@ -209,17 +212,21 @@ timerE.classList.add("ltr")
 timerE.style.fontFamily = "courier"
 
 let timerInterval = undefined
-const startTimer = ()  =>{
-    timerE.value = 0
-    timerInterval = setInterval(()=>{
-        timerE.value = timerE.value +1
+
+const _timer_loop = () =>{
+    timerE.value = timerE.value + 1
         let val = timerE.value
         timerE.innerHTML = `(${Math.floor(val / 3600)}:
         ${Math.floor(val /60)- Math.floor(val / 3600)*60}:
         ${val % 60})`
         }
-        , 1000)
+
+const startTimer = ()  =>{
+    timerE.value = 0
+    _timer_loop()
+    timerInterval = setInterval(_timer_loop,1000)
 }
+
 const stopTimer = ()  => clearInterval(timerInterval)
 
 
