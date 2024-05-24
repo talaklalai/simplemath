@@ -8,10 +8,13 @@
     :root{
         --lines: #465063 ;
         --letters: #f1c485;
+        --container:  #232325;
+        --button: #21443e;
+        --lightGreen:  #4caf50;
+        --input: #1d2020;
+
         
     }
-
-    
     body {
         font-family: Arial, sans-serif;
         font-size: x-large;
@@ -20,12 +23,11 @@
         background-color: #15221b;
         color: var(--letters)
     }
-
     .container {
         max-width: 600px;
         margin: auto;
         padding: 2rem;
-        background-color: #232325;
+        background-color: var(--container);
         border-radius: 20px;
         border: 1px solid var(--lines);
         direction: rtl; /* Right-to-left content */
@@ -36,11 +38,25 @@
         margin-bottom: 1rem;
         border: 2px solid var(--lines);
         border-radius: 5px;
-        background-color: #1d2020;
+        background-color: var(--input);
         color: var(--letters);
         font-size: large;
         border-color: var(--lines);
     }
+
+    input[type="range"]  {
+        /* Width and height of the range slider */
+        accent-color:  var(--letters);
+
+        width: 300px !important;  
+     }
+ 
+ 
+   
+    input:disabled {
+            background-color:var( --lines);  
+            color: var(--input);   
+        }
     input.wide{
         max-width: 180px;
     }
@@ -55,7 +71,7 @@
     }
     .button {
         padding: 0.5rem 2rem;
-        background-color: #21443e;
+        background-color: var(--button);
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -91,9 +107,8 @@
     }
 
     .green{
-        color: #4caf50;
+        color:var(--lightGreen);
     }
-
    
     .bigFont{
         font-size: xx-large;
@@ -106,7 +121,7 @@
 <div class="container" id="main">
     <div id="setupTitle" >
         <div style="display: inline-block;">נותרו:</div>
-        <div id="totalLeft" style="display: inline-block;">3</div>
+        <div id="totalLeft" style="display: inline-block;"></div>
         <div id="timer" style="display: inline-block;"></div>
         <input readonly type="text" id="newGame" class="dark wider" value="משחק חדש" style="display: inline-block;"></input>
     </div>
@@ -128,8 +143,13 @@
     <div id="setupTitle" >
         <div id="numberOfExercise" style="display: inline-block;" >תרגילים:</div>
         <input id="settingsTotal" value=20></input>
+        <div id="numberOfExercise" style="display: inline-block;" >(לחץ על הסימן לסינון)</div>
     </div>
     <hr/>
+    
+    <!-- todo: input type="range" id="range-slider" min="0" max="2" step="1" value="0"-->
+  
+    
      <table ><tbody id="tbody"></tbody></table>
      <hr/>
      <input id="setupBtn"></input>
@@ -150,6 +170,7 @@ const isPhone = () => {
 const setInputTypeToNumber =(elem)=>{
     elem.type =  isPhone() ? "tel" :"number"
     elem.pattern="[0-9]*"
+    return elem
 }
 
 
@@ -166,6 +187,7 @@ const main  =gtag('main') ;main.style.display = 'None'
 const que = gtag('question');que.classList.add("ltr")
 const okImage = '😎';
 const errImage = '😡';
+const checkmark = '\u2713';
 const Actions = [];
 const settingsTotal = gtag('settingsTotal')
 
@@ -275,43 +297,54 @@ defaultSettings = {
     "+": [10, 100],
     "-": [10, 100],
     "*": [2, 12],
-    "/": [2, 12],
+    "/": [2, 5],
 }
 
 // Landing page layout
 function userSetupLayout() {
     const tbody = document.querySelector('tbody');
     while (tbody.firstChild) tbody.removeChild(tbody.firstChild)
-    const ctd = () => ctag("td")
 
-    const _setRangeFiled = (val)=>{
-        let td_elem = ctd("td")
+    const _createInputTd = (val, addAttrFunc =()=>{})=>{
+        let td_elem = ctag("td")
         let input_elem = ctag("input")  
+        addAttrFunc(input_elem)
         input_elem.value = val
         td_elem.appendChild(input_elem)
-        setInputTypeToNumber(input_elem)
         return td_elem
     }
 
+    const _createInputNumTd = (val) => _createInputTd(val, setInputTypeToNumber)
+    
     // set up math preferences
     for (let [sign,[mn,mx] ] of Object.entries(defaultSettings)){
-        let tr  = ctag("tr")
 
+        // add row 
+        let tr  = ctag("tr")
+      
         // sign
-        let tdlabel = ctd("td")
-        tdlabel.innerText = sign
-        tdlabel.classList.add("green", "bigFont")
+        let tdSign = ctag("td")
+        tdSign.innerText = sign
+        tdSign.classList.add("green", "bigFont")
+
+        tdSign.addEventListener("click", () => {
+            tr.dataset.filter = tr.dataset.filter === "false" ? "true" : "false";
+            for (let inf of tr.querySelectorAll('input')) 
+                inf.disabled = tr.dataset.filter === "false";
+            updateActions()
+        });
 
         // arrow
-        let td_lable = ctd("td")
-        td_lable.innerHTML =  " עד "
-        td_lable.classList.add("minwid")
-
-        for (let td of [
-                tdlabel,
-                _setRangeFiled(mn),
-                td_lable,
-                _setRangeFiled(mx)
+        let tdTo = ctag("td")
+        tdTo.innerHTML =  " עד "
+        tdTo.classList.add("minwid")
+        
+        //append tds to row 
+        for (let td of [     
+                tdSign,
+                _createInputNumTd(mn),
+                tdTo,
+                _createInputNumTd(mx),
             ])
             tr.appendChild(td)    
         tbody.appendChild(tr)
@@ -319,11 +352,12 @@ function userSetupLayout() {
 }
 
 // landing page reset
-const userSetupRestart = () =>{
+const updateActions = () =>{
     Actions.length = 0;
     for (let row of tbody.getElementsByTagName('tr')) {
+        if (row.dataset.filter == "false") continue;
         let tds = row.querySelectorAll('td');
-        [sign, td_min_input, arrow, td_max_input] =tds
+        let [sign, td_min_input, arrow, td_max_input] =tds
         Actions.push([
             sign.innerText,
             td_min_input.querySelector('input'), 
@@ -342,7 +376,7 @@ const userSetupRestart = () =>{
         event.preventDefault();
         setup.style.display = 'block'
         main.style.display ='None'
-        userSetupRestart();
+        updateActions();
     })
 
     setupBtn = gtag("setupBtn")
@@ -352,7 +386,6 @@ const userSetupRestart = () =>{
         event.preventDefault();
         setup.style.display = 'None'
         main.style.display ='block'
-
         g_exercise.rerun();
     })
 
@@ -362,16 +395,13 @@ const userSetupRestart = () =>{
                 g_exercise.submitAnswer();
         }
         })
-
     submit.addEventListener("click", (event) => g_exercise.submitAnswer())
-
-
 })();
 
 // Landing page 
 (() =>{
     userSetupLayout();
-    userSetupRestart();    
+    updateActions();    
 })()
 
 
