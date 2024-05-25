@@ -46,7 +46,6 @@
     input[type="range"]  {
         /* Width and height of the range slider */
         accent-color:  var(--letters);
-
         width: 300px !important;  
      }
     input:disabled {
@@ -251,6 +250,8 @@ const stopTimer = ()  => clearInterval(timerInterval)
 // Main loop 
 class Exercises{
     rerun = () => {
+            totalCorrect.innerText = 0
+            totalWrong.innerText = 0
             answerDiv.style.display ="block"
             que.style.display = "block"
             stopTimer()
