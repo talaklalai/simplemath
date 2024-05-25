@@ -11,9 +11,8 @@
         --container:  #232325;
         --button: #21443e;
         --lightGreen:  #4caf50;
-        --input: #1d2020;
-
-        
+        --red: #DB4437;
+        --input: #1d2020;    
     }
     body {
         font-family: Arial, sans-serif;
@@ -60,9 +59,7 @@
     input.wider{
         max-width: 120px;
     }
-    #output {
-        margin-bottom: 1rem;
-    }
+ 
     .ltr{
         direction: ltr;
     }
@@ -92,6 +89,25 @@
         text-align: center;
         max-width: 60px;
     }
+    input.correct{
+        border:2px solid var(--lightGreen);
+        
+    }
+    input.wrong{
+        border:2px solid var(--red);
+        color: var(--red);
+    }
+
+    div.correct{
+        color: var(--lightGreen);
+    }
+    div.wrong{
+        color: var(--red);
+    }
+
+    .marginright{
+        margin-right: 20px;
+    }
 
     .minwid{
         min-width: 60px;
@@ -110,7 +126,10 @@
     .bigFont{
         font-size: xx-large;
     }
-
+    .ansewrOption{
+        margin-right: 20px;
+    }
+    
     
 </style>
 
@@ -118,26 +137,28 @@
 <body>
 <!-- ***********************************    Main   ***********************************    -->
 <div class="container" id="main">
-    <div id="setupTitle" >
+    <div MainHeader>
         <div style="display: inline-block;">נותרו:</div>
-        <div id="totalLeft" style="display: inline-block;"></div>
-      
-        <input readonly type="text" id="newGame" 
-            class="dark wider ltr" 
-            value="משחק חדש" 
-            style="display: inline-block;"></input>
+        <div id="totalLeft" style="display: inline-block;">0</div>
+        <div style="display: inline-block;" class="correct marginright">נכון:</div>
+        <div id="totalCorrect" style="display: inline-block;" class="correct">0</div>
+        <div style="display: inline-block;" class="wrong marginright">לא נכון:</div>
+        <div id="totalWrong" style="display: inline-block;" class="wrong">0</div>
     </div>
     <hr/>
     <p id="question"></p>
     <div id="answerDiv" class="ltr">
-        <input id="answer"  placeholder="מה התשובה" class="wide" autofocus>
+        
     </div>
     <hr/>
 
     <div class="ltr" >
-        <input readonly id="submit" value="בדוק" class="button ltr" style="display: inline-block;"></input>
         <div id="timer" style="display: inline-block;" class="ltr"></div>
     </div>
+    <input readonly type="text" id="newGame" 
+            class="dark wider ltr" 
+            value="משחק חדש" 
+            style="display: inline-block;"></input>
     <div id="emoji"></div>
 </div>
 
@@ -145,8 +166,8 @@
 <div class="container" id="setup">
     <div id="setupTitle" >
         <div id="numberOfExercise" style="display: inline-block;" >תרגילים:</div>
-        <input id="settingsTotal" value=20></input>
-        <div id="numberOfExercise" style="display: inline-block;" >(לחץ על הסימן לסינון)</div>
+        <input id="settingsTotal" value=3></input>
+        <div style="display: inline-block;" >(לחץ על הסימן לסינון)</div>
     </div>
     <hr/>
     
@@ -177,27 +198,25 @@ const setInputTypeToNumber =(elem)=>{
 }
 
 
-
 const ctag = (tagName) => document.createElement(tagName)
 const gtag = (_id) => document.getElementById(_id)
 
 // globals consts
-const answerInput = gtag("answer");answerInput.focus(); 
-const submit = gtag("submit");submit.style.display = 'None'
+ 
+const answerDiv = gtag('answerDiv')
 const setup = gtag('setup')
 const execTodoE = gtag('execTodo')
 const main  =gtag('main') ;main.style.display = 'None'
 const que = gtag('question');que.classList.add("ltr")
-const okImage = '😎';
-const errImage = '😡';
-const checkmark = '\u2713';
+ 
 const Actions = [];
-const settingsTotal = gtag('settingsTotal')
+const settingsTotal = gtag('settingsTotal');setInputTypeToNumber(settingsTotal)
+const gOptionsCount = 8
+const totalCorrect = gtag("totalCorrect")
+const totalleft = gtag("totalleft")
+const totalWrong = gtag("totalWrong")
+ 
 
-setInputTypeToNumber(settingsTotal)
-setInputTypeToNumber(answerInput)
-
-if (isPhone()) submit.style.display = 'inline-block'
 
 function getRandomInt(max, min=0) {
     min = Math.ceil(min);
@@ -226,81 +245,130 @@ const startTimer = ()  =>{
     _timer_loop()
     timerInterval = setInterval(_timer_loop,1000)
 }
-
 const stopTimer = ()  => clearInterval(timerInterval)
 
 
 // Main loop 
 class Exercises{
-    constructor(){
-       this.emoji = gtag("emoji")
-       this.calculatedResult  = 0 
-    }
-
     rerun = () => {
+            answerDiv.style.display ="block"
+            que.style.display = "block"
             stopTimer()
             startTimer()
             que.innerText = "";
-            this.okCounter = 0
             this.nextExercise()
-            gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
-            this.emoji.innerText = "";
+            gtag("totalLeft").innerText = settingsTotal.value 
     }
 
-    newExerciseCleanup = () =>{
-        answerInput.focus()
-        que.innerText = "";
-        answerInput.value = ""
-        answerInput.disabled = false;  
-    }
+    newExerciseCleanup = () =>  que.innerText = "";
+    
 
     nextExercise = () =>{
+        this.hasAnsered = 0
         this.newExerciseCleanup()
         let randomIndex = getRandomInt(Actions.length-1);
         let action = Actions[randomIndex]
-    
+
         let [sign, mix_n , max_n] = [action[0], action[1].value, action[2].value]
         let range = [ getRandomInt(max_n,mix_n), getRandomInt(max_n,mix_n)]
-        sign = sign.replace('x', '*')
-        let big = Math.max(...range)
-        let small = Math.min(...range)
-        if (sign == '/'){
-            big = small * big;          
-        }
+        let [big, small]= [Math.max(...range),Math.min(...range)]
+        if (sign == '/') big = small * big;
+        if (sign == '/')sign.replace('x', '*')
+        
         let exercise = `${big} ${sign} ${small}`
         que.innerText = `${exercise} = ?`;
-        this.calculatedResult = eval(exercise)
+        this.correctAnswer = eval(exercise)
+        this.setOptionsAnswres()
     }
     
-    submitAnswer = ()=>{
-        if (!answerInput.value) {answerInput.focus();return}
-        if (parseInt(answerInput.value) ==  this.calculatedResult){
-            this.okCounter += 1
-            gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
-            this.emoji.innerText += okImage
-            if (this.okCounter == settingsTotal.value){
-                this.finish()
-            }else{
-                this.nextExercise()
-            }
-        }else{
-            this.emoji.innerText += errImage
-            answerInput.focus()
+
+    popRandomElement = (arr) =>
+            arr.splice(Math.floor(Math.random() * arr.length), 1)[0];
+    
+            
+    generateRandomOptions= (correctAnswer , optionsNum) => {
+        const options = [];
+        const correctAnswerLength = correctAnswer.toString().length;
+        
+         
+        const factor =  0.9 + Math.random() * 0.2;
+        const optionsSet = new Set(); // Use a Set to prevent duplicates
+        optionsSet.add(correctAnswer);
+        
+        while (optionsSet.size < optionsNum ) {
+            let randomOption;
+            do {
+                const deviation = getRandomInt(25,-25);
+                randomOption = Math.round(correctAnswer * factor + deviation);
+            } while (randomOption <= 0 ||
+                     optionsSet.has(randomOption) || 
+                     randomOption ==correctAnswer ||
+                     randomOption.toString().length != correctAnswerLength ); 
+           
+            optionsSet.add(randomOption);           
         }
-        answerInput.value =""
-        answerInput.focus()
+        
+        // Convert the Set to an array
+        options.push(...optionsSet);
+        return options;
+    }
+
+    setOptionsAnswres = () =>{
+        let realResult = this.correctAnswer
+        let results =   this.generateRandomOptions(realResult,gOptionsCount )
+        Array.from( answerDiv.children).forEach((o) => {
+            o.classList.remove("correct")
+            o.classList.remove("wrong")
+            o.value = this.popRandomElement(results, gOptionsCount);
+        });
+        
+    }
+
+    submitAnswer = (event) => {
+        let btn = event.target
+        
+        if (this.hasAnsered == 0){
+            totalLeft.innerText = parseInt(totalLeft.innerText) - 1
+            
+        }
+        if(btn.value != this.correctAnswer ){
+            btn.classList.add('wrong'); btn.blur()
+            if (this.hasAnsered == 0)
+                totalWrong.innerText = parseInt(totalWrong.innerText) + 1
+            this.hasAnsered = 1
+        }
+        else{
+            if (this.hasAnsered == 0)
+                totalCorrect.innerText = parseInt(totalCorrect.innerText) + 1
+            btn.classList.add('correct'); btn.blur()
+            console.log(parseInt( totalLeft.innerText))
+            console.log(parseInt( totalLeft.innerText) === 0)
+            if (parseInt( totalLeft.innerText) === 0 ) this.finish()
+            this.hasAnsered = 1
+            setTimeout(this.nextExercise, 1000);   
+        }    
     }
 
     finish() {
-        let doneText = okImage.repeat(10);
-        this.emoji.innerText = doneText + '\n';
-        que.innerText = doneText + '\n';
-        answerInput.disabled = true;
+        answerDiv.style.display = "None"
+        que.style.display = "None"
         stopTimer()
     }
 }
 
 g_exercise = new Exercises()
+
+//options
+for (let i of Array(gOptionsCount)){
+    ansewrOption =ctag('input')
+    ansewrOption.type= "text"
+    ansewrOption.classList.add("ansewrOption", "button")
+    ansewrOption.setAttribute('readonly', true);
+    answerDiv.appendChild(ansewrOption)
+    ansewrOption.addEventListener("click", g_exercise.submitAnswer)
+        
+}
+
 
 defaultSettings = {
     "+": [10, 100],
@@ -360,20 +428,20 @@ function userSetupLayout() {
     }
 }
 
-// landing page reset
-const updateActions = () =>{
-    Actions.length = 0;
-    for (let row of tbody.getElementsByTagName('tr')) {
-        if (row.dataset.filter == "false") continue;
-        let tds = row.querySelectorAll('td');
-        let [sign, td_min_input, arrow, td_max_input] =tds
-        Actions.push([
-            sign.innerText,
-            td_min_input.querySelector('input'), 
-            td_max_input.querySelector('input')
-        ])
+    // landing page reset
+    const updateActions = () =>{
+        Actions.length = 0;
+        for (let row of tbody.getElementsByTagName('tr')) {
+            if (row.dataset.filter == "false") continue;
+            let tds = row.querySelectorAll('td');
+            let [sign, td_min_input, arrow, td_max_input] =tds
+            Actions.push([
+                sign.innerText,
+                td_min_input.querySelector('input'), 
+                td_max_input.querySelector('input')
+            ])
+        }
     }
-}
 
 
 // settings  buttons listeners 
@@ -398,14 +466,9 @@ const updateActions = () =>{
         g_exercise.rerun();
     })
 
-    answerInput.addEventListener("keydown", (event) => {
-             if (event.keyCode === 13 || event.keyCode === 'Enter') {
-                event.preventDefault();
-                g_exercise.submitAnswer();
-        }
-        })
-    document.addEventListener('focusout' , () => g_exercise.submitAnswer());
-    submit.addEventListener("click", (event) => g_exercise.submitAnswer())
+
+     
+   
 })();
 
 // Landing page 
