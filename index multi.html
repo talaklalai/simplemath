@@ -168,8 +168,8 @@
 <div class="container" id="setup">
     <div id="setupTitle" >
         <div id="numberOfExercise" style="display: inline-block;" >תרגילים:</div>
-        <input id="settingsTotal" value=20></input>
-        <div id="numberOfExercise" style="display: inline-block;" >(לחץ על הסימן לסינון)</div>
+        <input id="settingsTotal" value=3></input>
+        <div style="display: inline-block;" >(לחץ על הסימן לסינון)</div>
     </div>
     <hr/>
     
@@ -210,14 +210,14 @@ const setup = gtag('setup')
 const execTodoE = gtag('execTodo')
 const main  =gtag('main') ;//main.style.display = 'None'
 const que = gtag('question');que.classList.add("ltr")
-const okImage = '😎';
-const errImage = '😡';
+ 
 const Actions = [];
 const settingsTotal = gtag('settingsTotal');setInputTypeToNumber(settingsTotal)
 const gOptionsCount = 8
 const totalCorrect = gtag("totalCorrect")
 const totalleft = gtag("totalleft")
 const totalWrong = gtag("totalWrong")
+ 
 
 
 function getRandomInt(max, min=0) {
@@ -247,36 +247,29 @@ const startTimer = ()  =>{
     _timer_loop()
     timerInterval = setInterval(_timer_loop,1000)
 }
-
 const stopTimer = ()  => clearInterval(timerInterval)
 
 
 // Main loop 
 class Exercises{
-    constructor(){
-       this.emoji = gtag("emoji")
-       this.calculatedResult  = 0 
-    }
-
     rerun = () => {
+            answerDiv.style.display ="block"
             stopTimer()
             startTimer()
             que.innerText = "";
-            this.okCounter = 0
             this.nextExercise()
-            gtag("totalLeft").innerText = settingsTotal.value - this.okCounter
-            this.emoji.innerText = "";
+            gtag("totalLeft").innerText = settingsTotal.value 
     }
 
-    newExerciseCleanup = () =>{
-        que.innerText = "";
-    }
+    newExerciseCleanup = () =>  que.innerText = "";
+    
 
     nextExercise = () =>{
+        this.hasAnsered = 0
         this.newExerciseCleanup()
         let randomIndex = getRandomInt(Actions.length-1);
         let action = Actions[randomIndex]
-    
+
         let [sign, mix_n , max_n] = [action[0], action[1].value, action[2].value]
         let range = [ getRandomInt(max_n,mix_n), getRandomInt(max_n,mix_n)]
         let [big, small]= [Math.max(...range),Math.min(...range)]
@@ -324,33 +317,41 @@ class Exercises{
     setOptionsAnswres = () =>{
         let realResult = this.correctAnswer
         let results =   this.generateRandomOptions(realResult,gOptionsCount )
-       
         Array.from( answerDiv.children).forEach((o) => {
+            o.classList.remove("correct")
+            o.classList.remove("wrong")
             o.value = this.popRandomElement(results, gOptionsCount);
         });
         
     }
 
-    submitAnswer = (event)=> {
+    submitAnswer = (event) => {
         let btn = event.target
         
-        if (btn.value == this.correctAnswer ){
-            btn.classList.remove('wrong');
-            btn.classList.add('correct');
-            totalCorrect.innerText = parseInt(totalCorrect.innerText) + 1
-        }else{
-            btn.classList.remove('correct');
-            btn.classList.add('wrong');
-            totalWrong.innerText = parseInt(totalWrong.innerText) + 1
+        if (this.hasAnsered == 0){
+            totalLeft.innerText = parseInt(totalLeft.innerText) - 1
+            
         }
-        parseInt(totalLeft.innerText) - 1
-        btn.blur()
+        if(btn.value != this.correctAnswer ){
+            btn.classList.add('wrong'); btn.blur()
+            if (this.hasAnsered == 0)
+                totalWrong.innerText = parseInt(totalWrong.innerText) + 1
+            this.hasAnsered = 1
+        }
+        else{
+            if (this.hasAnsered == 0)
+                totalCorrect.innerText = parseInt(totalCorrect.innerText) + 1
+            btn.classList.add('correct'); btn.blur()
+            console.log(parseInt( totalLeft.innerText))
+            console.log(parseInt( totalLeft.innerText) === 0)
+            if (parseInt( totalLeft.innerText) === 0 ) this.finish()
+            this.hasAnsered = 1
+            setTimeout(this.nextExercise, 1000);   
+        }    
     }
 
     finish() {
-        let doneText = okImage.repeat(10);
-        this.emoji.innerText = doneText + '\n';
-        que.innerText = doneText + '\n';
+        answerDiv.style.display = "None"
         stopTimer()
     }
 }
