@@ -56,7 +56,7 @@
         max-width: 180px;
     }
     input.wider{
-        max-width: 80px;
+        max-width: 100px;
     }
     .ltr{
         direction: ltr;
@@ -172,12 +172,9 @@
     <div id="setupTitle" >
         <div id="numberOfExercise" style="display: inline-block;" >תרגילים:</div>
         <input id="settingsTotal" value=20></input>
-       
     </div>
     <hr/>
-    
-    
-     <table ><thead><tr>
+     <table><thead><tr>
             <th>סנן</th>
             <th>מ</th>
             <th>עד</th>
@@ -226,9 +223,7 @@ const totalCorrect = gtag("totalCorrect")
 const totalleft = gtag("totalleft")
 const totalWrong = gtag("totalWrong")
  
-
-
-function getRandomInt(max, min=0) {
+const getRandomInt = (max, min=0) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
