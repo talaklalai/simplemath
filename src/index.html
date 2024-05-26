@@ -90,6 +90,8 @@
     }
     input.correct{
         border:2px solid var(--lightGreen);
+        color: var(--lightGreen);
+        font-weight: bold;
         
     }
     input.wrong{
@@ -166,14 +168,20 @@
     <div id="setupTitle" >
         <div id="numberOfExercise" style="display: inline-block;" >תרגילים:</div>
         <input id="settingsTotal" value=20></input>
-        <div style="display: inline-block;" >(לחץ על הסימן לסינון)</div>
+       
     </div>
     <hr/>
     
     <!-- todo: input type="range" id="range-slider" min="0" max="2" step="1" value="0"-->
   
     
-     <table ><tbody id="tbody"></tbody></table>
+     <table ><thead><tr>
+            <th>סנן</th>
+            <th>מ</th>
+            <th>עד</th>
+            </thead></tr>
+        <tbody id="tbody"></tbody>
+    </table>
      <hr/>
      <input id="setupBtn"></input>
 </div>
@@ -226,7 +234,7 @@ function getRandomInt(max, min=0) {
 // Timer
 timerE = gtag('timer');
 timerE.value = 0
-timerE.classList.add("ltr")
+//timerE.classList.add("ltr")
 timerE.style.fontFamily = "courier"
 
 let timerInterval = undefined
@@ -346,7 +354,7 @@ class Exercises{
             console.log(parseInt( totalLeft.innerText) === 0)
             if (parseInt( totalLeft.innerText) === 0 ) this.finish()
             this.hasAnsered = 1
-            setTimeout(this.nextExercise, 1000);   
+            setTimeout(this.nextExercise, 700);   
         }    
     }
 
@@ -414,14 +422,14 @@ function userSetupLayout() {
 
         // arrow
         let tdTo = ctag("td")
-        tdTo.innerHTML =  " עד "
+        
         tdTo.classList.add("minwid")
         
         //append tds to row 
         for (let td of [     
                 tdSign,
                 _createInputNumTd(mn),
-                tdTo,
+             
                 _createInputNumTd(mx),
             ])
             tr.appendChild(td)    
@@ -435,7 +443,7 @@ function userSetupLayout() {
         for (let row of tbody.getElementsByTagName('tr')) {
             if (row.dataset.filter == "false") continue;
             let tds = row.querySelectorAll('td');
-            let [sign, td_min_input, arrow, td_max_input] =tds
+            let [sign, td_min_input, td_max_input] =tds
             Actions.push([
                 sign.innerText,
                 td_min_input.querySelector('input'), 
@@ -448,7 +456,7 @@ function userSetupLayout() {
 // settings  buttons listeners 
 (()=>{
     newGame = gtag("newGame")
-    newGame.classList.add("button")
+    newGame.classList.add("button", "ltr")
     newGame.value =  "משחק חדש";
     newGame.addEventListener("click", function(event) {
         event.preventDefault();
