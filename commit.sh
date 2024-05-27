@@ -1,5 +1,5 @@
-npx prettier ./src/index.html --write && 
+npx prettier ./src/* --write && 
 git commit -am "$1" && 
 git push && 
-cp ./src/index.html public/ && 
+cp ./src/* public/ && 
 firebase deploy
