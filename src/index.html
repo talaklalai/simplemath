@@ -210,12 +210,29 @@
       return check;
     };
 
+    const varifyInput = () => {
+      for (let row of tbody.querySelectorAll("tr")) {
+        [mn, mx] = row.querySelectorAll("input");
+        if (parseInt(mn.value) > parseInt(mx.value)) {
+          mn.classList.add("wrong");
+          mx.classList.add("wrong");
+          return false;
+        }
+        mn.classList.remove("wrong");
+        mx.classList.remove("wrong");
+        return true;
+      }
+    };
+
     const setInputTypeToNumber = (elem) => {
       elem.type = isPhone() ? "tel" : "number";
       elem.pattern = "[0-9]*";
       elem.addEventListener("click", (e) => (elem.value = ""));
       elem.addEventListener("input", (e) =>
-        setTimeout(() => elem.blur(), 2000),
+        setTimeout(() => {
+          elem.blur();
+          varifyInput();
+        }, 1300),
       );
       return elem;
     };
@@ -473,16 +490,7 @@
       setupBtn.value = "התחל";
       setupBtn.addEventListener("click", function (event) {
         event.preventDefault();
-        for (let row of tbody.querySelectorAll("tr")) {
-          [mn, mx] = row.querySelectorAll("input");
-          if (parseInt(mn.value) > parseInt(mx.value)) {
-            mn.classList.add("wrong");
-            mx.classList.add("wrong");
-            return;
-          }
-          mn.classList.remove("wrong");
-          mx.classList.remove("wrong");
-        }
+        if (varifyInput() == false) return;
         setup.style.display = "None";
         main.style.display = "block";
         g_exercise.rerun();
