@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- ***********************************    Landing Page (setup)   ***********************************    -->
+    <div class="container" id="setup">
+      <div id="setupTitle">
+        <div id="numberOfExercise" style="display: inline-block">תרגילים:</div>
+        <input id="settingsTotal" value="20" />
+        <select id="timerSetup" style="display: inline-block">
+          <option value="0">ללא הגבלת זמן</option>
+          <option value="3" selected>קל</option>
+          <option value="2">בינוני</option>
+          <option value="1">קשה</option>
+        </select>
+      </div>
+      <hr />
+      <table>
+        <thead>
+          <tr>
+            <th>סנן</th>
+            <th>מ</th>
+            <th>עד</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <hr />
+      <input id="setupBtn" />
+    </div>
+
     <!-- ***********************************    Main   ***********************************    -->
     <div class="container" id="main">
       <div MainHeader>
@@ -41,27 +68,6 @@
       </footer>
     </div>
 
-    <!-- ***********************************    Landing Page (setup)   ***********************************    -->
-    <div class="container" id="setup">
-      <div id="setupTitle">
-        <div id="numberOfExercise" style="display: inline-block">תרגילים:</div>
-        <input id="settingsTotal" value="20" />
-      </div>
-      <hr />
-      <table>
-        <thead>
-          <tr>
-            <th>סנן</th>
-            <th>מ</th>
-            <th>עד</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-      <hr />
-      <input id="setupBtn" />
-    </div>
-
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
