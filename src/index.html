@@ -211,17 +211,19 @@
     };
 
     const varifyInput = () => {
+      let ok = true;
       for (let row of tbody.querySelectorAll("tr")) {
         [mn, mx] = row.querySelectorAll("input");
         if (parseInt(mn.value) > parseInt(mx.value)) {
           mn.classList.add("wrong");
           mx.classList.add("wrong");
-          return false;
+          ok = false;
+        } else {
+          mn.classList.remove("wrong");
+          mx.classList.remove("wrong");
         }
-        mn.classList.remove("wrong");
-        mx.classList.remove("wrong");
-        return true;
       }
+      return ok;
     };
 
     const setInputTypeToNumber = (elem) => {
