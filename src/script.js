@@ -2,7 +2,7 @@
 
 const ctag = (tagName) => document.createElement(tagName);
 const gtag = (_id) => document.getElementById(_id);
-
+const dd = (s) => console.log(s);
 const answerDiv = gtag("answerDiv");
 const setup = gtag("setup");
 const execTodoE = gtag("execTodo");
@@ -50,6 +50,13 @@ const varifyInput = () => {
       [mn, mx].forEach((e) => e.classList.remove("wrong"));
     }
   }
+
+  if (settingsTotal.value == "") {
+    ok = false;
+    settingsTotal.classList.add("wrong");
+  } else {
+    settingsTotal.classList.remove("wrong");
+  }
   return ok;
 };
 
@@ -85,10 +92,16 @@ class Timer {
   resetTimer = () => {
     this.stop();
     let difficalty = this.timerSetup.value;
+
+    // meaning no timer
     if (difficalty == 0) {
       this.timerRuntime.style.display = "None";
+      this.stop();
+      this.stopped = false;
       return false;
     }
+
+    // setting timer
     this.timerRuntime.style.display = "block";
     this.countDown = difficalty * this.difficultyFactor * settingsTotal.value;
     this.setTimerElement();
@@ -229,7 +242,7 @@ class Exercises {
   }
 }
 
-g_exercise = new Exercises();
+const g_exercise = new Exercises();
 
 //options
 for (let i of Array(gOptionsCount)) {
@@ -319,10 +332,9 @@ const updateActions = () => {
     updateActions();
   });
 
-  setupBtn = gtag("setupBtn");
-  setupBtn.classList.add("button");
-  setupBtn.value = "התחל";
-  setupBtn.addEventListener("click", function (event) {
+  startBtn = gtag("startBtn");
+  startBtn.classList.add("button");
+  startBtn.addEventListener("click", function (event) {
     event.preventDefault();
     if (varifyInput() == false) return;
     setup.style.display = "None";
