@@ -39,13 +39,15 @@ const varifyInput = () => {
   let ok = true;
   for (let row of tbody.querySelectorAll("tr")) {
     [mn, mx] = row.querySelectorAll("input");
-    if (parseInt(mn.value) > parseInt(mx.value)) {
-      mn.classList.add("wrong");
-      mx.classList.add("wrong");
+    if (
+      parseInt(mn.value) > parseInt(mx.value) ||
+      mn.value == "" ||
+      mx.value == ""
+    ) {
+      [mn, mx].forEach((e) => e.classList.add("wrong"));
       ok = false;
     } else {
-      mn.classList.remove("wrong");
-      mx.classList.remove("wrong");
+      [mn, mx].forEach((e) => e.classList.remove("wrong"));
     }
   }
   return ok;

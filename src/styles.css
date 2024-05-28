@@ -39,13 +39,11 @@ input {
 
 select {
   padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 2px solid var(--lines);
   border-radius: 5px;
-  background-color: var(--input);
+  background-color: var(--button);
   color: var(--letters);
   font-size: large;
-  border-color: var(--lines);
+  border: 0px;
 }
 
 input[type="range"] {
