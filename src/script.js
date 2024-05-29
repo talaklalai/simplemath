@@ -335,7 +335,6 @@ const updateActions = () => {
   startBtn = gtag("startBtn");
   startBtn.classList.add("button");
   startBtn.addEventListener("click", function (event) {
-    event.preventDefault();
     if (varifyInput() == false) return;
     setup.style.display = "None";
     main.style.display = "block";
