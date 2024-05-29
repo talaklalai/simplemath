@@ -17,17 +17,17 @@ const totalLeft = gtag("totalLeft");
 const totalWrong = gtag("totalWrong");
 
 // targilim
-let G_targilim = 10;
 const targilim = gtag("targilim");
 for (let num of [10, 20, 40, 60, 80, 100]) {
   option = ctag("option");
   option.innerText = `${num} תרגילים`;
   option.value = num;
   targilim.appendChild(option);
+  if (num == 20) option.setAttribute("selected", true);
 }
+let G_targilim = targilim.value;
 targilim.addEventListener("change", () => {
   G_targilim = targilim.value;
-  console.log(G_targilim);
 });
 
 // Global functions
