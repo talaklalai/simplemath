@@ -37,7 +37,7 @@ body {
 }
 select,
 .button {
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 10px;
   background-color: var(--button);
   color: var(--letters);
