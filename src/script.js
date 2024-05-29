@@ -11,14 +11,26 @@ main.style.display = "None";
 const que = gtag("question");
 que.classList.add("ltr");
 const Actions = [];
-const settingsTotal = gtag("settingsTotal");
-const gOptionsCount = 8;
+const gOptionsCount = 6;
 const totalCorrect = gtag("totalCorrect");
 const totalLeft = gtag("totalLeft");
 const totalWrong = gtag("totalWrong");
 
-// Global functions
+// targilim
+let G_targilim = 10;
+const targilim = gtag("targilim");
+for (let num of [10, 20, 40, 60, 80, 100]) {
+  option = ctag("option");
+  option.innerText = `${num} תרגילים`;
+  option.value = num;
+  targilim.appendChild(option);
+}
+targilim.addEventListener("change", () => {
+  G_targilim = targilim.value;
+  console.log(G_targilim);
+});
 
+// Global functions
 const isPhone = () => {
   let check = false;
   (function (a) {
@@ -50,13 +62,6 @@ const varifyInput = () => {
       [mn, mx].forEach((e) => e.classList.remove("wrong"));
     }
   }
-
-  if (settingsTotal.value == "") {
-    ok = false;
-    settingsTotal.classList.add("wrong");
-  } else {
-    settingsTotal.classList.remove("wrong");
-  }
   return ok;
 };
 
@@ -72,8 +77,6 @@ const setInputTypeToNumber = (elem) => {
   );
   return elem;
 };
-
-setInputTypeToNumber(settingsTotal);
 
 const getRandomInt = (max, min = 0) => {
   min = Math.ceil(min);
@@ -103,7 +106,7 @@ class Timer {
 
     // setting timer
     this.timerRuntime.style.display = "block";
-    this.countDown = difficalty * this.difficultyFactor * settingsTotal.value;
+    this.countDown = difficalty * this.difficultyFactor * G_targilim;
     this.setTimerElement();
     return true;
   };
@@ -144,7 +147,7 @@ class Exercises {
     que.style.display = "block";
     que.innerText = "";
     this.nextExercise();
-    totalLeft.innerText = settingsTotal.value;
+    totalLeft.innerText = G_targilim;
   };
 
   newExerciseCleanup = () => (que.innerText = "");
@@ -257,8 +260,8 @@ for (let i of Array(gOptionsCount)) {
 defaultSettings = {
   "+": [10, 100],
   "-": [10, 100],
-  "*": [2, 12],
-  "/": [2, 5],
+  "*": [1, 10],
+  "/": [1, 10],
 };
 
 // Landing page layout

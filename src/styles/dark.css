@@ -13,7 +13,7 @@
   --red: #d32313; /* Google Red */
   --input: #202124; /* Dark Background */
   --darkbutton: #2a67c9; /* Dark Blue */
-  --lightBlue: #2a67c9; /* Light Blue */
+  --lightbutton: #2a67c9; /* Light Blue */
   --lightYellow: #f8df96; /* Light Yellow */
   --lightRed: #f7feff; /* Light Red */
   --lightGreenAccent: #81c995; /* Light Green */
@@ -51,15 +51,15 @@ select,
   padding: 0.5rem 2rem;
 }
 input {
-  max-width: 60px;
+  max-width: 50px;
   padding: 0.5rem;
   margin-bottom: 1rem;
   border: 3px solid var(--lines);
+  border-bottom: 4px solid var(--lightbutton);
   border-radius: 10px;
   background-color: var(--input);
   color: var(--letters);
   font-size: large;
-  border-color: var(--lines);
 }
 input[type="range"] {
   /* Width and height of the range slider */
@@ -76,6 +76,13 @@ input.wide {
 input.wider {
   max-width: 100px;
 }
+
+input.button.widest {
+  max-width: 80%;
+  width: 100%;
+  text-align: center;
+}
+
 .ltr {
   direction: ltr;
 }
@@ -96,9 +103,9 @@ td {
   max-width: 60px;
 }
 input.correct {
-  border: 2px solid var(--lightGreen);
-  color: var(--lightGreen);
+  color: var(--letters);
   font-weight: bold;
+  background-color: var(--lightGreen);
 }
 input.wrong {
   border: 1px solid var(--red);
