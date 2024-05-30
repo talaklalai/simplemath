@@ -306,13 +306,18 @@ const userSetupLayout = () => {
           let [sign, mn, mx] = tr.querySelectorAll("input");
           mn.disabled = mn.disabled === false;
           mx.disabled = mx.disabled === false;
-
           updateActions();
         });
       }),
     );
-    let minTd = _createInputTd("", (addAttrFunc = (e) => (e.disabled = false)));
-    let maxTd = _createInputTd("", (addAttrFunc = (e) => (e.disabled = false)));
+    let minTd = _createInputTd(
+      "",
+      (addAttrFunc = (e) => setInputTypeToNumber(e)),
+    );
+    let maxTd = _createInputTd(
+      "",
+      (addAttrFunc = (e) => setInputTypeToNumber(e)),
+    );
     let labeltd = ctag("td");
     labeltd.innerText = " עד ";
     [signTd, minTd, labeltd, maxTd].forEach((e) => tr.appendChild(e));
