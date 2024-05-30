@@ -349,7 +349,6 @@ const updateActions = () => {
     if (min_input.disabled) continue;
     Actions.push([sign, min_input, max_input]);
   }
-  dd(Actions);
 };
 
 userSetupLayout();

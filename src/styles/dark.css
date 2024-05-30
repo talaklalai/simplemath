@@ -169,7 +169,7 @@ th {
 }
 
 div.button {
-  padding: 10%;
+  margin: 0.5rem;
   text-align: center;
   font-size: x-large;
 }
