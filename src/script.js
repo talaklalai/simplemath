@@ -301,7 +301,8 @@ const userSetupLayout = () => {
       (val = sign),
       (addAttrFunc = (i) => {
         i.classList.add("button", "narrow", "dark");
-        i.addEventListener("click", () => {
+        i.addEventListener("click", (e) => {
+          e.preventDefault();
           let [sign, mn, mx] = tr.querySelectorAll("input");
           mn.disabled = mn.disabled === false;
           mx.disabled = mx.disabled === false;
