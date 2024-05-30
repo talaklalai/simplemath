@@ -297,20 +297,19 @@ const userSetupLayout = () => {
   const tbody = document.querySelector("tbody");
   for (let sign of ["+", "-", "*", "/"]) {
     let tr = ctag("tr");
-    let signTd = _createInputTd(
-      (val = sign),
-      (addAttrFunc = (i) => {
-        i.classList.add("button", "narrow", "dark");
-        i.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.target.blur();
-          let [sign, mn, mx] = tr.querySelectorAll("input");
-          mn.disabled = mn.disabled === false;
-          mx.disabled = mx.disabled === false;
-          updateActions();
-        });
-      }),
-    );
+
+    let signTd = ctag("td");
+    let signDiv = ctag("div");
+    signDiv.innerText = sign;
+    signDiv.classList.add("button", "narrow", "dark");
+    signDiv.addEventListener("click", (e) => {
+      let [mn, mx] = tr.querySelectorAll("input");
+      mn.disabled = mn.disabled === false;
+      mx.disabled = mx.disabled === false;
+      updateActions();
+    });
+
+    signTd.appendChild(signDiv);
     let minTd = _createInputTd(
       "",
       (addAttrFunc = (e) => setInputTypeToNumber(e)),
@@ -334,7 +333,7 @@ const userSetupLayout = () => {
 const userSetupInput = () => {
   let i = 0;
   for (let row of tbody.querySelectorAll("tr")) {
-    let [sign, mn, mx] = row.querySelectorAll("input");
+    let [mn, mx] = row.querySelectorAll("input");
     mn.value = GCurrentLevel[i].min;
     mx.value = GCurrentLevel[i].max;
     i += 1;
@@ -345,10 +344,12 @@ const userSetupInput = () => {
 const updateActions = () => {
   Actions.length = 0;
   for (let row of tbody.getElementsByTagName("tr")) {
-    let [sign, min_input, max_input] = row.querySelectorAll("input");
+    let sign = row.querySelector("div").innerText;
+    let [min_input, max_input] = row.querySelectorAll("input");
     if (min_input.disabled) continue;
-    Actions.push([sign.value, min_input, max_input]);
+    Actions.push([sign, min_input, max_input]);
   }
+  dd(Actions);
 };
 
 userSetupLayout();
