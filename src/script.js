@@ -19,7 +19,7 @@ const totalWrong = gtag("totalWrong");
 // targilim
 const targilim = gtag("targilim");
 for (let num of [10, 20, 40, 60, 80, 100]) {
-  option = ctag("option");
+  let option = ctag("option");
   option.innerText = `${num} תרגילים`;
   option.value = num;
   targilim.appendChild(option);
@@ -28,6 +28,90 @@ for (let num of [10, 20, 40, 60, 80, 100]) {
 let G_targilim = targilim.value;
 targilim.addEventListener("change", () => {
   G_targilim = targilim.value;
+});
+
+class Range {
+  constructor(label, mn, mx) {
+    this.label = label;
+    this.min = mn;
+    this.max = mx;
+  }
+}
+
+class SetupNumber {
+  constructor(rPlus, rMin, rMul, rDiv, colorclass, value, label) {
+    this.ranges = [rPlus, rMin, rMul, rDiv];
+    this.colorclass = colorclass;
+    this.value = value;
+    this.label = label;
+  }
+}
+
+cr = (...args) => {
+  return new Range(...args);
+};
+
+const SETUP_NUMBERS = [
+  new SetupNumber(
+    cr("+", 1, 100),
+    cr("-", 1, 100),
+    cr("*", 1, 10),
+    cr("/", 1, 10),
+    "green",
+    0,
+    "קל",
+  ),
+  new SetupNumber(
+    cr("+", 1, 200),
+    cr("-", 1, 200),
+    cr("*", 1, 12),
+    cr("/", 1, 12),
+    "yellow",
+    1,
+    "בינוני",
+  ),
+  new SetupNumber(
+    cr("+", 1, 500),
+    cr("-", 1, 500),
+    cr("*", 1, 15),
+    cr("/", 1, 15),
+    "orange",
+    2,
+    "מתקדם",
+  ),
+  new SetupNumber(
+    cr("+", 1, 1000),
+    cr("-", 1, 1000),
+    cr("*", 1, 20),
+    cr("/", 1, 20),
+    "red",
+    3,
+    "מומחה",
+  ),
+  new SetupNumber(
+    cr("+", 1, 5000),
+    cr("-", 1, 5000),
+    cr("*", 1, 40),
+    cr("/", 1, 40),
+    "purple",
+    4,
+    "מאסטר",
+  ),
+];
+
+// difficulty
+const difficultySelect = gtag("difficulty");
+
+SETUP_NUMBERS.forEach((setupN) => {
+  let option = ctag("option");
+  option.innerText = setupN.label;
+  option.value = setupN.value;
+  option.classList.add(setupN.colorclass);
+  difficultySelect.appendChild(option);
+});
+
+difficultySelect.addEventListener("change", (e) => {
+  userSetupLayout();
 });
 
 // Global functions
@@ -257,13 +341,6 @@ for (let i of Array(gOptionsCount)) {
   ansewrOption.addEventListener("click", g_exercise.submitAnswer);
 }
 
-defaultSettings = {
-  "+": [10, 100],
-  "-": [10, 100],
-  "*": [1, 10],
-  "/": [1, 10],
-};
-
 // Landing page layout
 function userSetupLayout() {
   const tbody = document.querySelector("tbody");
@@ -281,13 +358,12 @@ function userSetupLayout() {
   const _createInputNumTd = (val) => _createInputTd(val, setInputTypeToNumber);
 
   // set up math preferences
-  for (let [sign, [mn, mx]] of Object.entries(defaultSettings)) {
+  for (let range of SETUP_NUMBERS[difficultySelect.value].ranges) {
     // add row
     let tr = ctag("tr");
-
     // sign
     let tdSign = ctag("td");
-    tdSign.innerText = sign;
+    tdSign.innerText = range.label;
     tdSign.classList.add("green", "bigFont");
 
     tdSign.addEventListener("click", () => {
@@ -303,7 +379,11 @@ function userSetupLayout() {
     tdTo.classList.add("minwid");
 
     //append tds to row
-    for (let td of [tdSign, _createInputNumTd(mn), _createInputNumTd(mx)])
+    for (let td of [
+      tdSign,
+      _createInputNumTd(range.min),
+      _createInputNumTd(range.max),
+    ])
       tr.appendChild(td);
     tbody.appendChild(tr);
   }

@@ -1,7 +1,7 @@
 :root {
   --primary: #4285f4; /* Google Blue */
   --secondary: #34a853; /* Google Green */
-  --tertiary: #fbbc05; /* Google Yellow */
+  --tertiary: #e7c663; /* Google Yellow */
   --quaternary: #d32313; /* Google Red */
   --background: #202124; /* Dark Background */
   --surface: #303134; /* Slightly Lighter Background */
@@ -17,6 +17,8 @@
   --lightYellow: #f8df96; /* Light Yellow */
   --lightRed: #f7feff; /* Light Red */
   --lightGreenAccent: #81c995; /* Light Green */
+  --orange: #ff9900;
+  --purple: #ac05ee;
 }
 body {
   font-family: Arial, sans-serif;
@@ -37,7 +39,7 @@ body {
 }
 select,
 .button {
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 10px;
   background-color: var(--button);
   color: var(--letters);
@@ -51,7 +53,7 @@ select,
   padding: 0.5rem 2rem;
 }
 input {
-  max-width: 50px;
+  max-width: 60px;
   padding: 0.5rem;
   margin-bottom: 1rem;
   border: 3px solid var(--lines);
@@ -131,6 +133,9 @@ body.dark-mode {
 .green {
   color: var(--lightGreen);
 }
+input[type="range"] {
+  min-width: 60%;
+}
 .bigFont {
   font-size: xx-large;
 }
@@ -144,5 +149,15 @@ th {
   font-family: "Courier New", Courier, monospace;
 }
 .red {
-  color: var(--lightRed);
+  color: var(--red);
+}
+.yellow {
+  color: var(--tertiary);
+}
+
+.orange {
+  color: var(--orange);
+}
+.purple {
+  color: var(--purple);
 }
