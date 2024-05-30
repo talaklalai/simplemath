@@ -319,7 +319,11 @@ const userSetupLayout = () => {
       (addAttrFunc = (e) => setInputTypeToNumber(e)),
     );
     let labeltd = ctag("td");
-    labeltd.innerText = " עד ";
+    let toDiv = ctag("div");
+
+    labeltd.appendChild(toDiv);
+    labeltd.classList.add("labeltd");
+    labeltd.innerText = " ... ";
     [signTd, minTd, labeltd, maxTd].forEach((e) => tr.appendChild(e));
 
     tbody.appendChild(tr);

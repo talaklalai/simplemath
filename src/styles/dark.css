@@ -171,3 +171,6 @@ th {
 .purple {
   color: var(--purple);
 }
+.labeltd {
+  text-align: center;
+}
