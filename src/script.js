@@ -20,7 +20,7 @@ const totalWrong = gtag("totalWrong");
 const targilim = gtag("targilim");
 for (let num of [10, 20, 40, 60, 80, 100]) {
   let option = ctag("option");
-  option.innerText = `${num} #`;
+  option.innerText = `${num} תרגילים`;
   option.value = num;
   targilim.appendChild(option);
   if (num == 20) option.setAttribute("selected", true);
@@ -43,7 +43,7 @@ class SetupNumber {
     this.ranges = [rPlus, rMin, rMul, rDiv];
     this.colorclass = colorclass;
     this.value = value;
-    this.label = label;
+    this.label = ` רמה  ${this.value + 1}`;
   }
 }
 
@@ -59,7 +59,6 @@ const SETUP_NUMBERS = [
     cr("/", 1, 10),
     "green",
     0,
-    "קל",
   ),
   new SetupNumber(
     cr("+", 100, 200),
@@ -68,7 +67,6 @@ const SETUP_NUMBERS = [
     cr("/", 3, 12),
     "yellow",
     1,
-    "בינוני",
   ),
   new SetupNumber(
     cr("+", 200, 500),
@@ -77,7 +75,6 @@ const SETUP_NUMBERS = [
     cr("/", 3, 15),
     "orange",
     2,
-    "מתקדם",
   ),
   new SetupNumber(
     cr("+", 200, 1000),
@@ -86,7 +83,6 @@ const SETUP_NUMBERS = [
     cr("/", 5, 20),
     "red",
     3,
-    "מומחה",
   ),
   new SetupNumber(
     cr("+", 1000, 5000),
@@ -95,7 +91,6 @@ const SETUP_NUMBERS = [
     cr("/", 10, 40),
     "purple",
     4,
-    "מאסטר",
   ),
 ];
 
@@ -109,9 +104,11 @@ SETUP_NUMBERS.forEach((setupN) => {
   option.classList.add(setupN.colorclass);
   difficultySelect.appendChild(option);
 });
+let GCurrentLevel = SETUP_NUMBERS[difficultySelect.value].ranges;
 
 difficultySelect.addEventListener("change", (e) => {
-  userSetupLayout();
+  GCurrentLevel = SETUP_NUMBERS[difficultySelect.value].ranges;
+  userSetupInput();
 });
 
 // Global functions
@@ -134,7 +131,7 @@ const isPhone = () => {
 const varifyInput = () => {
   let ok = true;
   for (let row of tbody.querySelectorAll("tr")) {
-    [mn, mx] = row.querySelectorAll("input");
+    let [mn, mx] = row.querySelectorAll("input");
     if (
       parseInt(mn.value) > parseInt(mx.value) ||
       mn.value == "" ||
@@ -168,63 +165,9 @@ const getRandomInt = (max, min = 0) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-class Timer {
-  constructor() {
-    this.timerSetup = gtag("timerSetup");
-    this.timerRuntime = gtag("timer");
-    this.difficultyFactor = 5;
-    this.timerSetup.addEventListener("change", () => this.resetTimer());
-  }
-
-  resetTimer = () => {
-    this.stop();
-    let difficalty = this.timerSetup.value;
-
-    // meaning no timer
-    if (difficalty == 0) {
-      this.timerRuntime.style.display = "None";
-      this.stop();
-      this.stopped = false;
-      return false;
-    }
-
-    // setting timer
-    this.timerRuntime.style.display = "block";
-    this.countDown = difficalty * this.difficultyFactor * G_targilim;
-    this.setTimerElement();
-    return true;
-  };
-
-  start = () => {
-    this.interval = setInterval(this.updateTime, 1000);
-    this.stopped = false;
-  };
-
-  stop = () => {
-    clearInterval(this.interval);
-    this.stopped = true;
-  };
-  updateTime = () => {
-    this.countDown -= 1;
-    if (this.countDown == 0) {
-      this.stop();
-    }
-    this.setTimerElement();
-  };
-
-  setTimerElement = () => {
-    let seconds = this.countDown % 60;
-    let minutes = Math.floor(this.countDown / 60);
-    this.timerRuntime.innerText = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-  };
-}
-
-const TIMER = new Timer();
-
 // Main loop
 class Exercises {
   rerun = () => {
-    TIMER.resetTimer() && TIMER.start();
     totalCorrect.innerText = 0;
     totalWrong.innerText = 0;
     answerDiv.style.display = "block";
@@ -246,7 +189,6 @@ class Exercises {
     let range = [getRandomInt(max_n, mix_n), getRandomInt(max_n, mix_n)];
     let [big, small] = [Math.max(...range), Math.min(...range)];
     if (sign == "/") big = small * big;
-    if (sign == "/") sign.replace("x", "*");
 
     let exercise = `${big} ${sign} ${small}`;
     que.innerText = `${exercise} = ?`;
@@ -327,11 +269,11 @@ class Exercises {
     que.style.display = "None";
     TIMER.stop();
   }
-}
+} //End exercise
 
 const g_exercise = new Exercises();
 
-//options
+//multiple answers
 for (let i of Array(gOptionsCount)) {
   ansewrOption = ctag("input");
   ansewrOption.type = "text";
@@ -341,73 +283,70 @@ for (let i of Array(gOptionsCount)) {
   ansewrOption.addEventListener("click", g_exercise.submitAnswer);
 }
 
-// Landing page layout
-function userSetupLayout() {
+const _createInputTd = (val, addAttrFunc = () => {}) => {
+  let td_elem = ctag("td");
+  let input_elem = ctag("input");
+  addAttrFunc(input_elem);
+  input_elem.value = val;
+  td_elem.appendChild(input_elem);
+  return td_elem;
+};
+
+// Landing page table
+const userSetupLayout = () => {
   const tbody = document.querySelector("tbody");
-  while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
-
-  const _createInputTd = (val, addAttrFunc = () => {}) => {
-    let td_elem = ctag("td");
-    let input_elem = ctag("input");
-    addAttrFunc(input_elem);
-    input_elem.value = val;
-    td_elem.appendChild(input_elem);
-    return td_elem;
-  };
-
-  const _createInputNumTd = (val) => _createInputTd(val, setInputTypeToNumber);
-
-  // set up math preferences
-  for (let range of SETUP_NUMBERS[difficultySelect.value].ranges) {
-    // add row
+  for (let sign of ["+", "-", "*", "/"]) {
     let tr = ctag("tr");
-    // sign
-    let tdSign = ctag("td");
-    tdSign.innerText = range.label;
-    tdSign.classList.add("green", "bigFont");
+    let signTd = _createInputTd(
+      (val = sign),
+      (addAttrFunc = (i) => {
+        i.classList.add("button", "narrow", "dark");
+        i.addEventListener("click", () => {
+          let [sign, mn, mx] = tr.querySelectorAll("input");
+          mn.disabled = mn.disabled === false;
+          mx.disabled = mx.disabled === false;
 
-    tdSign.addEventListener("click", () => {
-      tr.dataset.filter = tr.dataset.filter === "false" ? "true" : "false";
-      for (let inf of tr.querySelectorAll("input"))
-        inf.disabled = tr.dataset.filter === "false";
-      updateActions();
-    });
+          updateActions();
+        });
+      }),
+    );
+    let minTd = _createInputTd("", (addAttrFunc = (e) => (e.disabled = false)));
+    let maxTd = _createInputTd("", (addAttrFunc = (e) => (e.disabled = false)));
+    let labeltd = ctag("td");
+    labeltd.innerText = " עד ";
+    [signTd, minTd, labeltd, maxTd].forEach((e) => tr.appendChild(e));
 
-    // arrow
-    let tdTo = ctag("td");
-
-    tdTo.classList.add("minwid");
-
-    //append tds to row
-    for (let td of [
-      tdSign,
-      _createInputNumTd(range.min),
-      _createInputNumTd(range.max),
-    ])
-      tr.appendChild(td);
     tbody.appendChild(tr);
   }
-}
+};
 
-// landing page reset
+const userSetupInput = () => {
+  let i = 0;
+  for (let row of tbody.querySelectorAll("tr")) {
+    let [sign, mn, mx] = row.querySelectorAll("input");
+    mn.value = GCurrentLevel[i].min;
+    mx.value = GCurrentLevel[i].max;
+    i += 1;
+  }
+};
+
+// update actions acording to user setup
 const updateActions = () => {
   Actions.length = 0;
   for (let row of tbody.getElementsByTagName("tr")) {
-    if (row.dataset.filter == "false") continue;
-    let tds = row.querySelectorAll("td");
-    let [sign, td_min_input, td_max_input] = tds;
-    Actions.push([
-      sign.innerText,
-      td_min_input.querySelector("input"),
-      td_max_input.querySelector("input"),
-    ]);
+    let [sign, min_input, max_input] = row.querySelectorAll("input");
+    if (min_input.disabled) continue;
+    Actions.push([sign.value, min_input, max_input]);
   }
 };
+
+userSetupLayout();
+userSetupInput();
+updateActions();
 
 // settings  buttons listeners
 (() => {
   newGame = gtag("newGame");
-
   newGame.addEventListener("click", function (event) {
     event.preventDefault();
     setup.style.display = "block";
@@ -423,10 +362,4 @@ const updateActions = () => {
     main.style.display = "block";
     g_exercise.rerun();
   });
-})();
-
-// Landing page
-(() => {
-  userSetupLayout();
-  updateActions();
 })();
