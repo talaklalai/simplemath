@@ -1,0 +1,137 @@
+:root {
+  --lines: #465063;
+  --letters: #f1c485;
+  --container: #232325;
+  --button: #21443e;
+  --lightGreen: #4caf50;
+  --red: #db4437;
+  --input: #1d2020;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-size: x-large;
+  margin: 0;
+  padding: 0;
+  background-color: #15221b;
+  color: var(--letters);
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background-color: var(--container);
+  border-radius: 20px;
+  border: 1px solid var(--lines);
+  direction: rtl; /* Right-to-left content */
+}
+
+input {
+  max-width: 60px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--lines);
+  border-radius: 5px;
+  background-color: var(--input);
+  color: var(--letters);
+  font-size: large;
+  border-color: var(--lines);
+}
+
+select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: var(--button);
+  color: var(--letters);
+  font-size: large;
+  border: 0px;
+}
+
+input[type="range"] {
+  /* Width and height of the range slider */
+  accent-color: var(--letters);
+  width: 300px !important;
+}
+
+input:disabled {
+  background-color: var(--lines);
+  color: var(--input);
+}
+input.wide {
+  max-width: 180px;
+}
+
+input.wider {
+  max-width: 100px;
+}
+.ltr {
+  direction: ltr;
+}
+.button {
+  padding: 0.5rem 2rem;
+  background-color: var(--button);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--letters);
+}
+hr {
+  border: 1px solid #5e6ea3;
+}
+
+.button.dark {
+  background-color: #21443e;
+}
+table {
+  width: 70%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+}
+td {
+  padding: 0.5rem;
+  text-align: center;
+  max-width: 60px;
+}
+input.correct {
+  border: 2px solid var(--lightGreen);
+  color: var(--lightGreen);
+  font-weight: bold;
+}
+input.wrong {
+  border: 2px solid var(--red);
+  color: var(--red);
+}
+
+div.correct {
+  color: var(--lightGreen);
+}
+div.wrong {
+  color: var(--red);
+}
+
+.marginright {
+  margin-right: 20px;
+}
+
+.minwid {
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  color: var(--lines);
+}
+
+.green {
+  color: var(--lightGreen);
+}
+
+.bigFont {
+  font-size: xx-large;
+}
+.ansewrOption {
+  margin-right: 20px;
+}
+#timer {
+  font-family: "Courier New", Courier, monospace;
+}
