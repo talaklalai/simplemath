@@ -303,6 +303,7 @@ const userSetupLayout = () => {
         i.classList.add("button", "narrow", "dark");
         i.addEventListener("click", (e) => {
           e.preventDefault();
+          e.target.blur();
           let [sign, mn, mx] = tr.querySelectorAll("input");
           mn.disabled = mn.disabled === false;
           mx.disabled = mx.disabled === false;
