@@ -20,7 +20,7 @@ const totalWrong = gtag("totalWrong");
 const targilim = gtag("targilim");
 for (let num of [10, 20, 40, 60, 80, 100]) {
   let option = ctag("option");
-  option.innerText = `${num} תרגילים`;
+  option.innerText = `${num} #`;
   option.value = num;
   targilim.appendChild(option);
   if (num == 20) option.setAttribute("selected", true);
