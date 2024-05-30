@@ -52,7 +52,6 @@ select,
 .button {
   padding: 0.5rem 2rem;
 }
-
 input {
   max-width: 60px;
   padding: 0.5rem;
@@ -76,7 +75,6 @@ input:disabled {
 input.wide {
   max-width: 180px;
 }
-
 input.wider {
   max-width: 100px;
 }
@@ -85,7 +83,6 @@ input.button.widest {
   max-width: 80%;
   width: 100%;
   text-align: center;
-  font-size: x-large;
 }
 
 .ltr {
@@ -163,13 +160,4 @@ th {
 }
 .purple {
   color: var(--purple);
-}
-.labeltd {
-  text-align: center;
-}
-
-div.button {
-  margin: 0.5rem;
-  text-align: center;
-  font-size: x-large;
 }
