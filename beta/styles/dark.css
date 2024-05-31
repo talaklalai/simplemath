@@ -7,7 +7,7 @@
   --gred: #DB4437;
   --red: #fc5959;
   --gyellow: 	#F4B400;
-  --lightYellow: 	#f4dc00;
+  --lightYellow:  #f8df96;
   --ggreen:#1fe284;
   --green:#0F9D58;
 }
@@ -99,6 +99,7 @@ select, .mainButtons , input {
   color: var(--lightYellow);
   font-weight: bold;
   font-size: x-large;
+  padding: 1rem;
 }
 
 .sign{
@@ -112,6 +113,10 @@ hr{
   border: 2px solid var(--gred);
 }
 
+th{
+  text-align: right;
+  direction: ltr; /* Right-to-left content */
+}
 .targil{
   direction: ltr; /* Right-to-left content */
   color: var(--lightYellow);
