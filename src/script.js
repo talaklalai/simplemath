@@ -268,7 +268,6 @@ class Exercises {
   finish() {
     answerDiv.style.display = "None";
     que.style.display = "None";
-    TIMER.stop();
   }
 } //End exercise
 

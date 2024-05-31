@@ -9,7 +9,7 @@
   --gred: #db4437;
   --red: #fc5959;
   --gyellow: #f4b400;
-  --lightYellow: #f8df96;
+  --lightYellow: #f5da8a;
   --ggreen: #1fe284;
   --green: #0f9d58;
 }
@@ -73,9 +73,12 @@ input:disabled {
 }
 
 .multiselect {
-  max-width: 40%;
+  background-color: var(--lightYellow);
+  color: var(--darkgrey);
+  max-width: 30%;
   font-size: x-large;
-  padding: 0.5rem;
+  font-weight: bold;
+  padding: 0.7rem;
   margin: 0.5rem;
   border: 2px solid var(--lines);
   border-radius: 8px;
@@ -156,13 +159,22 @@ thead {
   font-size: large;
   color: var(--lightYellow);
 }
-
 .correct {
-  color: var(--green);
+  color: var(--ggreen);
 }
 
 .wrong {
   color: var(--red);
+}
+
+input.wrong {
+  color: var(--red);
+  background-color: var(--gred);
+}
+
+input.correct {
+  color: var(--ggreen);
+  background-color: var(--green);
 }
 
 .filter_arrow {
