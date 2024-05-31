@@ -9,6 +9,7 @@ const execTodoE = gtag("execTodo");
 const main = gtag("main");
 main.style.display = "None";
 const que = gtag("question");
+const startBtn = gtag("startBtn");
  
 const Actions = [];
 const gOptionsCount = 6;
@@ -277,6 +278,7 @@ const g_exercise = new Exercises();
 for (let i of Array(gOptionsCount)) {
   ansewrOption = ctag("input");
   ansewrOption.type = "text";
+  ansewrOption.classList.add("multiselect")
   
   ansewrOption.setAttribute("readonly", true);
   answerDiv.appendChild(ansewrOption);
@@ -361,7 +363,7 @@ updateActions();
     updateActions();
   });
 
-  startBtn = gtag("startBtn");
+  
 
   
   startBtn.addEventListener("click", function (event) {

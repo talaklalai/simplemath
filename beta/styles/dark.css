@@ -5,9 +5,11 @@
   --gblue: #4285F4;
   --lightblue: #6b9dee;
   --gred: #DB4437;
+  --red: #fc5959;
   --gyellow: 	#F4B400;
   --lightYellow: 	#f4dc00;
-  --ggreen:#0F9D58;
+  --ggreen:#1fe284;
+  --green:#0F9D58;
 }
 
 body {
@@ -72,9 +74,10 @@ input:disabled {
 }
 
 .multiselect{
-  max-width: 80%;
+  max-width: 40%;
   font-size: x-large; 
   padding: 0.5rem;
+  margin: 0.5rem;
   border: 2px solid var(--lines); 
   border-radius: 8px;
   box-sizing: border-box;
@@ -115,6 +118,15 @@ hr{
 thead{
   font-size: large;
   color: var(--lightYellow);
+}
+
+.correct{
+  color: var(--green);
+}
+
+
+.wrong{
+  color: var(--red);
 }
 
 
