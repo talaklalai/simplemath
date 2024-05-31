@@ -4,6 +4,7 @@
   --lightgrey: #e8eaed; /* Light Grey */
   --gblue: #4285f4;
   --lightblue: #6b9dee;
+  --lightblue: #6b9dee;
   --blue: #1434e7ea;
   --gred: #db4437;
   --red: #fc5959;
@@ -60,6 +61,7 @@ input {
   margin-top: 1.5rem;
   border: 1px solid var(--lightgrey);
   border-bottom: 2px solid var(--gblue);
+  border-right: 2px solid var(--gblue);
   border-radius: 8px;
   box-sizing: border-box;
   text-align: right;
@@ -107,25 +109,25 @@ input {
 
 @keyframes blink {
   0% {
-    color: var(--blue);
+    color: var(--darkgrey);
   }
   50% {
-    color: var(--lightgrey);
+    color: var(--lightblue);
   }
   100% {
-    color: var(--blue);
+    color: var(--darkgrey);
   }
 }
 
 @keyframes blinkBak {
   0% {
-    background-color: var(--blue);
+    background-color: var(--darkgrey);
   }
   50% {
-    background-color: var(--lightgrey);
+    background-color: var(--lightblue);
   }
   100% {
-    background-color: var(--blue);
+    background-color: var(--darkgrey);
   }
 }
 
