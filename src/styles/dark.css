@@ -4,6 +4,7 @@
   --lightgrey: #e8eaed; /* Light Grey */
   --gblue: #4285f4;
   --lightblue: #6b9dee;
+  --blue: #1434e7ea;
   --gred: #db4437;
   --red: #fc5959;
   --gyellow: #f4b400;
@@ -79,12 +80,6 @@ input:disabled {
   box-sizing: border-box;
 }
 
-.mainButtons {
-  min-width: 100%;
-  max-width: 100%;
-  text-align: center;
-}
-
 select,
 .mainButtons,
 input {
@@ -92,7 +87,11 @@ input {
   background-color: var(--darkergrey);
 }
 
+.semiMainButtons,
 .mainButtons {
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
   background-color: var(--gblue);
   color: var(--lightYellow);
   font-weight: bold;
@@ -100,8 +99,39 @@ input {
   padding: 1rem;
 }
 
+.semiMainButtons {
+  min-width: 60%;
+  max-width: 60%;
+  padding: 0.3rem;
+}
+
+@keyframes blink {
+  0% {
+    color: var(--blue);
+  }
+  50% {
+    color: var(--lightgrey);
+  }
+  100% {
+    color: var(--blue);
+  }
+}
+
+@keyframes blinkBak {
+  0% {
+    background-color: var(--blue);
+  }
+  50% {
+    background-color: var(--lightgrey);
+  }
+  100% {
+    background-color: var(--blue);
+  }
+}
+
 .sign {
-  color: var(--lightblue);
+  animation: blink 3s infinite;
+  color: var(--blue);
   font-size: xx-large;
   font-weight: bold;
   margin-top: 1.5rem;
@@ -131,4 +161,9 @@ thead {
 
 .wrong {
   color: var(--red);
+}
+
+.filter_arrow {
+  font-size: 1.5rem;
+  animation: blinkBak 3s infinite;
 }
