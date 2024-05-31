@@ -1,0 +1,122 @@
+:root{
+  --darkgrey : #303134; /* Dark Grey */
+  --darkergrey: #202124; /* Dark Background */
+  --lightgrey: #e8eaed; /* Light Grey */
+  --gblue: #4285F4;
+  --lightblue: #6b9dee;
+  --gred: #DB4437;
+  --gyellow: 	#F4B400;
+  --lightYellow: 	#f4dc00;
+  --ggreen:#0F9D58;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: x-large;
+  color: var(--lightgrey);
+  background-color: var(--darkergrey);
+  box-sizing: border-box;
+  direction: rtl; /* Right-to-left content */
+
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background-color: var(--darkgrey);
+  border-radius: 20px;
+  box-sizing: border-box;
+ 
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+td {
+    padding: 2px;
+    width: auto; /* Adjust width to fit content */
+    box-sizing: border-box; /* Include padding and border in the width */
+    border: none solid var(--lightgrey); /* Adjust border style */
+}
+ 
+select{
+  font-size: large;
+  padding: 0.5rem;
+  border: 2px solid var(--gblue); 
+  border-radius: 8px;
+  margin: 5px;
+  
+
+}
+
+input{
+  max-width: 90%;
+  font-size: large; 
+  padding: 0.5rem;
+  margin-top:0.6rem;
+  border: 1px solid var(--lightgrey); 
+  border-bottom: 2px solid var(--gblue); 
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+input:disabled {
+  background-color: var(--darkgrey);
+  color: var(--darkgrey);
+}
+
+.multiselect{
+  max-width: 80%;
+  font-size: x-large; 
+  padding: 0.5rem;
+  border: 2px solid var(--lines); 
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.mainButtons{
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+select, .mainButtons , input {
+  color: var(--lightgrey); 
+  background-color: var(--darkergrey);
+}
+
+.mainButtons{
+  background-color: var(--gblue);
+  color: var(--lightYellow);
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.sign{
+  color: var(--lightblue);
+  font-size: xx-large;
+}
+
+hr{
+  border: 2px solid var(--gred);
+}
+
+.targil{
+  direction: ltr; /* Right-to-left content */
+  color: var(--lightYellow);
+  font-size: xx-large;
+}
+thead{
+  font-size: large;
+  color: var(--lightYellow);
+}
+
+
+
+
