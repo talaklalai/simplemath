@@ -356,8 +356,12 @@ updateActions();
 (() => {
  
   newGame.addEventListener("click", function (event) {
-    let makeSure = confirm("להתחיל משחק חדש?")
-    if (makeSure ==false)return  
+    if (parseInt(totalLeft.innerText) === 0) {
+      if (confirm("לצאת ולהתחיל משחק חדש?") == false){
+        return
+      }
+    }
+   
     event.preventDefault();
     setup.style.display = "block";
     main.style.display = "None";
