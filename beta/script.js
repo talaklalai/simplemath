@@ -356,7 +356,7 @@ updateActions();
 (() => {
  
   newGame.addEventListener("click", function (event) {
-    if (parseInt(totalLeft.innerText) === 0) {
+    if (parseInt(totalLeft.innerText) != 0) {
       if (confirm("לצאת ולהתחיל משחק חדש?") == false){
         return
       }
