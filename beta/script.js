@@ -7,15 +7,16 @@ const answerDiv = gtag("answerDiv");
 const setup = gtag("setup");
 const execTodoE = gtag("execTodo");
 const main = gtag("main");
-main.style.display = "None";
+//main.style.display = "None";
 const que = gtag("question");
 const startBtn = gtag("startBtn");
- 
+
 const Actions = [];
 const gOptionsCount = 6;
 const totalCorrect = gtag("totalCorrect");
 const totalLeft = gtag("totalLeft");
 const totalWrong = gtag("totalWrong");
+
 
 // targilim
 const targilim = gtag("targilim");
@@ -268,7 +269,6 @@ class Exercises {
   finish() {
     answerDiv.style.display = "None";
     que.style.display = "None";
-    TIMER.stop();
   }
 } //End exercise
 
@@ -278,8 +278,8 @@ const g_exercise = new Exercises();
 for (let i of Array(gOptionsCount)) {
   ansewrOption = ctag("input");
   ansewrOption.type = "text";
-  ansewrOption.classList.add("multiselect")
-  
+  ansewrOption.classList.add("multiselect");
+
   ansewrOption.setAttribute("readonly", true);
   answerDiv.appendChild(ansewrOption);
   ansewrOption.addEventListener("click", g_exercise.submitAnswer);
@@ -303,7 +303,7 @@ const userSetupLayout = () => {
     let signTd = ctag("td");
     let signDiv = ctag("div");
     signDiv.innerText = sign;
-    signDiv.classList.add("sign")
+    signDiv.classList.add("sign");
     signDiv.addEventListener("click", (e) => {
       let [mn, mx] = tr.querySelectorAll("input");
       mn.disabled = mn.disabled === false;
@@ -320,7 +320,6 @@ const userSetupLayout = () => {
       "",
       (addAttrFunc = (e) => setInputTypeToNumber(e)),
     );
-
 
     [signTd, minTd, , maxTd].forEach((e) => tr.appendChild(e));
 
@@ -355,17 +354,16 @@ updateActions();
 
 // settings  buttons listeners
 (() => {
-  newGame = gtag("newGame");
+ 
   newGame.addEventListener("click", function (event) {
+    let makeSure = confirm("להתחיל משחק חדש?")
+    if (makeSure ==false)return  
     event.preventDefault();
     setup.style.display = "block";
     main.style.display = "None";
     updateActions();
   });
 
-  
-
-  
   startBtn.addEventListener("click", function (event) {
     if (varifyInput() == false) return;
     setup.style.display = "None";

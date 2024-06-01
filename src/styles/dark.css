@@ -133,9 +133,12 @@ input {
     background-color: var(--darkgrey);
   }
 }
-
+.filter_arrow {
+  font-size: 1.5rem;
+  animation: blinkBak 2s infinite;
+}
 .sign {
-  animation: blink 3s infinite;
+  animation: blink 2s infinite;
   color: var(--blue);
   font-size: xx-large;
   font-weight: bold;
@@ -175,9 +178,4 @@ input.wrong {
 input.correct {
   color: var(--ggreen);
   background-color: var(--green);
-}
-
-.filter_arrow {
-  font-size: 1.5rem;
-  animation: blinkBak 3s infinite;
 }

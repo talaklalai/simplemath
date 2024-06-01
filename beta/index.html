@@ -17,15 +17,24 @@
         <select id="targilim"></select>
         <select id="difficulty"></select>
       </div>
-    
-        <hr />
+      <hr />
       <table>
-        <thead><tr><th>סנן פעולה</th><th>מינימום</th><th>מקסימום</th></tr>
+        <thead>
+          <tr>
+            <th>סנן <span class="filter_arrow"> ⬇️ </span></th>
+            <th>מינימום</th>
+            <th>מקסימום</th>
+          </tr>
         </thead>
         <tbody id="tbody"></tbody>
       </table>
-        <hr />
-      <input id="startBtn" value="התחל" class="button mainButtons" readonly />
+      <hr />
+      <input
+        id="startBtn"
+        value="התחל משחק"
+        class="button mainButtons"
+        readonly
+      />
     </div>
 
     <!-- ***********************************    Main   ***********************************    -->
@@ -33,9 +42,7 @@
       <div MainHeader>
         <div style="display: inline-block">נותרו:</div>
         <div id="totalLeft" style="display: inline-block">0</div>
-        <div style="display: inline-block" class="correct">
-          נכון:
-        </div>
+        <div style="display: inline-block" class="correct">נכון:</div>
         <div id="totalCorrect" style="display: inline-block" class="correct">
           0
         </div>
@@ -53,11 +60,11 @@
           readonly
           type="text"
           id="newGame"
-          class="button mainButtons"
-          value="חזור למסך ראשי"
+          class="button semiMainButtons"
+          value="לתפריט ראשי"
         />
-      </div>
-      <div id="timer"></div>
+       </div>
+      <dialog id="dialog"></dialog> 
     </div>
     <!--container-->
 
