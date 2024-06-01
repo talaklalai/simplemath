@@ -360,8 +360,7 @@ updateActions();
       if (confirm("לצאת ולהתחיל משחק חדש?") == false){
         return
       }
-    }
-   
+    }  
     event.preventDefault();
     setup.style.display = "block";
     main.style.display = "None";

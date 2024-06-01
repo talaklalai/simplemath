@@ -7,7 +7,7 @@ const answerDiv = gtag("answerDiv");
 const setup = gtag("setup");
 const execTodoE = gtag("execTodo");
 const main = gtag("main");
-main.style.display = "None";
+//main.style.display = "None";
 const que = gtag("question");
 const startBtn = gtag("startBtn");
 
@@ -353,8 +353,12 @@ updateActions();
 
 // settings  buttons listeners
 (() => {
-  newGame = gtag("newGame");
   newGame.addEventListener("click", function (event) {
+    if (parseInt(totalLeft.innerText) != 0) {
+      if (confirm("לצאת ולהתחיל משחק חדש?") == false) {
+        return;
+      }
+    }
     event.preventDefault();
     setup.style.display = "block";
     main.style.display = "None";
