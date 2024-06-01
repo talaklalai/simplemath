@@ -7,7 +7,7 @@ const answerDiv = gtag("answerDiv");
 const setup = gtag("setup");
 const execTodoE = gtag("execTodo");
 const main = gtag("main");
-//main.style.display = "None";
+main.style.display = "None";
 const que = gtag("question");
 const startBtn = gtag("startBtn");
 
