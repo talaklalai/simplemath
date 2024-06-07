@@ -114,14 +114,14 @@ input {
 
 @keyframes blink {
   0% {
-    font-weight: bold;
+    color: var(--lightblue);
   }
   50% {
-    font-weight: lighter;
+    color: var(--lightgrey);
   }
 
   100% {
-    font-weight: bold;
+    color: var(--lightblue);
   }
 }
 
