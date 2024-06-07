@@ -114,30 +114,21 @@ input {
 
 @keyframes blink {
   0% {
-    color: var(--darkgrey);
+    color: var(--darkergrey);
   }
-  50% {
+  10% {
+    color: var(--lightblue);
+  }
+  90% {
     color: var(--lightblue);
   }
   100% {
-    color: var(--darkgrey);
+    color: var(--darkergrey);
   }
 }
 
-@keyframes blinkBak {
-  0% {
-    background-color: var(--darkgrey);
-  }
-  50% {
-    background-color: var(--lightblue);
-  }
-  100% {
-    background-color: var(--darkgrey);
-  }
-}
 .filter_arrow {
   font-size: 1.5rem;
-  animation: blinkBak 2s infinite;
 }
 .sign {
   animation: blink 2s infinite;

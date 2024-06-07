@@ -303,7 +303,7 @@ const _createInputTd = (val, addAttrFunc = () => {}) => {
 // Landing page table
 const userSetupLayout = () => {
   const tbody = document.querySelector("tbody");
-  for (let sign of ["+", "-", "x", "/"]) {
+  for (let sign of ["+", "-", "x", "\u00F7"]) {
     let tr = ctag("tr");
 
     let signTd = ctag("td");
@@ -351,6 +351,7 @@ const updateActions = () => {
     let [min_input, max_input] = row.querySelectorAll("input");
     if (min_input.disabled) continue;
     sign = sign.replace("x", "*");
+    sign = sign.replace("\u00F7", "/");
     Actions.push([sign, min_input, max_input]);
   }
 };

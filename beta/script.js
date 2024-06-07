@@ -297,7 +297,7 @@ const _createInputTd = (val, addAttrFunc = () => {}) => {
 // Landing page table
 const userSetupLayout = () => {
   const tbody = document.querySelector("tbody");
-  for (let sign of ["+", "-", "*", "/"]) {
+  for (let sign of ["+", "-", "*", "U+000F7"]) {
     let tr = ctag("tr");
 
     let signTd = ctag("td");
