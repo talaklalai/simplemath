@@ -72,8 +72,8 @@ const SETUP_NUMBERS = [
   new SetupNumber(
     cr("+", 200, 500),
     cr("-", 200, 500),
-    cr("*", 3, 15),
-    cr("/", 3, 15),
+    cr("*", 5, 15),
+    cr("/", 5, 15),
     "orange",
     2,
   ),
@@ -92,6 +92,14 @@ const SETUP_NUMBERS = [
     cr("/", 10, 40),
     "purple",
     4,
+  ),
+  new SetupNumber(
+    cr("+", 1000, 5000),
+    cr("-", 1000, 5000),
+    cr("*", 20, 50),
+    cr("/", 20, 50),
+    "red",
+    5,
   ),
 ];
 
@@ -310,6 +318,7 @@ const userSetupLayout = () => {
     let signDiv = ctag("div");
     signDiv.innerText = sign;
     signDiv.classList.add("sign");
+    signDiv.classList.add("blink");
     signDiv.addEventListener("click", (e) => {
       let [mn, mx] = tr.querySelectorAll("input");
       mn.disabled = mn.disabled === false;

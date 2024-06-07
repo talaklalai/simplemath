@@ -114,16 +114,14 @@ input {
 
 @keyframes blink {
   0% {
-    color: var(--darkergrey);
+    font-weight: bold;
   }
-  10% {
-    color: var(--lightblue);
+  50% {
+    font-weight: lighter;
   }
-  90% {
-    color: var(--lightblue);
-  }
+
   100% {
-    color: var(--darkergrey);
+    font-weight: bold;
   }
 }
 
@@ -131,12 +129,15 @@ input {
   font-size: 1.5rem;
 }
 .sign {
-  animation: blink 2s infinite;
-  color: var(--blue);
+  color: var(--lightblue);
   font-size: xx-large;
   font-weight: bold;
   margin-top: 1.5rem;
   cursor: pointer;
+}
+
+.blink {
+  animation: blink 2s infinite;
 }
 
 hr {
