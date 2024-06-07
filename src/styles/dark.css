@@ -83,6 +83,7 @@ input:disabled {
   border: 2px solid var(--lines);
   border-radius: 8px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 select,
@@ -102,6 +103,7 @@ input {
   font-weight: bold;
   font-size: x-large;
   padding: 1rem;
+  cursor: pointer;
 }
 
 .semiMainButtons {
@@ -143,6 +145,7 @@ input {
   font-size: xx-large;
   font-weight: bold;
   margin-top: 1.5rem;
+  cursor: pointer;
 }
 
 hr {
@@ -171,11 +174,15 @@ thead {
 }
 
 input.wrong {
-  color: var(--red);
+  color: var(--lightgrey);
   background-color: var(--gred);
 }
 
 input.correct {
   color: var(--ggreen);
   background-color: var(--green);
+}
+
+.fingure {
+  cursor: pointer;
 }

@@ -211,8 +211,15 @@ class Exercises {
     while (optionsSet.size < optionsNum) {
       let randomOption;
       do {
-        const deviation = getRandomInt(25, -25);
-        randomOption = Math.round(correctAnswer * factor + deviation);
+        if (correctAnswer > 100) {
+          const deviation = getRandomInt(100, -100);
+          randomOption = Math.round(correctAnswer * factor + deviation);
+          const correctAnswerUnit = correctAnswer % 10;
+          randomOption = randomOption - (randomOption % 10) + correctAnswerUnit;
+        } else {
+          const deviation = getRandomInt(25, -25);
+          randomOption = Math.round(correctAnswer * factor + deviation);
+        }
       } while (
         randomOption <= 0 ||
         optionsSet.has(randomOption) ||
@@ -296,7 +303,7 @@ const _createInputTd = (val, addAttrFunc = () => {}) => {
 // Landing page table
 const userSetupLayout = () => {
   const tbody = document.querySelector("tbody");
-  for (let sign of ["+", "-", "*", "/"]) {
+  for (let sign of ["+", "-", "x", "/"]) {
     let tr = ctag("tr");
 
     let signTd = ctag("td");
@@ -343,6 +350,7 @@ const updateActions = () => {
     let sign = row.querySelector("div").innerText;
     let [min_input, max_input] = row.querySelectorAll("input");
     if (min_input.disabled) continue;
+    sign = sign.replace("x", "*");
     Actions.push([sign, min_input, max_input]);
   }
 };
