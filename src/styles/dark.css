@@ -112,32 +112,21 @@ input {
   padding: 0.3rem;
 }
 
-@keyframes blink {
-  0% {
-    color: var(--lightblue);
-  }
-  50% {
-    color: var(--lightgrey);
-  }
-
-  100% {
-    color: var(--lightblue);
-  }
-}
-
 .filter_arrow {
   font-size: 1.5rem;
 }
+
 .sign {
   color: var(--lightblue);
   font-size: xx-large;
   font-weight: bold;
   margin-top: 1.5rem;
   cursor: pointer;
-}
-
-.blink {
-  animation: blink 2s infinite;
+  position: relative;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: center;
 }
 
 hr {
@@ -175,6 +164,9 @@ input.correct {
   background-color: var(--green);
 }
 
-.fingure {
-  cursor: pointer;
+.finger {
+  position: absolute;
+  font-size: 2rem;
+  transition: all 0.5s ease;
+  pointer-events: none;
 }
