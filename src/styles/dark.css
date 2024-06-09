@@ -72,6 +72,44 @@ input:disabled {
   color: var(--darkgrey);
 }
 
+select,
+.mainButtons,
+input {
+  color: var(--lightgrey);
+  background-color: var(--darkergrey);
+}
+
+.semiMainButtons,
+.smallButtons,
+.mainButtons {
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
+  background-color: var(--gblue);
+  color: var(--lightYellow);
+  font-weight: bold;
+  font-size: x-large;
+  padding: 1rem;
+  cursor: pointer;
+}
+.mainButtons {
+  border: 1px solid var(--lightgrey);
+}
+
+.semiMainButtons {
+  min-width: 60%;
+  max-width: 60%;
+  padding: 0.3rem;
+}
+
+.smallButtons {
+  min-width: 30%;
+  max-width: 30%;
+  padding: 0.1rem;
+  color: var(--lightgrey);
+  border: 1px solid var(--lightYellow);
+}
+
 .multiselect {
   background-color: var(--lightYellow);
   color: var(--darkgrey);
@@ -84,49 +122,6 @@ input:disabled {
   border-radius: 8px;
   box-sizing: border-box;
   cursor: pointer;
-}
-
-select,
-.mainButtons,
-input {
-  color: var(--lightgrey);
-  background-color: var(--darkergrey);
-}
-
-.semiMainButtons,
-.mainButtons {
-  min-width: 100%;
-  max-width: 100%;
-  text-align: center;
-  background-color: var(--gblue);
-  color: var(--lightYellow);
-  font-weight: bold;
-  font-size: x-large;
-  padding: 1rem;
-  cursor: pointer;
-}
-
-.semiMainButtons {
-  min-width: 60%;
-  max-width: 60%;
-  padding: 0.3rem;
-}
-
-.filter_arrow {
-  font-size: 1.5rem;
-}
-
-.sign {
-  color: var(--lightblue);
-  font-size: xx-large;
-  font-weight: bold;
-  margin-top: 1.5rem;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  text-align: center;
 }
 
 hr {

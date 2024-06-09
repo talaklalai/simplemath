@@ -316,18 +316,19 @@ const userSetupLayout = () => {
     let tr = ctag("tr");
 
     let signTd = ctag("td");
-    let signDiv = ctag("div");
-    signDiv.innerText = sign;
-    signDiv.classList.add("sign");
+    let signBtn = ctag("input");
+    signBtn.type = "button";
+    signBtn.value = sign;
+    signBtn.classList.add("sign", "smallButtons");
 
-    signDiv.addEventListener("click", (e) => {
-      let [mn, mx] = tr.querySelectorAll("input");
+    signBtn.addEventListener("click", (e) => {
+      let [mn, mx] = tr.querySelectorAll('input:not([type="button"]');
       mn.disabled = mn.disabled === false;
       mx.disabled = mx.disabled === false;
       updateActions();
     });
 
-    signTd.appendChild(signDiv);
+    signTd.appendChild(signBtn);
     let minTd = _createInputTd(
       "",
       (addAttrFunc = (e) => setInputTypeToNumber(e)),
@@ -346,7 +347,7 @@ const userSetupLayout = () => {
 const userSetupInput = () => {
   let i = 0;
   for (let row of tbody.querySelectorAll("tr")) {
-    let [mn, mx] = row.querySelectorAll("input");
+    let [mn, mx] = row.querySelectorAll('input:not([type="button"]');
     mn.value = GCurrentLevel[i].min;
     mx.value = GCurrentLevel[i].max;
     i += 1;
@@ -357,8 +358,10 @@ const userSetupInput = () => {
 const updateActions = () => {
   Actions.length = 0;
   for (let row of tbody.getElementsByTagName("tr")) {
-    let sign = row.querySelector("div").innerText;
-    let [min_input, max_input] = row.querySelectorAll("input");
+    let sign = row.querySelector('input[type="button"]').value;
+    let [min_input, max_input] = row.querySelectorAll(
+      'input:not([type="button"]',
+    );
     if (min_input.disabled) continue;
     sign = sign.replace("x", "*");
     sign = sign.replace("\u00F7", "/");
