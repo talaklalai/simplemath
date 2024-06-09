@@ -391,26 +391,3 @@ updateActions();
     g_exercise.rerun();
   });
 })();
-
-const startFingure = () => {
-  const buttons = tbody.querySelectorAll(".sign");
-
-  const emoji = document.getElementById("emoji");
-
-  let currentIndex = 0;
-
-  function moveEmoji() {
-    const button = buttons[currentIndex];
-    const rect = button.getBoundingClientRect();
-
-    emoji.style.left = `${rect.left + rect.width - emoji.clientWidth + 22}px`;
-    emoji.style.top = `${rect.top + rect.height - emoji.clientHeight + 33}px`;
-    currentIndex = (currentIndex + 1) % buttons.length;
-
-    setTimeout(moveEmoji, 1400); // Change the interval as needed
-  }
-
-  moveEmoji();
-};
-
-document.addEventListener("DOMContentLoaded", () => startFingure());
