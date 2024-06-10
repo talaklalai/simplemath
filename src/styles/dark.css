@@ -91,7 +91,7 @@ input {
   font-size: x-large;
   padding: 1rem;
   cursor: pointer;
-  box-shadow: 3px 4px #0056b3;
+  box-shadow: 4px 5px #0056b3;
 }
 
 .semiMainButtons:active,
@@ -106,7 +106,7 @@ input {
 }
 
 .mainButtons {
-  box-shadow: 4px 6px #0056b3;
+  box-shadow: 6px 6px #0056b3;
 }
 
 .semiMainButtons {
