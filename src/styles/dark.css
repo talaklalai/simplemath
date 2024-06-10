@@ -3,12 +3,13 @@
   --darkergrey: #202124; /* Dark Background */
   --lightgrey: #e8eaed; /* Light Grey */
   --gblue: #4285f4;
+  --grey: #47494c;
   --lightblue: #6b9dee;
-  --lightblue: #6b9dee;
-  --blue: #1434e7ea;
+  --blue: #033875ea;
   --gred: #db4437;
   --red: #fc5959;
   --gyellow: #f4b400;
+  --darkYellow: #7e5d03;
   --lightYellow: #f5da8a;
   --ggreen: #1fe284;
   --green: #0f9d58;
@@ -59,9 +60,7 @@ input {
   font-size: large;
   padding: 0.5rem;
   margin-top: 1.5rem;
-  border: 1px solid var(--lightgrey);
-  border-bottom: 2px solid var(--gblue);
-  border-right: 2px solid var(--gblue);
+  border: 1px solid;
   border-radius: 8px;
   box-sizing: border-box;
   text-align: right;
@@ -86,14 +85,28 @@ input {
   max-width: 100%;
   text-align: center;
   background-color: var(--gblue);
+  border-color: var(--gblue);
   color: var(--lightYellow);
   font-weight: bold;
   font-size: x-large;
   padding: 1rem;
   cursor: pointer;
+  box-shadow: 3px 4px #0056b3;
 }
+
+.semiMainButtons:active,
+.smallButtons:active,
+.mainButtons:active {
+  box-shadow: none; /* Remove shadow when button is pressed */
+  transform: translateY(4px); /* Move button down to simulate press */
+}
+
+.smallButtons {
+  padding: 0.1rem;
+}
+
 .mainButtons {
-  border: 1px solid var(--lightgrey);
+  box-shadow: 4px 6px #0056b3;
 }
 
 .semiMainButtons {
@@ -107,7 +120,6 @@ input {
   max-width: 30%;
   padding: 0.1rem;
   color: var(--lightgrey);
-  border: 1px solid var(--lightYellow);
 }
 
 .multiselect {
@@ -118,10 +130,13 @@ input {
   font-weight: bold;
   padding: 0.7rem;
   margin: 0.5rem;
-  border: 2px solid var(--lines);
-  border-radius: 8px;
-  box-sizing: border-box;
+  box-shadow: 4px 6px var(--darkYellow);
   cursor: pointer;
+}
+
+.multiselect:active {
+  box-shadow: none; /* Remove shadow when button is pressed */
+  transform: translateY(4px); /* Move button down to simulate press */
 }
 
 hr {
@@ -159,9 +174,8 @@ input.correct {
   background-color: var(--green);
 }
 
-.finger {
-  position: absolute;
-  font-size: 2rem;
-  transition: all 0.5s ease;
-  pointer-events: none;
+.bdisable {
+  background-color: var(--blue);
+  color: var(--grey);
+  box-shadow: 3px 4px var(--darkergrey);
 }

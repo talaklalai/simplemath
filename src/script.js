@@ -277,7 +277,7 @@ class Exercises {
       }
 
       this.hasAnsered = 1;
-      setTimeout(this.nextExercise, 700);
+      setTimeout(this.nextExercise, 500);
     }
   };
 
@@ -322,7 +322,9 @@ const userSetupLayout = () => {
     signBtn.classList.add("sign", "smallButtons");
 
     signBtn.addEventListener("click", (e) => {
-      let [mn, mx] = tr.querySelectorAll('input:not([type="button"]');
+      let [sign, mn, mx] = tr.querySelectorAll("input");
+      if (mn.disabled === false) sign.classList.add("bdisable");
+      else sign.classList.remove("bdisable");
       mn.disabled = mn.disabled === false;
       mx.disabled = mx.disabled === false;
       updateActions();
