@@ -85,7 +85,7 @@ input {
   max-width: 100%;
   text-align: center;
   background-color: var(--gblue);
-  border-color: var(--gblue);
+  border: 0px solid;
   color: var(--lightYellow);
   font-weight: bold;
   font-size: x-large;
