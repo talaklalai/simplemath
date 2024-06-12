@@ -15,6 +15,14 @@
     "**/.*",
     "**/node_modules/**"
   ]
+},
+{ "target":"english",
+"public": "english",
+"ignore": [
+  "firebase.json",
+  "**/.*",
+  "**/node_modules/**"
+]
 }
 ]
 }
