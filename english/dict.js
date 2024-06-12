@@ -1,4 +1,4 @@
- 
+
 const BASIC1 = {
     "אני": "I",
     "אתה": "you",
@@ -270,58 +270,58 @@ const BASIC2 = {
     "שינוי": "change",
     "שיפור": "improvement",
     "רעיון": "idea",
-  }
+}
 
 const FAMILY = {
-    
-        "אבא": "father",
-        "אימא": "mother",
-        "הורים": "parents",
-        "אח": "brother",
-        "אחות": "sister",
-        "אחיות": "sisters",
-        "אחים": "brothers",
-        "הורה": "parent",
-        "ילד": "child",
-        "ילדים": "children",
-        "בן": "son",
-        "בת": "daughter",
-        "נכד": "grandchild",
-        "נכדים": "grandchildren",
-        "סבא": "grandfather",
-        "סבתא": "grandmother",
-        "סבים": "grandparents",
-        "נכדה": "granddaughter",
-        "נכדות": "granddaughters",
-        "נכדים": "grandsons",
-        "בת זוג": "partner",
-        "בעל": "husband",
-        "אשתו": "wife",
-        "זוגיות": "relationship",
-        "חתונה": "wedding",
-        "גירושים": "divorce",
-        "אחים ואחיות": "siblings",
-        "אח שלי": "my brother",
-        "אחת שלי": "my sister",
-        "אחיותי": "my sisters",
-        "אחי": "my brothers",
-        "ילדים שלי": "my children",
-        "בני": "my sons",
-        "בנותי": "my daughters",
-        "הורים שלי": "my parents",
-        "אבי": "my father",
-        "אמי": "my mother",
-        "סבא שלי": "my grandfather",
-        "סבתא שלי": "my grandmother",
-        "בעלי": "my husband",
-        "אישתי": "my wife",
-        "סופרים": "telling",
-        "מספרים": "numbers",
-        "הספור": "the story",
-        "הספורים": "the stories",
-        "הסיפור": "the tale",
-        "סיפורים": "tales",
-    }
+
+    "אבא": "father",
+    "אימא": "mother",
+    "הורים": "parents",
+    "אח": "brother",
+    "אחות": "sister",
+    "אחיות": "sisters",
+    "אחים": "brothers",
+    "הורה": "parent",
+    "ילד": "child",
+    "ילדים": "children",
+    "בן": "son",
+    "בת": "daughter",
+    "נכד": "grandchild",
+    "נכדים": "grandchildren",
+    "סבא": "grandfather",
+    "סבתא": "grandmother",
+    "סבים": "grandparents",
+    "נכדה": "granddaughter",
+    "נכדות": "granddaughters",
+    "נכדים": "grandsons",
+    "בת זוג": "partner",
+    "בעל": "husband",
+    "אשתו": "wife",
+    "זוגיות": "relationship",
+    "חתונה": "wedding",
+    "גירושים": "divorce",
+    "אחים ואחיות": "siblings",
+    "אח שלי": "my brother",
+    "אחת שלי": "my sister",
+    "אחיותי": "my sisters",
+    "אחי": "my brothers",
+    "ילדים שלי": "my children",
+    "בני": "my sons",
+    "בנותי": "my daughters",
+    "הורים שלי": "my parents",
+    "אבי": "my father",
+    "אמי": "my mother",
+    "סבא שלי": "my grandfather",
+    "סבתא שלי": "my grandmother",
+    "בעלי": "my husband",
+    "אישתי": "my wife",
+    "סופרים": "telling",
+    "מספרים": "numbers",
+    "הספור": "the story",
+    "הספורים": "the stories",
+    "הסיפור": "the tale",
+    "סיפורים": "tales",
+}
 
 const VACATION = {
     "חופשה": "vacation",
@@ -420,55 +420,50 @@ const VACATION = {
     "צמידיים": "bracelets"
 }
 
- 
-const UPPER1 = {
-    
-        "אֶי": "A",
-        "בי": "B",
-        "סי": "C",
-        "די": "D",
-        "אִי": "E",
-        "אף": "F",
-        "גִ'י": "G",
-        "אייץ": "H",
-        "גֶ'יי": "J",
-        "קיי": "K",
-        "אל": "L",
-        "אם": "M",   
-        "אן": "N",
-        "או": "O",
-        "פי": "P",
-        "קיו": "Q",
-        "אר": "R",
-        "אס": "S",
-        "טי": "T",
-        "יו": "U",
-        "וי": "V",
-        "דבליו": "W",
-        "אקס": "X",
-        "וויי": "Y",
-        "זד": "Z"
-      }
-  
-const LOWER1 ={
-    
-        "איי קטנה": "a",
-        "בי קטנה": "b",
-        "סי קטנה": "c",
-        "די קטנה": "d",
-        "אי קטנה": "e",
-        "אף קטנה": "f",
-        "ג'י קטנה": "g",
-        "אייץ קטנה": "h",
-        "ג'יי קטנה": "j",
-        "קיי קטנה": "k",
-        "אל קטנה": "l",
-        "אם קטנה": "m",
-       
-      }
 
-const LOWER2 ={
-  
+const UPPER1 = {
+
+    "אֶיי": "A",
+    "בי": "B",
+    "סי": "C",
+    "די": "D",
+    "אִי": "E",
+    "אף": "F",
+    "גִ'י": "G",
+    "אייץ": "H",
+    "גֶ'יי": "J",
+    "קיי": "K",
+    "אל": "L",
+    "אם": "M",
+    "אן": "N",
+    "או": "O",
+    "פי": "P",
+    "קיו": "Q",
+    "אר": "R",
+    "אס": "S",
+    "טי": "T",
+    "יו": "U",
+    "וי": "V",
+    "דבליו": "W",
+    "אקס": "X",
+    "וויי": "Y",
+    "זד": "Z"
+}
+
+const LOWER1 = {
+
+    "אֶיי קטנה": "a",
+    "בי קטנה": "b",
+    "סי קטנה": "c",
+    "די קטנה": "d",
+    "אִי קטנה": "e",
+    "אף קטנה": "f",
+    "גִ'י קטנה": "g",
+    "אייץ קטנה": "h",
+    "ג'יי קטנה": "j",
+    "קיי קטנה": "k",
+    "אל קטנה": "l",
+    "אם קטנה": "m",
     "אן קטנה": "n",
     "או קטנה": "o",
     "פי קטנה": "p",
@@ -484,9 +479,9 @@ const LOWER2 ={
     "זד קטנה": "z"
 }
 
-const DD =Object.assign({}, UPPER1)
+const DD = Object.assign({}, UPPER1, LOWER1)
 
-    
+
 export {
     DD
 }
