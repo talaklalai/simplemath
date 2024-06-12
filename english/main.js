@@ -29,7 +29,6 @@ let HEB_WORDS = Object.fromEntries(Object.entries(DD).slice(0, Level));
 UpdateMaxVal();
 
 const increaseLevel = () => {
-  cl("LEVEL UP");
   Level = Level + 1;
   HEB_WORDS = Object.fromEntries(
     Object.entries(DD).slice(Level - MULTIPLE_OPTIONS, Level),
