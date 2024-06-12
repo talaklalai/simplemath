@@ -45,19 +45,27 @@ for (let i = 0; i < MULTIPLE_OPTIONS; i++) {
 
 
 const addOneToDivE = (e) => e.innerText = parseInt(e.innerText) + 1 
-
+const decOneToDivE = (e) => e.innerText = parseInt(e.innerText) - 1 
+let lastCorrect = true
 const check = (e) =>{
-    addOneToDivE(totalCorrect);
+
     if (e.target.value == EnghWord){
         e.target.classList.add("correct")
         setTimeout(NewWord, 700);  
         straightCorrect +=1 ;
+        if (lastCorrect) addOneToDivE(totalCorrect) 
+        lastCorrect =true
+        decOneToDivE(totalLeft)
+        
     }else{
         e.target.classList.add("wrong");
         addOneToDivE(totalWrong) 
-        straightCorrect = 0 ;     
+        straightCorrect = 0 ;       
+        lastCorrect =false
     }
     parseInt(totalLeft.innerText) == 0 &&  finish()
+   
+   
    
 }
 
@@ -82,10 +90,7 @@ const getRandomEntries = () => {
 }
 
 const NewWord = () => {
-    
 
-    
-    addOneToDivE(totalCorrect);
     const allOptions= getRandomEntries();
     const [rightOption, ... _] = allOptions;
     NextWordE.innerText = rightOption[0]
