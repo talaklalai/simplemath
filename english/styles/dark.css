@@ -179,3 +179,7 @@ input.correct {
   color: var(--grey);
   box-shadow: 3px 4px var(--darkergrey);
 }
+.gblue {
+  color: var(--lightblue);
+  font-weight: bold;
+}

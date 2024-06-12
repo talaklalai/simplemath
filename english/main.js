@@ -3,7 +3,7 @@
 const ctag = (tagName) => document.createElement(tagName);
 const gtag = (_id) => document.getElementById(_id);
 const cl = (s) => console.log(s);
-const LevelUpCount = 6;
+let LevelUpCount = 6;
 
 let EnghWord = "";
 
@@ -51,8 +51,10 @@ for (let i = 0; i < MULTIPLE_OPTIONS; i++) {
 const addOneToDivE = (e) => (e.innerText = parseInt(e.innerText) + 1);
 const decOneToDivE = (e) => (e.innerText = parseInt(e.innerText) - 1);
 let lastCorrect = true;
+
 const check = (e) => {
   e.preventDefault();
+  //correct
   if (e.target.value == EnghWord) {
     e.target.classList.add("correct");
     setTimeout(NewWord, 700);
@@ -60,12 +62,23 @@ const check = (e) => {
     if (lastCorrect) addOneToDivE(totalCorrect);
     lastCorrect = true;
     decOneToDivE(totalLeft);
+
+    if (straightCorrect % LevelUpCount == 0) {
+      increaseLevel();
+    }
+    if (straightCorrect == 10) {
+      LevelUpCount = 4;
+    }
+
+    //wrong
   } else {
     e.target.classList.add("wrong");
     addOneToDivE(totalWrong);
     straightCorrect = 0;
     lastCorrect = false;
+    LevelUpCount = 6;
   }
+
   parseInt(totalLeft.innerText) == 0 && finish();
 };
 
@@ -102,8 +115,6 @@ const NewWord = () => {
     answerE.classList.remove("correct", "wrong");
     answerE.value = shuffledOptions.pop()[1];
   }
-  if (straightCorrect > 0 && straightCorrect % LevelUpCount == 0)
-    increaseLevel();
 };
 
 NewWord();
