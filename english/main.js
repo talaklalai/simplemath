@@ -3,7 +3,7 @@
 const ctag = (tagName) => document.createElement(tagName);
 const gtag = (_id) => document.getElementById(_id);
 const cl = (s) => console.log(s);
-const LevelUpCount = 8;
+const LevelUpCount = 6;
 
 let EnghWord = "";
 
