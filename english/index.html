@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EnglishFun</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪🏼</text></svg>"
+    />
+    <link rel="stylesheet" href="styles/dark.css" />
+  </head>
+   
+  <body>
+  
+    <!-- ***********************************    Main   ***********************************    -->
+    <div class="container" id="main">
+      <div MainHeader >
+        <div style="display: inline-block">נותרו:</div>
+        <div id="totalLeft" style="display: inline-block">0</div>
+        <div style="display: inline-block" class="correct">נכון:</div>
+        <div id="totalCorrect" style="display: inline-block" class="correct">
+          -1
+        </div>
+        <div style="display: inline-block" class="wrong marginright">
+          לא נכון:
+        </div>
+        <div id="totalWrong" style="display: inline-block" class="wrong">0</div>
+      </div>
+      <hr />
+      <p id="NextWordE" class="targil"></p>
+      <div id="answerDivE" class="ltr"></div>
+      <hr />
+    </div>
+    <!--container-->
+
+    <script type="module" src="main.js" defer></script>
+    
+  </body>
+</html>
