@@ -417,7 +417,7 @@ const VACATION = {
   עגיליים: "earrings",
   צמידיים: "bracelets",
 };
-
+const SIMPLE_ONE = {};
 const UPPER1 = {
   אֶיי: "A",
   בי: "B",

@@ -52,6 +52,7 @@ const addOneToDivE = (e) => (e.innerText = parseInt(e.innerText) + 1);
 const decOneToDivE = (e) => (e.innerText = parseInt(e.innerText) - 1);
 let lastCorrect = true;
 const check = (e) => {
+  e.preventDefault();
   if (e.target.value == EnghWord) {
     e.target.classList.add("correct");
     setTimeout(NewWord, 700);
