@@ -43,6 +43,7 @@ const AnswerDivE = gtag("answerDivE");
 // layout
 for (let i = 0; i < MULTIPLE_OPTIONS; i++) {
   let answer = ctag("input");
+  answer.setAttribute("readonly", true);
   answer.classList.add("multiselect");
   AnswerDivE.appendChild(answer);
   answer.addEventListener("click", (e) => check(e));
