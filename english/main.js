@@ -69,6 +69,9 @@ const check = (e) => {
     if (straightCorrect == 10) {
       LevelUpCount = 4;
     }
+    if (straightCorrect == 12) {
+      LevelUpCount = 2;
+    }
 
     //wrong
   } else {
@@ -76,9 +79,9 @@ const check = (e) => {
     addOneToDivE(totalWrong);
     straightCorrect = 0;
     lastCorrect = false;
-    LevelUpCount = 6;
+    LevelUpCount = Math.min(6, LevelUpCount + 2);
   }
-
+  cl(LevelUpCount);
   parseInt(totalLeft.innerText) == 0 && finish();
 };
 
