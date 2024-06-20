@@ -24,6 +24,10 @@ body {
   direction: rtl; /* Right-to-left content */
 }
 
+.rtl {
+  direction: rtl; /* Right-to-left content */
+}
+
 .container {
   max-width: 600px;
   margin: auto;

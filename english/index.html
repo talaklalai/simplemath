@@ -12,8 +12,44 @@
   </head>
 
   <body>
+    <!-- ***********************************    setup   ***********************************    -->
+    <div class="container" id="setupContainer">
+      <hr />
+      <div id="levelDiv"></div>
+      <div id="familyDiv">
+        <select id="familySelect">
+          <option selected value="LETTERS">אותיות</option>
+          <option value="SOUNDS1">צלילים 1</option>
+          <option value="SOUNDS2">צלילים 2</option>
+          <option value="WORDS1">מילים 1</option>
+        </select>
+      </div>
+      <div id="numDiv">
+        <select id="numSelect">
+          <option value="50">50 שאלות</option>
+          <option selected value="100">100 שאלות</option>
+          <option value="200">200 שאלות</option>
+        </select>
+      </div>
+      <div id="shuffleDiv">
+        <select id="shuffleSelect">
+          <option selected value="false">לפי הסדר</option>
+          <option value="true">סדר אקראי</option>
+        </select>
+      </div>
+
+      <hr />
+      <input
+        id="startBtn"
+        value="התחל משחק"
+        class="button mainButtons"
+        readonly
+      />
+    </div>
+
+    <!--container-->
     <!-- ***********************************    Main   ***********************************    -->
-    <div class="container" id="main">
+    <div class="container" id="mainContainer" style="display: None">
       <div MainHeader>
         <div style="display: inline-block">נותרו:</div>
         <div id="totalLeft" style="display: inline-block">0</div>
@@ -27,11 +63,18 @@
         <div id="totalWrong" style="display: inline-block" class="wrong">0</div>
       </div>
       <hr />
-      <p id="NextWordE" class="targil"></p>
+      <p id="NextWordE" class="targil; rtl"></p>
       <div id="answerDivE" class="ltr"></div>
       <hr />
-      <div class="ltr" style="display: inline-block">הגעת ל:</div>
-      <div id="MaxValueE" class="ltr gblue" style="display: inline-block"></div>
+      <div>
+        <input
+          readonly
+          type="text"
+          id="newGame"
+          class="button semiMainButtons"
+          value="סיים משחק"
+        />
+      </div>
     </div>
     <!--container-->
 

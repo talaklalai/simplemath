@@ -1,5 +1,7 @@
 // globals consts
 
+import { DD } from "./dict.js";
+
 const ctag = (tagName) => document.createElement(tagName);
 const gtag = (_id) => document.getElementById(_id);
 const cl = (s) => console.log(s);
@@ -7,33 +9,68 @@ let LevelUpCount = 6;
 
 let EnghWord = "";
 
-const NUM = 200;
+let NUM;
 const MULTIPLE_OPTIONS = 6;
 let Level = MULTIPLE_OPTIONS;
 
 const totalLeft = gtag("totalLeft");
 const totalWrong = gtag("totalWrong");
 const totalCorrect = gtag("totalCorrect");
-const maxValue = gtag("MaxValueE");
+const shuffleSelect = gtag("shuffleSelect");
+const numSelect = gtag("numSelect");
+const familySelect = gtag("familySelect");
+const mainContainer = gtag("mainContainer");
+const setupContainer = gtag("setupContainer");
+
 let straightCorrect = 0;
+let HEB_WORDS;
+const startBtn = gtag("startBtn");
+let VUCABLUARY;
 
-totalLeft.innerText = NUM;
+startBtn.addEventListener("click", () => {
+  VUCABLUARY = DD[familySelect.value];
 
-import { DD } from "./dict.js";
+  if (shuffleSelect.value == "true") {
+    VUCABLUARY = shuffleObject(VUCABLUARY);
+  }
 
-const UpdateMaxVal = () =>
-  (maxValue.innerText =
-    Object.values(HEB_WORDS)[Object.keys(HEB_WORDS).length - 1]);
+  NUM = numSelect.value;
+  totalLeft.innerText = NUM;
+  HEB_WORDS = Object.fromEntries(Object.entries(VUCABLUARY).slice(0, Level));
+  mainContainer.style.display = "block";
+  setupContainer.style.display = "None";
+  NewWord();
+});
+const newGame = gtag("newGame");
 
-let HEB_WORDS = Object.fromEntries(Object.entries(DD).slice(0, Level));
-UpdateMaxVal();
+newGame.addEventListener("click", (e) => {
+  if (parseInt(totalLeft.innerText) != 0) {
+    if (confirm("לצאת ולהתחיל משחק חדש?") == false) {
+      return;
+    }
+  }
+  e.preventDefault();
+  setupContainer.style.display = "block";
+  mainContainer.style.display = "None";
+  updateActions();
+});
+
+const shuffle = (_ent) => {
+  let shuffled = [..._ent]; // Make a copy of the array
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
+const shuffleObject = (obj) => Object.fromEntries(shuffle(Object.entries(obj)));
 
 const increaseLevel = () => {
   Level = Level + 1;
   HEB_WORDS = Object.fromEntries(
-    Object.entries(DD).slice(Level - MULTIPLE_OPTIONS, Level),
+    Object.entries(VUCABLUARY).slice(Level - MULTIPLE_OPTIONS, Level),
   );
-  UpdateMaxVal();
 };
 
 const NextWordE = gtag("NextWordE");
@@ -81,7 +118,6 @@ const check = (e) => {
     lastCorrect = false;
     LevelUpCount = Math.min(6, LevelUpCount + 2);
   }
-  cl(LevelUpCount);
   parseInt(totalLeft.innerText) == 0 && finish();
 };
 
@@ -91,14 +127,6 @@ const finish = () => {
   NextWordE.style.display = "none";
 };
 
-const shuffle = (_ent) => {
-  let shuffled = [..._ent]; // Make a copy of the array
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
 const getRandomEntries = () => {
   let entries = Object.entries(HEB_WORDS);
   let shuffledEntries = shuffle(entries);
@@ -119,5 +147,3 @@ const NewWord = () => {
     answerE.value = shuffledOptions.pop()[1];
   }
 };
-
-NewWord();
