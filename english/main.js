@@ -21,6 +21,10 @@ const familySelect = gtag("familySelect");
 const mainContainer = gtag("mainContainer");
 const setupContainer = gtag("setupContainer");
 
+setupContainer
+  .querySelectorAll("div")
+  .forEach((e) => e.classList.add("spaceButtom"));
+
 let straightCorrect = 0;
 let CURRENT_WORD_GROUP;
 const startBtn = gtag("startBtn");
