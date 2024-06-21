@@ -33,6 +33,7 @@ let LASTWORD;
 
 // New Game
 startBtn.addEventListener("click", () => {
+  resetNewGameButton();
   VUCABLUARY = DD[familySelect.value];
 
   if (shuffleSelect.value == "true") {
@@ -54,10 +55,9 @@ startBtn.addEventListener("click", () => {
   NextWordE.style.display = "block";
   NewWord();
 });
-const newGame = gtag("newGame");
+const restartGame = gtag("restartGame");
 
-newGame.addEventListener("click", (e) => {
-  resetNewGameButton();
+restartGame.addEventListener("click", (e) => {
   if (parseInt(totalLeft.innerText) != 0) {
     if (varifyNewGame) {
       e.preventDefault();
@@ -95,9 +95,10 @@ const NextWordE = gtag("NextWordE");
 const AnswerDivE = gtag("answerDivE");
 
 const resetNewGameButton = () => {
-  newGame.value = "סיים משחק";
+  restartGame.value = "סיים משחק";
   varifyNewGame = false;
 };
+
 // layout
 for (let i = 0; i < OPTIONS_NUM; i++) {
   let answer = ctag("input");
