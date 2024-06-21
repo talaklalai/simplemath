@@ -120,6 +120,7 @@ input {
 }
 
 .semiMainButtons:active,
+.verySmallButtons:active,
 .smallButtons:active,
 .mainButtons:active {
   box-shadow: none; /* Remove shadow when button is pressed */
