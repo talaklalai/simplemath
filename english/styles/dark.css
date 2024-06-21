@@ -152,7 +152,6 @@ th {
   direction: ltr; /* Right-to-left content */
 }
 .targil {
-  direction: ltr; /* Right-to-left content */
   color: var(--lightYellow);
   font-size: xx-large;
 }

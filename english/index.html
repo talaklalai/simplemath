@@ -15,8 +15,8 @@
     <!-- ***********************************    setup   ***********************************    -->
     <div class="container" id="setupContainer">
       <hr />
-      <div id="levelDiv"></div>
       <div id="familyDiv">
+        סוג שאלות
         <select id="familySelect">
           <option selected value="LETTERS">אותיות</option>
           <option value="SOUNDS1">צלילים 1</option>
@@ -25,16 +25,18 @@
         </select>
       </div>
       <div id="numDiv">
+        מספר שאלות
         <select id="numSelect">
-          <option value="50">50 שאלות</option>
-          <option selected value="100">100 שאלות</option>
-          <option value="200">200 שאלות</option>
+          <option value="50">50</option>
+          <option selected value="100">100</option>
+          <option value="200">200</option>
         </select>
       </div>
       <div id="shuffleDiv">
+        סדר שאלות
         <select id="shuffleSelect">
-          <option selected value="false">לפי הסדר</option>
-          <option value="true">סדר אקראי</option>
+          <option selected value="false">קבוע</option>
+          <option value="true">אקראי</option>
         </select>
       </div>
 
@@ -63,7 +65,7 @@
         <div id="totalWrong" style="display: inline-block" class="wrong">0</div>
       </div>
       <hr />
-      <p id="NextWordE" class="targil; rtl"></p>
+      <p id="NextWordE" class="targil rtl"></p>
       <div id="answerDivE" class="ltr"></div>
       <hr />
       <div>

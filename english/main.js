@@ -9,9 +9,8 @@ let LevelUpCount = 6;
 
 let EnghWord = "";
 
-let NUM;
-const MULTIPLE_OPTIONS = 6;
-let Level = MULTIPLE_OPTIONS;
+const OPTIONS_NUM = 6;
+let Level = OPTIONS_NUM;
 
 const totalLeft = gtag("totalLeft");
 const totalWrong = gtag("totalWrong");
@@ -23,22 +22,32 @@ const mainContainer = gtag("mainContainer");
 const setupContainer = gtag("setupContainer");
 
 let straightCorrect = 0;
-let HEB_WORDS;
+let CURRENT_WORD_GROUP;
 const startBtn = gtag("startBtn");
 let VUCABLUARY;
+let LASTWORD;
 
+// New Game
 startBtn.addEventListener("click", () => {
   VUCABLUARY = DD[familySelect.value];
 
   if (shuffleSelect.value == "true") {
     VUCABLUARY = shuffleObject(VUCABLUARY);
   }
+  LASTWORD = Object.keys(VUCABLUARY).slice(-1)[0];
 
-  NUM = numSelect.value;
-  totalLeft.innerText = NUM;
-  HEB_WORDS = Object.fromEntries(Object.entries(VUCABLUARY).slice(0, Level));
+  //reset counters
+  resetDivE(totalCorrect);
+  resetDivE(totalWrong);
+  resetDivE(totalLeft, numSelect.value);
+
+  CURRENT_WORD_GROUP = Object.fromEntries(
+    Object.entries(VUCABLUARY).slice(0, Level),
+  );
   mainContainer.style.display = "block";
   setupContainer.style.display = "None";
+  AnswerDivE.style.display = "block";
+  NextWordE.style.display = "block";
   NewWord();
 });
 const newGame = gtag("newGame");
@@ -52,7 +61,6 @@ newGame.addEventListener("click", (e) => {
   e.preventDefault();
   setupContainer.style.display = "block";
   mainContainer.style.display = "None";
-  updateActions();
 });
 
 const shuffle = (_ent) => {
@@ -66,10 +74,11 @@ const shuffle = (_ent) => {
 
 const shuffleObject = (obj) => Object.fromEntries(shuffle(Object.entries(obj)));
 
-const increaseLevel = () => {
-  Level = Level + 1;
-  HEB_WORDS = Object.fromEntries(
-    Object.entries(VUCABLUARY).slice(Level - MULTIPLE_OPTIONS, Level),
+// add new word , remove oldest word
+const levelUp = () => {
+  Level = Level == Object.keys(VUCABLUARY).length ? OPTIONS_NUM : Level + 1;
+  CURRENT_WORD_GROUP = Object.fromEntries(
+    Object.entries(VUCABLUARY).slice(Level - OPTIONS_NUM, Level),
   );
 };
 
@@ -77,19 +86,21 @@ const NextWordE = gtag("NextWordE");
 const AnswerDivE = gtag("answerDivE");
 
 // layout
-for (let i = 0; i < MULTIPLE_OPTIONS; i++) {
+for (let i = 0; i < OPTIONS_NUM; i++) {
   let answer = ctag("input");
   answer.setAttribute("readonly", true);
   answer.classList.add("multiselect");
   AnswerDivE.appendChild(answer);
-  answer.addEventListener("click", (e) => check(e));
+  answer.addEventListener("click", (e) => checkAnswer(e));
 }
 
 const addOneToDivE = (e) => (e.innerText = parseInt(e.innerText) + 1);
 const decOneToDivE = (e) => (e.innerText = parseInt(e.innerText) - 1);
+const resetDivE = (e, value) => (e.innerText = value || 0);
+
 let lastCorrect = true;
 
-const check = (e) => {
+const checkAnswer = (e) => {
   e.preventDefault();
   //correct
   if (e.target.value == EnghWord) {
@@ -101,7 +112,7 @@ const check = (e) => {
     decOneToDivE(totalLeft);
 
     if (straightCorrect % LevelUpCount == 0) {
-      increaseLevel();
+      levelUp();
     }
     if (straightCorrect == 10) {
       LevelUpCount = 4;
@@ -110,27 +121,32 @@ const check = (e) => {
       LevelUpCount = 2;
     }
 
+    // answer correct last question in none shuffeled mode:
+    if (LASTWORD == EnghWord && shuffleSelect.value == "false") {
+      finish();
+    }
+
     //wrong
   } else {
     e.target.classList.add("wrong");
-    addOneToDivE(totalWrong);
+    if (lastCorrect) addOneToDivE(totalWrong);
     straightCorrect = 0;
     lastCorrect = false;
     LevelUpCount = Math.min(6, LevelUpCount + 2);
   }
   parseInt(totalLeft.innerText) == 0 && finish();
 };
-
+//all question finish
 const finish = () => {
-  addOneToDivE(totalCorrect);
   AnswerDivE.style.display = "none";
   NextWordE.style.display = "none";
 };
 
+// get options for new word, including the correct one
 const getRandomEntries = () => {
-  let entries = Object.entries(HEB_WORDS);
+  let entries = Object.entries(CURRENT_WORD_GROUP);
   let shuffledEntries = shuffle(entries);
-  return shuffledEntries.slice(0, MULTIPLE_OPTIONS);
+  return shuffledEntries.slice(0, OPTIONS_NUM);
 };
 
 const NewWord = () => {
