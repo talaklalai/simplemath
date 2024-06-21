@@ -11,7 +11,7 @@ let EnghWord = "";
 
 const OPTIONS_NUM = 6;
 let Level = OPTIONS_NUM;
-
+let varifyNewGame = false;
 const totalLeft = gtag("totalLeft");
 const totalWrong = gtag("totalWrong");
 const totalCorrect = gtag("totalCorrect");
@@ -29,6 +29,8 @@ let LASTWORD;
 
 // New Game
 startBtn.addEventListener("click", () => {
+  newGame.value = "סיים משחק";
+  varifyNewGame = false;
   VUCABLUARY = DD[familySelect.value];
 
   if (shuffleSelect.value == "true") {
@@ -54,13 +56,17 @@ const newGame = gtag("newGame");
 
 newGame.addEventListener("click", (e) => {
   if (parseInt(totalLeft.innerText) != 0) {
-    if (confirm("לצאת ולהתחיל משחק חדש?") == false) {
-      return;
+    if (varifyNewGame) {
+      e.preventDefault();
+      setupContainer.style.display = "block";
+      mainContainer.style.display = "None";
     }
+    e.target.value = "לחץ שוב לסיום";
+    varifyNewGame = true;
+  } else {
+    setupContainer.style.display = "block";
+    mainContainer.style.display = "None";
   }
-  e.preventDefault();
-  setupContainer.style.display = "block";
-  mainContainer.style.display = "None";
 });
 
 const shuffle = (_ent) => {
