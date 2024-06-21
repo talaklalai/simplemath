@@ -1,13 +1,5 @@
 {
-  "hosting":[ {
-    "target":"pub",
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
+  "hosting":[
   { "target":"heshbon",
   "public": "heshbon",
   "ignore": [
