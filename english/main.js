@@ -86,18 +86,19 @@ startBtn.addEventListener("click", () => {
 });
 const restartGame = gtag("restartGame");
 
+const setRestartDisplays = () => {
+  setupContainer.style.display = "block";
+  mainContainer.style.display = "None";
+  helpDivE.style.display = "None";
+};
+
 restartGame.addEventListener("click", (e) => {
-  if (parseInt(totalLeft.innerText) != 0) {
-    if (varifyNewGame) {
-      e.preventDefault();
-      setupContainer.style.display = "block";
-      mainContainer.style.display = "None";
-    }
+  e.preventDefault();
+  if (parseInt(totalLeft.innerText) != 0 && varifyNewGame == false) {
     e.target.value = "לחץ שוב לסיום";
     varifyNewGame = true;
   } else {
-    setupContainer.style.display = "block";
-    mainContainer.style.display = "None";
+    setRestartDisplays();
   }
 });
 
