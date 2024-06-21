@@ -33,8 +33,6 @@ let LASTWORD;
 
 // New Game
 startBtn.addEventListener("click", () => {
-  newGame.value = "סיים משחק";
-  varifyNewGame = false;
   VUCABLUARY = DD[familySelect.value];
 
   if (shuffleSelect.value == "true") {
@@ -59,6 +57,7 @@ startBtn.addEventListener("click", () => {
 const newGame = gtag("newGame");
 
 newGame.addEventListener("click", (e) => {
+  resetNewGameButton();
   if (parseInt(totalLeft.innerText) != 0) {
     if (varifyNewGame) {
       e.preventDefault();
@@ -95,13 +94,20 @@ const levelUp = () => {
 const NextWordE = gtag("NextWordE");
 const AnswerDivE = gtag("answerDivE");
 
+const resetNewGameButton = () => {
+  newGame.value = "סיים משחק";
+  varifyNewGame = false;
+};
 // layout
 for (let i = 0; i < OPTIONS_NUM; i++) {
   let answer = ctag("input");
   answer.setAttribute("readonly", true);
   answer.classList.add("multiselect");
   AnswerDivE.appendChild(answer);
-  answer.addEventListener("click", (e) => checkAnswer(e));
+  answer.addEventListener("click", (e) => {
+    resetNewGameButton();
+    checkAnswer(e);
+  });
 }
 
 const addOneToDivE = (e) => (e.innerText = parseInt(e.innerText) + 1);
