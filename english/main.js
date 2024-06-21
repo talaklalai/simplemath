@@ -44,7 +44,7 @@ let LASTWORD;
       ih.type = "text";
       ih.value = `${h[0]} ${h[1]}`;
       hDiv.append(ih);
-      ih.disabled = true;
+      ih.readOnly = true;
     }
     helpDivE.appendChild(hDiv);
   };
