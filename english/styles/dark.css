@@ -136,7 +136,7 @@ input {
 .multiselect {
   background-color: var(--lightYellow);
   color: var(--darkgrey);
-  max-width: 30%;
+  max-width: 40%;
   font-size: x-large;
   font-weight: bold;
   padding: 0.7rem;
