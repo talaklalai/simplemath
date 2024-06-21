@@ -19,7 +19,10 @@ const shuffleSelect = gtag("shuffleSelect");
 const numSelect = gtag("numSelect");
 const familySelect = gtag("familySelect");
 const mainContainer = gtag("mainContainer");
+mainContainer.style.display = "None";
 const setupContainer = gtag("setupContainer");
+const helpDivE = gtag("helpDivE");
+const helpButton = gtag("helpButton");
 
 setupContainer
   .querySelectorAll("div")
@@ -30,6 +33,32 @@ let CURRENT_WORD_GROUP;
 const startBtn = gtag("startBtn");
 let VUCABLUARY;
 let LASTWORD;
+
+// Help
+(() => {
+  const createHelp = (el, clazz) => {
+    let hDiv = ctag("div");
+    for (let h of Object.entries(el)) {
+      let ih = ctag("input");
+      ih.classList.add(clazz);
+      ih.type = "text";
+      ih.value = `${h[0]} ${h[1]}`;
+      hDiv.append(ih);
+      ih.disabled = true;
+    }
+    helpDivE.appendChild(hDiv);
+  };
+
+  createHelp(DD["HELP"], "helpField");
+  createHelp(DD["NIKUD"], "helpNikud");
+
+  helpButton.addEventListener("click", () => {
+    helpDivE.style.display =
+      helpDivE.style.display == "none" ? "block" : "none";
+    answerDivE.style.display =
+      answerDivE.style.display == "none" ? "block" : "none";
+  });
+})();
 
 // New Game
 startBtn.addEventListener("click", () => {
@@ -51,7 +80,7 @@ startBtn.addEventListener("click", () => {
   );
   mainContainer.style.display = "block";
   setupContainer.style.display = "None";
-  AnswerDivE.style.display = "block";
+  answerDivE.style.display = "block";
   NextWordE.style.display = "block";
   NewWord();
 });
@@ -92,7 +121,7 @@ const levelUp = () => {
 };
 
 const NextWordE = gtag("NextWordE");
-const AnswerDivE = gtag("answerDivE");
+const answerDivE = gtag("answerDivE");
 
 const resetNewGameButton = () => {
   restartGame.value = "סיים משחק";
@@ -104,7 +133,7 @@ for (let i = 0; i < OPTIONS_NUM; i++) {
   let answer = ctag("input");
   answer.setAttribute("readonly", true);
   answer.classList.add("multiselect");
-  AnswerDivE.appendChild(answer);
+  answerDivE.appendChild(answer);
   answer.addEventListener("click", (e) => {
     resetNewGameButton();
     checkAnswer(e);
@@ -155,7 +184,7 @@ const checkAnswer = (e) => {
 };
 //all question finish
 const finish = () => {
-  AnswerDivE.style.display = "none";
+  answerDivE.style.display = "none";
   NextWordE.style.display = "none";
 };
 
@@ -175,7 +204,7 @@ const NewWord = () => {
   // Shuffle the options for display
   const shuffledOptions = shuffle(allOptions.slice()); // Make a copy to avoid modifying the original array
 
-  for (let answerE of AnswerDivE.querySelectorAll("input")) {
+  for (let answerE of answerDivE.querySelectorAll("input")) {
     answerE.classList.remove("correct", "wrong");
     answerE.value = shuffledOptions.pop()[1];
   }

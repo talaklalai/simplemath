@@ -77,14 +77,21 @@ input {
   text-align: right;
 }
 
-input:disabled {
-  background-color: var(--darkgrey);
-  color: var(--darkgrey);
-}
-
 .spaceButtom {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.helpField,
+.helpNikud {
+  display: inline-block;
+  border-color: var(--lightblue);
+  color: var(--lightYellow);
+  max-width: 15%;
+  margin-top: 0.1rem;
+}
+.helpNikud {
+  color: var(--lightgreen);
 }
 
 select,
@@ -92,10 +99,12 @@ select,
 input {
   color: var(--lightgrey);
   background-color: var(--darkergrey);
+  margin-bottom: 0%;
 }
 
 .semiMainButtons,
 .smallButtons,
+.verySmallButtons,
 .mainButtons {
   min-width: 100%;
   max-width: 100%;
@@ -119,6 +128,12 @@ input {
 
 .smallButtons {
   padding: 0.1rem;
+}
+
+.verySmallButtons {
+  padding: 0;
+  min-width: 10%;
+  max-width: 10%;
 }
 
 .mainButtons {
@@ -189,11 +204,6 @@ input.correct {
   background-color: var(--green);
 }
 
-.bdisable {
-  background-color: var(--blue);
-  color: var(--grey);
-  box-shadow: 3px 4px var(--darkergrey);
-}
 .gblue {
   color: var(--lightblue);
   font-weight: bold;
