@@ -13,6 +13,13 @@
   --lightYellow: #f5da8a;
   --ggreen: #1fe284;
   --green: #0f9d58;
+  --lightgreen: #96f2c5;
+}
+
+.title {
+  font-size: xx-large;
+  text-align: center;
+  color: var(--lightgreen);
 }
 
 body {

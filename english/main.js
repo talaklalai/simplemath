@@ -138,7 +138,7 @@ const checkAnswer = (e) => {
     if (lastCorrect) addOneToDivE(totalWrong);
     straightCorrect = 0;
     lastCorrect = false;
-    LevelUpCount = Math.min(6, LevelUpCount + 2);
+    LevelUpCount = Math.min(6, LevelUpCount + 1);
   }
   parseInt(totalLeft.innerText) == 0 && finish();
 };
