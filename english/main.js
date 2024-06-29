@@ -195,6 +195,11 @@ for (let i = 0; i < OPTIONS_NUM; i++) {
     e.preventDefault();
     speak(e.target.value);
   });
+
+  answer.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    speak(e.target.value);
+  });
 }
 
 const addOneToDivE = (e) => (e.innerText = parseInt(e.innerText) + 1);
