@@ -37,9 +37,10 @@ let VUCABLUARY;
 let LASTWORD;
 
 let VOICE;
+const VOICES = [false, "Google UK English Male", "Google UK English Female"];
 
 const setVoice = () => {
-  const maleVoiceName = "Google UK English Male";
+  const maleVoiceName = VOICES[soundSelect.value];
   // Get all available voices
   let voices = speechSynthesis.getVoices();
 
@@ -47,16 +48,10 @@ const setVoice = () => {
   if (voices.length === 0) {
     speechSynthesis.onvoiceschanged = () => {
       voices = speechSynthesis.getVoices();
-      setVoice();
+      VOICE = voices.find((voice) => voice.name === maleVoiceName);
     };
   } else {
-    setVoice();
-  }
-
-  function setVoice() {
-    // Find the voice by name
     VOICE = voices.find((voice) => voice.name === maleVoiceName);
-    cl(VOICE);
   }
 };
 
@@ -181,6 +176,11 @@ for (let i = 0; i < OPTIONS_NUM; i++) {
     resetNewGameButton();
     speak(e.target.value);
     checkAnswer(e);
+  });
+
+  answer.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    speak(e.target.value);
   });
 }
 
