@@ -37,21 +37,25 @@ let LASTWORD;
 
 let VOICE;
 const VOICES = [false, "Google UK English Male", "Google UK English Female"];
+const VOICESSAFARI = [false, "Google UK English Male", "Karen"];
+
 const isSafari = () =>
   /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 (() => {
-  if (!isSafari()) {
-    const femaleOption = ctag("option");
-    femaleOption.value = 2;
-    femaleOption.innerText = "אישה";
-    soundSelect.appendChild(femaleOption);
-  }
+  const femaleOption = ctag("option");
+  femaleOption.value = 2;
+  femaleOption.innerText = "אישה";
+  soundSelect.appendChild(femaleOption);
 })();
 
 const setVoice = () => {
   speechSynthesis.cancel();
-  const maleVoiceName = VOICES[soundSelect.value];
+  if (isSafari()) {
+    const voiceName = VOICESSAFARI[soundSelect.value];
+  } else {
+    const voiceName = VOICES[soundSelect.value];
+  }
   // Get all available voices
   let voices = speechSynthesis.getVoices();
 
@@ -59,10 +63,10 @@ const setVoice = () => {
   if (voices.length === 0) {
     speechSynthesis.onvoiceschanged = () => {
       voices = speechSynthesis.getVoices();
-      VOICE = voices.find((voice) => voice.name === maleVoiceName);
+      VOICE = voices.find((voice) => voice.name === voiceName);
     };
   } else {
-    VOICE = voices.find((voice) => voice.name === maleVoiceName);
+    VOICE = voices.find((voice) => voice.name === voiceName);
   }
 };
 
