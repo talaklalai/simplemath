@@ -22,8 +22,7 @@ const mainContainer = gtag("mainContainer");
 const soundSelect = gtag("soundSelect");
 mainContainer.style.display = "None";
 const setupContainer = gtag("setupContainer");
-const helpDivE = gtag("helpDivE");
-const helpButton = gtag("helpButton");
+
 let SOUND = false;
 
 setupContainer
@@ -67,32 +66,6 @@ const setVoice = () => {
   }
 };
 
-// Help
-(() => {
-  const createHelp = (el, clazz) => {
-    let hDiv = ctag("div");
-    for (let h of Object.entries(el)) {
-      let ih = ctag("input");
-      ih.classList.add(clazz);
-      ih.type = "text";
-      ih.value = `${h[0]} ${h[1]}`;
-      hDiv.append(ih);
-      ih.readOnly = true;
-    }
-    helpDivE.appendChild(hDiv);
-  };
-
-  createHelp(DD["HELP"], "helpField");
-  createHelp(DD["NIKUD"], "helpNikud");
-
-  helpButton.addEventListener("click", () => {
-    helpDivE.style.display =
-      helpDivE.style.display == "none" ? "block" : "none";
-    answerDivE.style.display =
-      answerDivE.style.display == "none" ? "block" : "none";
-  });
-})();
-
 // New Game
 startBtn.addEventListener("click", () => {
   resetNewGameButton();
@@ -125,7 +98,6 @@ const restartGame = gtag("restartGame");
 const setRestartDisplays = () => {
   setupContainer.style.display = "block";
   mainContainer.style.display = "None";
-  helpDivE.style.display = "None";
 };
 
 restartGame.addEventListener("click", (e) => {
@@ -193,10 +165,6 @@ for (let i = 0; i < OPTIONS_NUM; i++) {
 
   answer.addEventListener("contextmenu", (e) => {
     e.preventDefault();
-    speak(e.target.value);
-  });
-
-  answer.addEventListener("touchmove", (e) => {
     speak(e.target.value);
   });
 }
