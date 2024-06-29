@@ -36,6 +36,30 @@ const startBtn = gtag("startBtn");
 let VUCABLUARY;
 let LASTWORD;
 
+let VOICE;
+
+const setVoice = () => {
+  const maleVoiceName = "Google UK English Female";
+  // Get all available voices
+  let voices = speechSynthesis.getVoices();
+
+  // Safari returns empty array initially, so wait for voices to be loaded
+  if (voices.length === 0) {
+    speechSynthesis.onvoiceschanged = () => {
+      voices = speechSynthesis.getVoices();
+      setVoice();
+    };
+  } else {
+    setVoice();
+  }
+
+  function setVoice() {
+    // Find the voice by name
+    VOICE = voices.find((voice) => voice.name === maleVoiceName);
+    cl(VOICE);
+  }
+};
+
 // Help
 (() => {
   const createHelp = (el, clazz) => {
@@ -87,6 +111,7 @@ startBtn.addEventListener("click", () => {
   NewWord();
 
   SOUND = soundSelect.value;
+  setVoice();
 });
 const restartGame = gtag("restartGame");
 
@@ -112,8 +137,8 @@ function speak(word) {
   const utterance = new SpeechSynthesisUtterance(word);
 
   // Select a voice
-  const voices = speechSynthesis.getVoices();
-  utterance.voice = voices[SOUND];
+
+  utterance.voice = VOICE;
   utterance.rate = 0.8; // slower
   // Speak the text
   speechSynthesis.speak(utterance);
