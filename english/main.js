@@ -196,7 +196,7 @@ for (let i = 0; i < OPTIONS_NUM; i++) {
     speak(e.target.value);
   });
 
-  answer.addEventListener("touchmove", (e) => {
+  answer.addEventListener("touchend", (e) => {
     e.preventDefault();
     speak(e.target.value);
   });
