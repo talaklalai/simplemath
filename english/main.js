@@ -39,7 +39,7 @@ let LASTWORD;
 let VOICE;
 
 const setVoice = () => {
-  const maleVoiceName = "Google UK English Female";
+  const maleVoiceName = "Google UK English Male";
   // Get all available voices
   let voices = speechSynthesis.getVoices();
 
