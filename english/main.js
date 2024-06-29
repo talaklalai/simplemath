@@ -51,10 +51,10 @@ const isSafari = () =>
 
 const setVoice = () => {
   speechSynthesis.cancel();
+  let voiceName = VOICES[soundSelect.value];
   if (isSafari()) {
-    const voiceName = VOICESSAFARI[soundSelect.value];
+    voiceName = VOICESSAFARI[soundSelect.value];
   } else {
-    const voiceName = VOICES[soundSelect.value];
   }
   // Get all available voices
   let voices = speechSynthesis.getVoices();
