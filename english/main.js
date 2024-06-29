@@ -38,6 +38,17 @@ let LASTWORD;
 
 let VOICE;
 const VOICES = [false, "Google UK English Male", "Google UK English Female"];
+const isSafari = () =>
+  /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+(() => {
+  if (!isSafari()) {
+    const femaleOption = ctag("option");
+    femaleOption.value = 2;
+    femaleOption.innerText = "אישה";
+    soundSelect.appendChild(femaleOption);
+  }
+})();
 
 const setVoice = () => {
   speechSynthesis.cancel();
@@ -135,7 +146,7 @@ function speak(word) {
   // Select a voice
 
   utterance.voice = VOICE;
-  utterance.rate = 0.8; // slower
+  utterance.rate = 0.9; // slower
   // Speak the text
   speechSynthesis.speak(utterance);
 }
@@ -160,6 +171,7 @@ const levelUp = () => {
 };
 
 const NextWordE = gtag("NextWordE");
+NextWordE.addEventListener("click", (e) => speak(e.target.innerText));
 const answerDivE = gtag("answerDivE");
 
 const resetNewGameButton = () => {
