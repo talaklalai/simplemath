@@ -19,10 +19,12 @@ const shuffleSelect = gtag("shuffleSelect");
 const numSelect = gtag("numSelect");
 const familySelect = gtag("familySelect");
 const mainContainer = gtag("mainContainer");
+const soundSelect = gtag("soundSelect");
 mainContainer.style.display = "None";
 const setupContainer = gtag("setupContainer");
 const helpDivE = gtag("helpDivE");
 const helpButton = gtag("helpButton");
+let SOUND = false;
 
 setupContainer
   .querySelectorAll("div")
@@ -83,6 +85,8 @@ startBtn.addEventListener("click", () => {
   answerDivE.style.display = "block";
   NextWordE.style.display = "block";
   NewWord();
+
+  SOUND = soundSelect.value;
 });
 const restartGame = gtag("restartGame");
 
@@ -102,6 +106,19 @@ restartGame.addEventListener("click", (e) => {
   }
 });
 
+function speak(word) {
+  if (SOUND == false) return;
+  // Create a SpeechSynthesisUtterance
+  const utterance = new SpeechSynthesisUtterance(word);
+
+  // Select a voice
+  const voices = speechSynthesis.getVoices();
+  utterance.voice = voices[SOUND];
+  utterance.rate = 0.8; // slower
+  // Speak the text
+  speechSynthesis.speak(utterance);
+}
+
 const shuffle = (_ent) => {
   let shuffled = [..._ent]; // Make a copy of the array
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -115,7 +132,7 @@ const shuffleObject = (obj) => Object.fromEntries(shuffle(Object.entries(obj)));
 
 // add new word , remove oldest word
 const levelUp = () => {
-  Level = Level == Object.keys(VUCABLUARY).length ? OPTIONS_NUM : Level + 1;
+  Level = Level == Object.keys(VUCABLUARY).length ? OPTIONS_NUM * 2 : Level + 1;
   CURRENT_WORD_GROUP = Object.fromEntries(
     Object.entries(VUCABLUARY).slice(Level - OPTIONS_NUM, Level),
   );
@@ -137,6 +154,7 @@ for (let i = 0; i < OPTIONS_NUM; i++) {
   answerDivE.appendChild(answer);
   answer.addEventListener("click", (e) => {
     resetNewGameButton();
+    speak(e.target.value);
     checkAnswer(e);
   });
 }
