@@ -159,9 +159,12 @@ const resetNewGameButton = () => {
 for (let i = 0; i < OPTIONS_NUM; i++) {
   let answer = ctag("input");
   answer.setAttribute("readonly", true);
+
   answer.classList.add("multiselect");
   answerDivE.appendChild(answer);
+
   answer.addEventListener("click", (e) => {
+    e.target.disabled = true;
     resetNewGameButton();
     speak(e.target.value);
     checkAnswer(e);
@@ -238,6 +241,7 @@ const NewWord = () => {
   const shuffledOptions = shuffle(allOptions.slice()); // Make a copy to avoid modifying the original array
 
   for (let answerE of answerDivE.querySelectorAll("input")) {
+    answerE.disabled = false;
     answerE.classList.remove("correct", "wrong");
     answerE.value = shuffledOptions.pop()[1];
   }
