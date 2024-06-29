@@ -40,6 +40,7 @@ let VOICE;
 const VOICES = [false, "Google UK English Male", "Google UK English Female"];
 
 const setVoice = () => {
+  speechSynthesis.cancel();
   const maleVoiceName = VOICES[soundSelect.value];
   // Get all available voices
   let voices = speechSynthesis.getVoices();
