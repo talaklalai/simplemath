@@ -22,6 +22,7 @@ const mainContainer = gtag("mainContainer");
 const soundSelect = gtag("soundSelect");
 mainContainer.style.display = "None";
 const setupContainer = gtag("setupContainer");
+const speakerE = gtag("speakerE");
 
 let SOUND = false;
 
@@ -91,7 +92,7 @@ startBtn.addEventListener("click", () => {
   mainContainer.style.display = "block";
   setupContainer.style.display = "None";
   answerDivE.style.display = "block";
-  NextWordE.style.display = "block";
+  NextWordE.style.display = "block-inline;";
   NewWord();
 
   SOUND = soundSelect.value;
@@ -147,7 +148,9 @@ const levelUp = () => {
 };
 
 const NextWordE = gtag("NextWordE");
-NextWordE.addEventListener("click", (e) => speak(e.target.innerText));
+speakerE.addEventListener("click", (e) =>
+  speak(VUCABLUARY[NextWordE.innerText]),
+);
 const answerDivE = gtag("answerDivE");
 
 const resetNewGameButton = () => {
