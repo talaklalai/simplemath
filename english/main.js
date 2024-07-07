@@ -17,13 +17,21 @@ const totalWrong = gtag("totalWrong");
 const totalCorrect = gtag("totalCorrect");
 const shuffleSelect = gtag("shuffleSelect");
 const numSelect = gtag("numSelect");
+[20, 50, 75, 100, 150, 200].forEach((num) => {
+  let o = ctag("option");
+  o.value = num;
+  o.innerText = num;
+  numSelect.appendChild(o);
+});
+
 const familySelect = gtag("familySelect");
 const mainContainer = gtag("mainContainer");
 const soundSelect = gtag("soundSelect");
 mainContainer.style.display = "None";
 const setupContainer = gtag("setupContainer");
 const speakerE = gtag("speakerE");
-
+const body = gtag("body");
+body.addEventListener("contextmenu", (e) => e.preventDefault());
 let SOUND = false;
 
 setupContainer
@@ -92,7 +100,8 @@ startBtn.addEventListener("click", () => {
   mainContainer.style.display = "block";
   setupContainer.style.display = "None";
   answerDivE.style.display = "block";
-  NextWordE.style.display = "block-inline;";
+  NextWordE.style.display = "block";
+  speakerE.style.display = "block";
   NewWord();
 
   SOUND = soundSelect.value;
@@ -172,11 +181,6 @@ for (let i = 0; i < OPTIONS_NUM; i++) {
     speak(e.target.value);
     checkAnswer(e);
   });
-
-  answer.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
-    speak(e.target.value);
-  });
 }
 
 const addOneToDivE = (e) => (e.innerText = parseInt(e.innerText) + 1);
@@ -225,6 +229,7 @@ const checkAnswer = (e) => {
 const finish = () => {
   answerDivE.style.display = "none";
   NextWordE.style.display = "none";
+  speakerE.style.display = "none";
 };
 
 // get options for new word, including the correct one

@@ -30,7 +30,7 @@
     const analytics = getAnalytics(app);
   </script>
 
-  <body>
+  <body id="body">
     <!-- ***********************************    setup   ***********************************    -->
     <div class="container" id="setupContainer">
       <header class="title">אנגלית בכיף</header>
@@ -42,20 +42,11 @@
           <option value="SOUNDS1">צלילים 1</option>
           <option value="SOUNDS2">צלילים 2</option>
           <option value="ACTIONS">פעולות</option>
-          <option selected value="WORDS1">מילים</option>
+          <option selected value="WORDS1">מילים 1</option>
+          <option selected value="WORDS2">מילים 2</option>
         </select>
       </div>
-      <div id="numDiv">
-        מספר שאלות
-        <select id="numSelect">
-          <option selected value="20">20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="200">200</option>
-        </select>
-      </div>
+      <div id="numDiv">מספר שאלות<select id="numSelect"></select></div>
       <div id="shuffleDiv">
         סדר שאלות
         <select id="shuffleSelect">

@@ -367,6 +367,9 @@ const WORDS1 = {
   למה: "why",
   שלום: "hello",
   בוקר: "morning",
+};
+
+const WORDS2 = {
   לילה: "night",
   אוכל: "food",
   מים: "water",
@@ -537,6 +540,7 @@ const DD = {
   SOUNDS1,
   SOUNDS2,
   WORDS1,
+  WORDS2,
   ACTIONS,
 };
 
