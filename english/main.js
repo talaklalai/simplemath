@@ -93,6 +93,7 @@ startBtn.addEventListener("click", () => {
   resetDivE(totalCorrect);
   resetDivE(totalWrong);
   resetDivE(totalLeft, numSelect.value);
+  Level = OPTIONS_NUM;
 
   CURRENT_WORD_GROUP = Object.fromEntries(
     Object.entries(VUCABLUARY).slice(0, Level),
