@@ -73,10 +73,19 @@ const setVoice = () => {
     speechSynthesis.onvoiceschanged = () => {
       voices = speechSynthesis.getVoices();
       VOICE = voices.find((voice) => voice.name === voiceName);
+      if (!VOICE) {
+        speakerE.style.display = "none";
+      } else {
+        speakerE.style.display = "block";
+      }
     };
   } else {
     VOICE = voices.find((voice) => voice.name === voiceName);
+    if (!VOICE) {
+      speakerE.style.display = "none";
+    }
   }
+  cl(VOICE);
 };
 
 // New Game
