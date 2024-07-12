@@ -43,10 +43,10 @@
             <span class="label">פעולות:</span
             ><select id="actions"></select>
           </div>
-          <div>
-            <span class="label">זמן לשאלה:</span
+          <!--div>
+            <span class="label">הגבלת זמן:</span
             ><select id="clock"></select>
-          </div>
+          </div-->
         </div>
       </div>
 
@@ -73,8 +73,16 @@
         </div>
         <div id="totalWrong" style="display: inline-block" class="wrong">0</div>
       </div>
+
       <hr />
-      <p id="question" class="targil ltr"></p>
+      <div class="targil" style="display: flex; align-items: center">
+        <p
+          id="question"
+          class="targil ltr"
+          style="flex-grow: 1; margin-right: 10px"
+        ></p>
+        <!--div id="clockE" style="display: inline-block;">[4545]</div-->
+      </div>
       <div id="answerDiv" class="ltr"></div>
 
       <hr />
