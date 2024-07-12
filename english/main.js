@@ -201,6 +201,9 @@ let lastCorrect = true;
 
 const checkAnswer = (e) => {
   e.preventDefault();
+  if (lastCorrect == true) {
+    decOneToDivE(totalLeft);
+  }
   //correct
   if (e.target.value == EnghWord) {
     e.target.classList.add("correct");
@@ -208,7 +211,6 @@ const checkAnswer = (e) => {
     straightCorrect += 1;
     if (lastCorrect) addOneToDivE(totalCorrect);
     lastCorrect = true;
-    decOneToDivE(totalLeft);
 
     if (straightCorrect % LevelUpCount == 0) {
       levelUp();
