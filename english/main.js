@@ -242,6 +242,7 @@ const finish = () => {
   answerDivE.style.display = "none";
   NextWordE.style.display = "none";
   speakerE.style.display = "none";
+  restartGame.value = "למסך ראשי";
 };
 
 // get options for new word, including the correct one
