@@ -91,7 +91,7 @@ const setVoice = () => {
 // New Game
 startBtn.addEventListener("click", () => {
   resetNewGameButton();
-  if (familySelect.value == "SPORT") {
+  if (["SPORT", "SENTENCES1"].includes(familySelect.value)) {
     OPTIONS_NUM = 4;
   }
   VUCABLUARY = DD[familySelect.value];
