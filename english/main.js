@@ -9,7 +9,7 @@ let LevelUpCount = 6;
 
 let EnghWord = "";
 
-const OPTIONS_NUM = 6;
+let OPTIONS_NUM = 6;
 let Level = OPTIONS_NUM;
 let varifyNewGame = false;
 const totalLeft = gtag("totalLeft");
@@ -91,7 +91,11 @@ const setVoice = () => {
 // New Game
 startBtn.addEventListener("click", () => {
   resetNewGameButton();
+  if (familySelect.value == "SPORT") {
+    OPTIONS_NUM = 4;
+  }
   VUCABLUARY = DD[familySelect.value];
+  drawMultiSelect();
 
   if (shuffleSelect.value == "true") {
     VUCABLUARY = shuffleObject(VUCABLUARY);
@@ -177,22 +181,31 @@ const resetNewGameButton = () => {
   varifyNewGame = false;
 };
 
-// layout
-for (let i = 0; i < OPTIONS_NUM; i++) {
-  let answer = ctag("input");
-  answer.setAttribute("readonly", true);
+const drawMultiSelect = () => {
+  answerDivE.innerHTML = "";
+  // layout
+  for (let i = 0; i < OPTIONS_NUM; i++) {
+    let answer = ctag("input");
+    answer.setAttribute("readonly", true);
 
-  answer.classList.add("multiselect");
-  answerDivE.appendChild(answer);
+    answer.classList.add("multiselect");
+    answer.classList.add("ltr");
 
-  answer.addEventListener("click", (e) => {
-    e.target.disabled = true;
-    resetNewGameButton();
-    speak(e.target.value);
-    checkAnswer(e);
-  });
-}
+    if (OPTIONS_NUM == 4) {
+      answer.classList.add("multiselect4");
+    } else {
+      answer.classList.add("multiselect6");
+    }
+    answerDivE.appendChild(answer);
 
+    answer.addEventListener("click", (e) => {
+      e.target.disabled = true;
+      resetNewGameButton();
+      speak(e.target.value);
+      checkAnswer(e);
+    });
+  }
+};
 const addOneToDivE = (e) => (e.innerText = parseInt(e.innerText) + 1);
 const decOneToDivE = (e) => (e.innerText = parseInt(e.innerText) - 1);
 const resetDivE = (e, value) => (e.innerText = value || 0);
