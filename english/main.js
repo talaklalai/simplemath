@@ -93,6 +93,8 @@ startBtn.addEventListener("click", () => {
   resetNewGameButton();
   if (["SPORT", "SENTENCES1"].includes(familySelect.value)) {
     OPTIONS_NUM = 4;
+  } else {
+    OPTIONS_NUM = 6;
   }
   VUCABLUARY = DD[familySelect.value];
   drawMultiSelect();
@@ -192,8 +194,10 @@ const drawMultiSelect = () => {
     answer.classList.add("ltr");
 
     if (OPTIONS_NUM == 4) {
+      answer.classList.remove("multiselect6");
       answer.classList.add("multiselect4");
     } else {
+      answer.classList.remove("multiselect4");
       answer.classList.add("multiselect6");
     }
     answerDivE.appendChild(answer);
