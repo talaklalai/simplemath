@@ -1,0 +1,25 @@
+{
+  "projects": {
+    "default": "braincalisthenic"
+  },
+  "targets": {
+    "braincalisthenic": {
+      "hosting": {
+        "pub": [
+          "braincalisthenic"
+        ],
+        "beta": [
+          "braincalisthenic2"
+        ],
+        "heshbon": [
+          "heshbon"
+        ],
+        "english": [
+          "anglit"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Hover Effect</title>
+  <style>
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .hover-button {
+      padding: 1rem;
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <button class="hover-button">Button 1</button>
+    <button class="hover-button">Button 2</button>
+    <button class="hover-button">Button 3</button>
+  </div>
+  <div class="emoji" id="emoji">👆🏻</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttons = document.querySelectorAll('.hover-button');
+      const emoji = document.getElementById('emoji');
+      let currentIndex = 0;
+
+      function moveEmoji() {
+        const button = buttons[currentIndex];
+        const rect = button.getBoundingClientRect();
+        emoji.style.left = `${rect.left + (rect.width / 2) - (emoji.clientWidth / 2)}px`;
+        emoji.style.top = `${rect.top + (rect.height / 2) - (emoji.clientHeight / 2)}px`;
+
+        currentIndex = (currentIndex + 1) % buttons.length;
+
+        setTimeout(moveEmoji, 1000); // Change the interval as needed
+      }
+
+      moveEmoji();
+    });
+  </script>
+</body>
+</html>

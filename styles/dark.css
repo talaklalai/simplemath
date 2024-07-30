@@ -1,0 +1,224 @@
+:root {
+  --darkgrey: #303134; /* Dark Grey */
+  --darkergrey: #202124; /* Dark Background */
+  --lightgrey: #e8eaed; /* Light Grey */
+  --gblue: #4285f4;
+  --grey: #47494c;
+  --lightblue: #6b9dee;
+  --blue: #033875ea;
+  --gred: #db4437;
+  --red: #fc5959;
+  --gyellow: #f4b400;
+  --darkYellow: #7e5d03;
+  --lightYellow: #f5da8a;
+  --ggreen: #1fe284;
+  --green: #0f9d58;
+  --lightgreen: #96f2c5;
+}
+
+.title {
+  font-size: xx-large;
+  text-align: center;
+  color: var(--lightgreen);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: x-large;
+  color: var(--lightgrey);
+  background-color: var(--darkergrey);
+  box-sizing: border-box;
+  direction: rtl; /* Right-to-left content */
+}
+
+.rtl {
+  direction: rtl; /* Right-to-left content */
+}
+
+.container,.setupContainer{
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background-color: var(--darkgrey);
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+
+select{
+  padding-top: 1rem;
+  padding-bottom: 1rem; 
+}
+
+.select-group > div {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.spaceButtom{
+  padding-bottom: 1rem;
+
+}
+ 
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+td {
+  padding: 2px;
+  width: auto; /* Adjust width to fit content */
+  box-sizing: border-box; /* Include padding and border in the width */
+  border: none solid var(--lightgrey); /* Adjust border style */
+}
+
+select {
+  font-size: large;
+  padding: 0.5rem;
+  border: 2px solid var(--gblue);
+  border-radius: 8px;
+  margin: 5px;
+}
+
+input {
+  max-width: 90%;
+  font-size: large;
+  padding: 0.5rem;
+  margin-top: 1.5rem;
+  border: 1px solid;
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+
+
+.helpField,
+.helpNikud {
+  display: inline-block;
+  border-color: var(--lightblue);
+  color: var(--lightYellow);
+  max-width: 20%;
+  margin-top: 0.1rem;
+}
+.helpNikud {
+  color: var(--lightgreen);
+}
+
+select,
+.mainButtons,
+input {
+  color: var(--lightgrey);
+  background-color: var(--darkergrey);
+  margin-bottom: 0%;
+}
+
+.semiMainButtons,
+.smallButtons,
+.verySmallButtons,
+.mainButtons {
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
+  background-color: var(--gblue);
+  border: 0px solid;
+  color: var(--lightYellow);
+  font-weight: bold;
+  font-size: x-large;
+  padding: 1rem;
+  cursor: pointer;
+  box-shadow: 4px 5px #0056b3;
+}
+
+.semiMainButtons:active,
+.verySmallButtons:active,
+.smallButtons:active,
+.mainButtons:active {
+  box-shadow: none; /* Remove shadow when button is pressed */
+  transform: translateY(4px); /* Move button down to simulate press */
+}
+
+.smallButtons {
+  padding: 0.1rem;
+}
+
+.verySmallButtons {
+  padding: 0;
+  min-width: 10%;
+  max-width: 10%;
+}
+
+.mainButtons {
+  box-shadow: 6px 6px #0056b3;
+}
+
+.semiMainButtons {
+  min-width: 60%;
+  max-width: 60%;
+  padding: 0.3rem;
+}
+
+.smallButtons {
+  min-width: 30%;
+  max-width: 30%;
+  padding: 0.1rem;
+  color: var(--lightgrey);
+}
+
+.multiselect {
+  background-color: var(--lightYellow);
+  color: var(--darkgrey);
+  max-width: 40%;
+  font-size: x-large;
+  font-weight: bold;
+  padding: 0.7rem;
+  margin: 0.5rem;
+  box-shadow: 4px 6px var(--darkYellow);
+  cursor: pointer;
+}
+
+.multiselect:active {
+  box-shadow: none; /* Remove shadow when button is pressed */
+  transform: translateY(4px); /* Move button down to simulate press */
+}
+
+hr {
+  border: 2px solid var(--gred);
+}
+
+th {
+  text-align: right;
+  direction: ltr; /* Right-to-left content */
+}
+.targil {
+  color: var(--lightYellow);
+  font-size: xx-large;
+}
+thead {
+  font-size: large;
+  color: var(--lightYellow);
+}
+.correct {
+  color: var(--ggreen);
+}
+
+.wrong {
+  color: var(--red);
+}
+
+input.wrong {
+  color: var(--lightgrey);
+  background-color: var(--gred);
+}
+
+input.correct {
+  color: var(--ggreen);
+  background-color: var(--green);
+}
+
+.gblue {
+  color: var(--lightblue);
+  font-weight: bold;
+}
