@@ -74,6 +74,7 @@ const setVoice = () => {
       voices = speechSynthesis.getVoices();
       VOICE = voices.find((voice) => voice.name === voiceName);
       if (!VOICE) {
+        VOICE = voices[0];
         speakerE.style.display = "none";
       } else {
         speakerE.style.display = "block";
@@ -83,7 +84,6 @@ const setVoice = () => {
     VOICE = voices.find((voice) => voice.name === voiceName);
     if (!VOICE) {
       VOICE = voices[0];
-      speakerE.style.display = "none";
     }
   }
 };
