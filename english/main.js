@@ -46,7 +46,7 @@ let LASTWORD;
 
 let VOICE;
 const VOICES = [false, "Google UK English Male", "Google UK English Female"];
-const VOICESSAFARI = [false, "Oliver", "Karen"];
+const VOICESSAFARI = [false, "Alex", "Karen"];
 
 const isSafari = () =>
   /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
