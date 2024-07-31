@@ -46,7 +46,7 @@ let LASTWORD;
 
 let VOICE;
 const VOICES = [false, "Google UK English Male", "Google UK English Female"];
-const VOICESSAFARI = [false, "Alex", "Karen"];
+const VOICESSAFARI = [false, "Daniel", "Karen"];
 
 const isSafari = () =>
   /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -74,7 +74,6 @@ const setVoice = () => {
       voices = speechSynthesis.getVoices();
       VOICE = voices.find((voice) => voice.name === voiceName);
       if (!VOICE) {
-        VOICE = voices[2];
         speakerE.style.display = "none";
       } else {
         speakerE.style.display = "block";
@@ -83,7 +82,7 @@ const setVoice = () => {
   } else {
     VOICE = voices.find((voice) => voice.name === voiceName);
     if (!VOICE) {
-      VOICE = voices[2];
+      speakerE.style.display = "none";
     }
   }
 };
