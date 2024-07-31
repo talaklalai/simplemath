@@ -46,7 +46,7 @@ let LASTWORD;
 
 let VOICE;
 const VOICES = [false, "Google UK English Male", "Google UK English Female"];
-const VOICESSAFARI = [false, "Alex", "Karen"];
+const VOICESSAFARI = [false, "Alex", "Alex"];
 
 const isSafari = () =>
   /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -85,7 +85,6 @@ const setVoice = () => {
       speakerE.style.display = "none";
     }
   }
-  cl(VOICE);
 };
 
 // New Game
@@ -148,7 +147,7 @@ function speak(word) {
   // Select a voice
 
   utterance.voice = VOICE;
-  utterance.rate = 0.9; // slower
+  utterance.rate = 0.8; // slower
   // Speak the text
   speechSynthesis.speak(utterance);
 }
