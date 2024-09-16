@@ -37,7 +37,7 @@ body {
 
 .container,
 .setupContainer {
-  max-width: 600px;
+  max-width: 800px;
   margin: auto;
   padding: 2rem;
   background-color: var(--darkgrey);
