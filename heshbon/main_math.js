@@ -68,7 +68,7 @@ const signs = {
 
 // targilim select
 const targilim = gtag("targilim");
-for (let num of [5, 10, 20, 40, 60, 80, 100]) {
+for (let num of [10, 20, 40, 60, 80, 100]) {
   let option = ctag("option");
   option.innerText = num;
   option.value = num;
@@ -83,7 +83,7 @@ for (let num of [3, 5, 10, 15, 20, "ללא"]) {
   option.innerText = num;
   option.value = num;
   clock.appendChild(option);
-  if (num == 15) option.setAttribute("selected", true);
+  if (num == "ללא") option.setAttribute("selected", true);
 }
 
 //actions select
@@ -119,7 +119,6 @@ class Clock {
   setValid = () => {
     if (clock.value == "ללא") {
       this.valid = false;
-
       return;
     }
     cl("is valid");
@@ -131,12 +130,10 @@ class Clock {
   startTick = (callback) => {
     if (this.valid == false) return;
     this.seconds_left = clock.value;
-
     this.timeGui();
     this.interval = setInterval(() => {
       this.timeGui();
       this.seconds_left = this.seconds_left - 1;
-
       if (this.seconds_left == 0) {
         this.stopTick();
         callback();
@@ -242,13 +239,15 @@ const caseTimeOut = () => {
   lastWrong = true;
   increaseDiv(totalWrong);
   decreaseDiv(totalLeft);
-  setTimeout(nextQuestion, 2000);
+
+  if (parseInt(totalLeft.innerText) == 0) {
+    setTimeout(finish, 2000);
+  } else {
+    setTimeout(nextQuestion, 2000);
+  }
 };
 
 const nextQuestion = () => {
-  if (parseInt(totalLeft.innerText) == 0) {
-    finish();
-  }
   CLOCK.stopTick();
   CLOCK.startTick((callback = caseTimeOut));
   lastWrong = false;
@@ -318,6 +317,7 @@ const finish = () => {
   answerDiv.style.display = "none";
   question.style.display = "none";
   CLOCK.stopTick();
+  clearInterval(CLOCK.interval);
   clockE.style.display = "none";
   endBtn.value = "למסך ראשי";
 };
