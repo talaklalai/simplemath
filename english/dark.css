@@ -182,7 +182,7 @@ input {
 }
 
 .multiselect4 {
-  max-width: 80%;
+  min-width: 100%;
 }
 
 .multiselect:active {

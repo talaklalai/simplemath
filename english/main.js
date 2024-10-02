@@ -191,8 +191,7 @@ const drawMultiSelect = () => {
 
     answer.classList.add("multiselect");
     answer.classList.add("ltr");
-
-    if (OPTIONS_NUM == 4) {
+    if (familySelect.value == "SENTENCES3") {
       answer.classList.remove("multiselect6");
       answer.classList.add("multiselect4");
     } else {

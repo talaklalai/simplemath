@@ -727,98 +727,6 @@ const NATURE = {
   אדמה: "earth",
 };
 
-const COUNTRIES = {
-  אוזבקיסטן: "Uzbekistan",
-  אוסטרליה: "Australia",
-  אוסטריה: "Austria",
-  אוקראינה: "Ukraine",
-  אורוגוואי: "Uruguay",
-  "אזרבייג'אן": "Azerbaijan",
-  אינדונזיה: "Indonesia",
-  איראן: "Iran",
-  אירלנד: "Ireland",
-  אלבניה: "Albania",
-  "אלג'יריה": "Algeria",
-  אנגולה: "Angola",
-  אנדורה: "Andorra",
-  אסטוניה: "Estonia",
-  אפגניסטן: "Afghanistan",
-  אקוודור: "Ecuador",
-  ארגנטינה: "Argentina",
-  ארמניה: "Armenia",
-  "ארצות הברית": "United States",
-  בוליביה: "Bolivia",
-  בנגלדש: "Bangladesh",
-  בלגיה: "Belgium",
-  בלרוס: "Belarus",
-  בריטניה: "United Kingdom",
-  ברזיל: "Brazil",
-  גאורגיה: "Georgia",
-  גבון: "Gabon",
-  גרמניה: "Germany",
-  גיאנה: "Guyana",
-  דנמרק: "Denmark",
-  הודו: "India",
-  הונגריה: "Hungary",
-  הולנד: "Netherlands",
-  "הונג קונג": "Hong Kong",
-  וונצואלה: "Venezuela",
-  ווייטנאם: "Vietnam",
-  יוון: "Greece",
-  יפן: "Japan",
-  ירדן: "Jordan",
-  ישראל: "Israel",
-  כווית: "Kuwait",
-  קולומביה: "Colombia",
-  קונגו: "Congo",
-  "קוריאה הדרומית": "South Korea",
-  "קוריאה הצפונית": "North Korea",
-  קזחסטן: "Kazakhstan",
-  קטאר: "Qatar",
-  קירגיזסטן: "Kyrgyzstan",
-  קפריסין: "Cyprus",
-  קנדה: "Canada",
-  "קוסטה ריקה": "Costa Rica",
-  קובה: "Cuba",
-  קמבודיה: "Cambodia",
-  קמרון: "Cameroon",
-  קרואטיה: "Croatia",
-  רומניה: "Romania",
-  רוסיה: "Russia",
-  סוריה: "Syria",
-  סינגפור: "Singapore",
-  סין: "China",
-  סיישל: "Seychelles",
-  סלובקיה: "Slovakia",
-  סלובניה: "Slovenia",
-  ספרד: "Spain",
-  "סרי לנקה": "Sri Lanka",
-  סרביה: "Serbia",
-  "סן מרינו": "San Marino",
-  סנגל: "Senegal",
-  סודן: "Sudan",
-  סורינאם: "Suriname",
-  פולין: "Poland",
-  פורטוגל: "Portugal",
-  "פיג'י": "Fiji",
-  פיליפינים: "Philippines",
-  פינלנד: "Finland",
-  פקיסטן: "Pakistan",
-  פרגוואי: "Paraguay",
-  פרו: "Peru",
-  צרפת: "France",
-  "צ'אד": "Chad",
-  "צ'ילה": "Chile",
-  "צ'כיה": "Czech Republic",
-  רואנדה: "Rwanda",
-  שוודיה: "Sweden",
-  שווייץ: "Switzerland",
-  תוניסיה: "Tunisia",
-  תימן: "Yemen",
-  תורכיה: "Turkey",
-  תאילנד: "Thailand",
-};
-
 const SENTENCES1 = {
   "אני אוכל תפוח": "I eat an apple",
   "אני רואה כלב": "I see a dog",
@@ -1037,6 +945,230 @@ const SENTENCES2 = {
   "אני הולך לגן": "I go to the garden.",
 };
 
+const SENTENCES3 = {
+  "אבא שלי עובד קשה כל יום במשרד": "My dad works hard every day in the office.",
+  "אבא שלי קורא עיתון בכל בוקר במטבח":
+    "My dad reads the newspaper every morning in the kitchen.",
+  "אמא שלי מבשלת אוכל טעים כל בוקר": "My mom cooks tasty food every morning.",
+  "אמא שלי מבשלת מרק ירקות כל יום בחורף":
+    "My mom cooks vegetable soup every day in winter.",
+  "אמא שלי מבשלת פסטה טעימה בכל יום שישי":
+    "My mom cooks tasty pasta every Friday.",
+  "אמא שלי מכינה אוכל טעים כל יום בבית":
+    "My mom makes tasty food every day at home.",
+  "אמא שלי מכינה מרק חם וטעים לכל המשפחה":
+    "My mom makes hot and tasty soup for the whole family.",
+  "אמא שלי מכינה סלט ירקות טרי בכל ערב":
+    "My mom makes a fresh vegetable salad every evening.",
+  "אמא שלי מכינה עוגה טעימה כל שבוע בבית":
+    "My mom makes a tasty cake every week at home.",
+  "אמא שלי מכינה עוגה טעימה לכל יום":
+    "My mom makes a tasty cake for every day.",
+  "אמא שלי מכינה עוגיות טעימות בכל יום שישי":
+    "My mom makes tasty cookies every Friday.",
+  "אמא שלי נותנת לי תפוח טרי כל יום":
+    "My mom gives me a fresh apple every day.",
+  "אמא שלי קונה אוכל טרי כל שבוע": "My mom buys fresh food every week.",
+  "אמא שלי קונה פרחים יפים כל שבוע בחנות":
+    "My mom buys beautiful flowers every week at the store.",
+  "אני אוהב לאכול תפוח טרי כל יום": "I love to eat a fresh apple every day.",
+  "אני אוכל סלט ירקות טרי בכל ערב בארוחה":
+    "I eat a fresh vegetable salad every evening at dinner.",
+  "אני אוכל סלט ירקות טרי כל ערב בארוחה":
+    "I eat a fresh vegetable salad every evening at dinner.",
+  "אני אוכל תפוח בכל בוקר לפני בית ספר":
+    "I eat an apple every morning before school.",
+  "אני אוכל תפוח טרי בכל יום אחרי הצהריים":
+    "I eat a fresh apple every afternoon.",
+  "אני הולך לבית הספר עם חבר שלי": "I go to school with my friend.",
+  "אני הולך לחנות לקנות תפוחים כל שבוע":
+    "I go to the store to buy apples every week.",
+  "אני יושב על הכיסא ליד השולחן עם ספר":
+    "I sit on the chair next to the table with a book.",
+  "אני יושב על הכסא בבית שלי עכשיו": "I sit on the chair in my house now.",
+  "אני יושב על הספה עם ספר ביד": "I sit on the sofa with a book in hand.",
+  "אני לומד דברים חדשים בכל יום בבית הספר":
+    "I learn new things every day at school.",
+  "אני לומד דברים חדשים כל יום בבית הספר":
+    "I learn new things every day at school.",
+  "אני לומד שיעורים חדשים כל יום בכיתה":
+    "I learn new lessons every day in class.",
+  "אני קונה ספר חדש בחנות כל חודש":
+    "I buy a new book at the store every month.",
+  "אני קונה ספר חדש בכל חודש בחנות":
+    "I buy a new book every month at the store.",
+  "אני קונה עפרון חדש בכל פעם שאני בחנות":
+    "I buy a new pencil every time I'm at the store.",
+  "אני רואה את הכלב שלי רץ מהר": "I see my dog running fast.",
+  "אני שותה מים קרים בכל בוקר אחרי ריצה":
+    "I drink cold water every morning after running.",
+  "אני שותה מים קרים כל בוקר אחרי ריצה":
+    "I drink cold water every morning after running.",
+  "אני שותה מיץ טרי כל בוקר במטבח שלנו":
+    "I drink fresh juice every morning in our kitchen.",
+  "אני שותה מיץ תפוזים טרי בכל בוקר במטבח":
+    "I drink fresh orange juice every morning in the kitchen.",
+  "החברים שלי אוהבים לשחק ביחד אחרי בית ספר":
+    "My friends love playing together after school.",
+  "החברים שלי משחקים ביחד כל יום אחרי בית ספר":
+    "My friends play together every day after school.",
+  "החברים שלי משחקים כדורגל בפארק אחרי בית ספר":
+    "My friends play soccer in the park after school.",
+  "החברים שלי משחקים כדורסל בכל סוף שבוע בפארק":
+    "My friends play basketball every weekend in the park.",
+  "החדר שלי נקי אחרי שאני מסדר אותו כל יום":
+    "My room is clean after I tidy it up every day.",
+  "החדר שלי נקי אחרי ששטפתי את הרצפה":
+    "My room is clean after I washed the floor.",
+  "החדר שלי נקי ומסודר אחרי יום ארוך":
+    "My room is clean and tidy after a long day.",
+  "החתול הקטן משחק עם כדור צבעוני קטן":
+    "The small cat plays with a colorful ball.",
+  "החתול ישן על הספה בבית שלנו": "The cat sleeps on the couch in our home.",
+  "החתול שלי אוהב לישון על הספה בסלון":
+    "My cat loves sleeping on the sofa in the living room.",
+  "החתול שלי אוהב לרוץ ברחוב אחרי הציפורים":
+    "My cat loves to run on the street after the birds.",
+  "החתול שלי אוהב לשבת על השטיח החם בבית":
+    "My cat loves to sit on the warm rug at home.",
+  "החתול שלי אוהב לשחק עם צעצוע קטן": "My cat loves playing with a small toy.",
+  "החתול שלי ישן במיטה בכל לילה בבית":
+    "My cat sleeps in bed every night at home.",
+  "החתול שלי ישן כל היום על המיטה החמה":
+    "My cat sleeps all day on the warm bed.",
+  "החתול שלי ישן על המיטה בכל לילה קר":
+    "My cat sleeps on the bed every cold night.",
+  "החתול שלי רץ ברחוב אחרי העכבר הקטן שלנו":
+    "My cat runs on the street after our small mouse.",
+  "הילדה יושבת על הספה וקוראת ספר יפה":
+    "The girl sits on the couch and reads a nice book.",
+  "הילדה לובשת שמלה ורודה בכל יום בבית":
+    "The girl wears a pink dress every day at home.",
+  "הילדה לובשת שמלה ורודה יפה בבית":
+    "The girl wears a pretty pink dress at home.",
+  "הילדה לובשת שמלה חדשה ביום שישי": "The girl wears a new dress on Friday.",
+  "הילדה משחקת בחצר עם החברים שלה כל יום":
+    "The girl plays in the yard with her friends every day.",
+  "הילדה רצה מהר אחרי הכלב ברחוב הקטן":
+    "The girl runs fast after the dog on the small street.",
+  "הילדה שותה מים קרים כל בוקר": "The girl drinks cold water every morning.",
+  "הילדה שלי לובשת שמלה יפה בכל חגיגה":
+    "My daughter wears a pretty dress at every celebration.",
+  "הילדים אוהבים לצייר תמונות יפות יחדיו":
+    "The children love drawing nice pictures together.",
+  "הילדים אוכלים פירות טריים בכל יום":
+    "The children eat fresh fruits every day.",
+  "הילדים הולכים לבית ספר בכל יום בבוקר":
+    "The children go to school every morning.",
+  "הילדים הולכים לפארק עם כדור כל יום":
+    "The kids go to the park with a ball every day.",
+  "הילדים משחקים בחול בפארק אחרי בית ספר":
+    "The children play in the sand at the park after school.",
+  "הילדים משחקים בכדור קטן על הדשא":
+    "The kids play with a small ball on the grass.",
+  "הילדים צוחקים ביחד אחרי המשחק בפארק הגדול":
+    "The kids laugh together after playing in the big park.",
+  "הילדים קוראים ספרים יחדיו על הדשא בפארק":
+    "The children read books together on the grass in the park.",
+  "הילדים רצים בפארק עם הכלב הקטן שלנו כל יום":
+    "The kids run in the park with our small dog every day.",
+  "הילדים שלי אוהבים לצייר תמונות יפות בבית":
+    "My children love drawing beautiful pictures at home.",
+  "הילדים שלי אוכלים ארוחת בוקר בכל בוקר מוקדם":
+    "My kids eat breakfast every morning early.",
+  "הילדים שלי אוכלים פירות טריים בכל יום בצהריים":
+    "My kids eat fresh fruit every day at noon.",
+  "הילדים שלי הולכים לבית הספר בכל בוקר מוקדם":
+    "My kids go to school every morning early.",
+  "הילדים שלי הולכים לחוג כדורגל כל שבוע":
+    "My kids go to soccer practice every week.",
+  "הילדים שלי קוראים ספרים יפים בכל ערב בבית":
+    "My children read beautiful  books every evening at home.",
+  "הילדים שלי קוראים ספרים יפים כל ערב בבית":
+    "My kids read nice books every evening at home.",
+  "הילדים שלי רצים בפארק בכל יום אחרי הצהריים":
+    "My kids run in the park every afternoon.",
+  "הילדים שלי שרים שירים יפים כל שבוע בבית ספר":
+    "My kids sing beautiful songs every week at school.",
+  "הילדים שרים שיר יפה ביחד בבית ספר":
+    "The kids sing a beautiful song together at school.",
+  "הכדור הירוק מתגלגל על הדשא אחרי המשחק":
+    "The green ball rolls on the grass after the game.",
+  "הכדור הקטן קופץ מהר על הדשא הירוק":
+    "The small ball bounces fast on the green grass.",
+  "הכדור שלי מתגלגל רחוק על הדשא אחרי המשחק":
+    "My ball rolls far on the grass after the game.",
+  "הכדור שלי נמצא בחוץ על הדשא ליד הבית":
+    "My ball is outside on the grass near the house.",
+  "הכדור שלי נמצא ליד הדלת במבואה בבית":
+    "My ball is near the door in the hallway at home.",
+  "הכדור שלי נמצא ליד השולחן בחדר אחרי המשחק":
+    "My ball is near the table in the room after the game.",
+  "הכדור שלי עף רחוק על הדשא אחרי המשחק":
+    "My ball flies far on the grass after the game.",
+  "הכיסא שלי ליד השולחן הגדול בחדר שלי":
+    "My chair is next to the big table in my room.",
+  "הכיסא שלי נמצא ליד השולחן בחדר":
+    "My chair is next to the table in the room.",
+  "הכיסא שלי נמצא ליד השולחן בחדר בבית":
+    "My chair is next to the table in the room at home.",
+  "הכלב שלי אוהב לשחק עם הכדור בחוץ":
+    "My dog loves playing with the ball outside.",
+  "הכלב שלי ישן במיטה אחרי משחק בפארק":
+    "My dog sleeps in bed after playing in the park.",
+  "הכלב שלי ישן על המיטה אחרי יום ארוך":
+    "My dog sleeps on the bed after a long day.",
+  "הכלב שלי משחק עם החתול שלנו כל בוקר":
+    "My dog plays with our cat every morning.",
+  "הכלב שלי משחק עם כדור קטן בחוץ": "My dog plays with a small ball outside.",
+  "הכלב שלי רץ ברחוב אחרי החתול הקטן שלנו":
+    "My dog runs on the street after our small cat.",
+  "הכלב שלי רץ מהר אחרי החתול ברחוב כל יום":
+    "My dog runs fast after the cat on the street every day.",
+  "הכלב שלי רץ מהר על הדשא כל יום": "My dog runs fast on the grass every day.",
+  "המשפחה יוצאת לטיול כל סוף שבוע בפארק":
+    "The family goes on a trip every weekend in the park.",
+  "המשפחה שלי אוכלת פיצה יחד כל שבוע בסלון":
+    "My family eats pizza together every week in the living room.",
+  "המשפחה שלי הולכת לטייל בפארק בכל סוף שבוע":
+    "My family goes for a walk in the park every weekend.",
+  "המשפחה שלי יוצאת לטיול בכל סוף שבוע":
+    "My family goes on a trip every weekend.",
+  "המשפחה שלנו אוכלת ארוחת ערב ביחד כל יום":
+    "Our family eats dinner together every day.",
+  "המשפחה שלנו הולכת לים בכל קיץ לשחות":
+    "Our family goes to the sea every summer to swim.",
+  "המשפחה שלנו הולכת לפארק כל שבוע": "Our family goes to the park every week.",
+  "המשפחה שלנו יושבת ביחד לארוחת ערב כל יום":
+    "Our family sits together for dinner every day.",
+  "המשפחה שלנו יושבת יחד לאכול ארוחת ערב כל ערב":
+    "Our family sits together to eat dinner every evening.",
+  "המשפחה שלנו יושבת לאכול ארוחת ערב כל יום":
+    "Our family sits to eat dinner every day.",
+  "הספר הזה מלא בסיפורים יפים על חיות שונות":
+    "This book is full of beautiful stories about different animals.",
+  "הספר נמצא על המדף בחדר הספרים שלנו בבית":
+    "The book is on the shelf in our library room at home.",
+  "הספר נמצא על המדף בחדר שלנו בבית":
+    "The book is on the shelf in our room at home.",
+  "הספר נמצא על המדף הגבוה בסלון שלנו":
+    "The book is on the high shelf in our living room.",
+  "הספר נמצא על המדף הגבוה בספריה שלנו":
+    "The book is on the high shelf in our library.",
+  "הספר שלי מלא בתמונות יפות של חיות שונות":
+    "My book is full of beautiful pictures of different animals.",
+  "הספר שלי נמצא על השולחן ליד המיטה": "My book is on the table near the bed.",
+  "הספרים שלי על השולחן בחדר שלי": "My books are on the table in my room.",
+  "הציפורים עפות גבוה מעל העצים הירוקים":
+    "The birds fly high above the green trees.",
+  "יש לי עוגה גדולה על השולחן במטבח":
+    "I have a big cake on the table in the kitchen.",
+  "יש לי עפרון כחול בתוך התיק": "I have a blue pencil in the bag.",
+  "יש לי עפרונות צבעוניים בתוך התיק שלי": "I have colorful pencils in my bag.",
+  "יש לי שולחן קטן בחדר ליד החלון":
+    "I have a small table in the room near the window.",
+};
+
 const DD = {
   LETTERS,
   SOUNDS1,
@@ -1048,6 +1180,7 @@ const DD = {
   NATURE,
   SENTENCES1,
   SENTENCES2,
+  SENTENCES3,
 };
 
 export { DD };
